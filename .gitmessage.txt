@@ -1,0 +1,9 @@
+feat(scope): mô tả ngắn gọn thay đổi [#issue_id]
+
+- Chi tiết thay đổi 1:
+- Chi tiết thay đổi 2:
+
+UC-Ref: RAG-Buoi06
+Harness-Layer: retrieval
+AI-Usage: Antigravity - hỗ trợ sinh khung code, đã tự review và kiểm chứng từng dòng
+Verification: pytest (PASSED)

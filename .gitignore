@@ -1,0 +1,19 @@
+# Bảo mật tuyệt đối - Không bao giờ commit file môi trường chứa API key
+.env
+.env.*
+!.env.example
+
+# Môi trường ảo & Python cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local Database, Vector Store & Runtime Logs
+*.db
+*.sqlite
+*.sqlite3
+chroma_db/
+logs/
