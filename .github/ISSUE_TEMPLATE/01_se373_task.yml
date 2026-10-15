@@ -1,0 +1,115 @@
+name: "SE373 Task Assignment & Implementation"
+description: "Mẫu phiếu giao việc và triển khai tính năng theo chuẩn SE373 Đề tài 05 (Interview Agent)"
+title: "[PHASE?-UC??-SV?]: <Tiêu đề công việc>"
+labels: ["P2:Normal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 📋 Phiếu Giao Việc & Báo Cáo Triển Khai Tính Năng (SE373 — Đề tài 05)
+        Vui lòng điền đầy đủ các mục dưới đây trước khi bắt đầu code và mở Pull Request. Mọi task đều phải tuân thủ công thức trục `agent = model + harness` và ranh giới bảo mật tri thức.
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: "Phase / Milestone"
+      description: "Chọn Phase tương ứng theo tiến độ môn học SE373"
+      options:
+        - "Phase 1: Foundation & RAG Harness (feature/rag)"
+        - "Phase 2: Core Interview Loop - Chốt 3 UC Tháng 11 (UC-01, UC-02, UC-03)"
+        - "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)"
+        - "Phase 4: Regression Evaluation, Trace Audit & Final Demo"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: use_case
+    attributes:
+      label: "Use Case / Phân hệ Tác động"
+      description: "Chọn Use Case chính mà task này phục vụ"
+      options:
+        - "RAG-Buoi06"
+        - "UC-01"
+        - "UC-02"
+        - "UC-03"
+        - "UC-04"
+        - "UC-05"
+        - "UC-06"
+        - "UC-09"
+        - "App-UI"
+        - "Eval-Security"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: knowledge_areas
+    attributes:
+      label: "Mảng Kiến Thức Agentic AI (K1 đến K8)"
+      description: "Đánh dấu tất cả các mảng kiến thức kỹ thuật được áp dụng trong task này"
+      options:
+        - label: "K1 (Model/Structured Output/Loop) — Pydantic v2 extra='forbid', Instructor/Structured LLM Output"
+        - label: "K2 (Tools/Skills) — Đóng gói LangChain @tool, SKILL.md, MCP Protocol"
+        - label: "K3 (RAG) — Phân mảnh theo cấu trúc, Hybrid BM25 + Dense RRF k=60, Cascade Rerank, Citation Verifier"
+        - label: "K4 (Memory/State/Context) — Cửa sổ trượt, Compaction 5 phần, Long-term Candidate Memory"
+        - label: "K5 (Workflow/HITL) — LangGraph StateGraph, Checkpoint SQLite, Human-in-the-loop Recruiter Gate"
+        - label: "K6 (Multi-agent/MCP) — Hội đồng 3 Grader độc lập, Moderator Agent, Consensus Agreement"
+        - label: "K7 (Verification/Eval) — Sensor computational kiểm chứng code, Benchmark đo Recall/MRR, Krippendorff's alpha"
+        - label: "K8 (Security/Observability) — Che 11 PII, chống Prompt Injection, Docker Sandbox cô lập, Tracing"
+    validations:
+      required: true
+
+  - type: textarea
+    id: u1_functional_spec
+    attributes:
+      label: "U1 — Đặc tả Chức năng, File Phụ trách & Pydantic Schema"
+      description: "Mô tả chi tiết chức năng nghiệp vụ, các file mã nguồn phụ trách riêng, và Pydantic Schema đầu vào/đầu ra."
+      placeholder: |
+        - Nghiệp vụ: Triển khai ...
+        - Các file phụ trách chính:
+          + src/...
+          + tests/...
+        - Pydantic Schema Input/Output:
+          + Input: `SchemaInput`
+          + Output: `SchemaOutput` (bắt buộc extra="forbid")
+    validations:
+      required: true
+
+  - type: textarea
+    id: u2_harness_design
+    attributes:
+      label: "U2 — Thiết kế Tầng Harness Lõi (12 Lớp)"
+      description: "Chỉ rõ các lớp Harness trong 12 lớp (context, tools, skills, retrieval, memory, state, workflow, verification, permission, logging, human_approval, handoff) được xây dựng trong task này."
+      placeholder: |
+        - Lớp Harness phụ trách:
+          + retrieval: ...
+          + verification: ...
+          + permission: ...
+        - Ranh giới bảo mật & chống thiên lệch:
+          + Che 11 trường PII bằng redact_pii trước khi đưa vào LLM
+          + Không rò rỉ rubric / expected_signals cho interviewer và ứng viên
+    validations:
+      required: true
+
+  - type: textarea
+    id: u3_verification_dod
+    attributes:
+      label: "U3 — Tiêu chí Nghiệm thu (DoD) & Lệnh Kiểm thử"
+      description: "Tiêu chí chấp nhận định lượng (Acceptance Criteria), danh sách test cases, và câu lệnh chạy nghiệm thu."
+      placeholder: |
+        - Tiêu chí chấp nhận định lượng:
+          1. 100% test cases PASSED.
+          2. Recall@5 >= 0.80 trên tập eval.
+        - Lệnh chạy kiểm chứng:
+          $ .venv/bin/pytest tests/test_... -v
+          $ .venv/bin/ruff check src tests
+    validations:
+      required: true
+
+  - type: textarea
+    id: ai_transparency
+    attributes:
+      label: "Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm"
+      description: "Khai báo minh bạch các công cụ AI trợ giúp (Gemini, Claude, Copilot, Cursor...) và cam kết hiểu rõ 100% code."
+      value: "Tôi cam kết khai báo minh bạch công cụ trợ lý AI được sử dụng trong task này. Toàn bộ mã nguồn đã được tôi rà soát thủ công từng dòng, kiểm thử đạt 100% PASSED và sẵn sàng giải thích chi tiết cơ chế hoạt động khi bảo vệ vấn đáp trước giảng viên."
+    validations:
+      required: true

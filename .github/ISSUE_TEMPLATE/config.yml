@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "SE373 Đề tài 05 — Interview Agent Documentation"
+    url: "https://github.com/Zelrious/Interview-Agent/tree/main/docs"
+    about: "Tài liệu kiến trúc, đặc tả Use Cases, RAG Harness và Rubric môn học"

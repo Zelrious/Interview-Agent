@@ -1,0 +1,54 @@
+name: CI Quality Checklist & Regression Eval
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+
+jobs:
+  quality-check:
+    name: Lint, Secret Scan & Regression Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: 2. Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 3. Verify .env file is NOT tracked in Git
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "::error::File .env đang bị theo dõi trong Git! Hãy xóa .env khỏi git index ngay."
+            exit 1
+          else
+            echo "PASSED: .env không bị commit vào kho mã nguồn."
+          fi
+
+      - name: 4. Run Ruff Linter
+        run: |
+          ruff check src evals tests
+
+      - name: 5. Run PyTest Unit & Contract Tests
+        run: |
+          pytest -v
+
+      - name: 6. Run Smoke Evaluation Suite
+        run: |
+          python -m evals.run --all

@@ -1,0 +1,233 @@
+{
+  "project_name": "SE373 — Đề tài 05: Interview Agent (Hướng A)",
+  "milestones": [
+    {
+      "number": 1,
+      "title": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "description": "Xây dựng nền tảng Core Schema, Harness Lõi, Dữ liệu tri thức chuẩn hạt giống và Pipeline RAG 2 Pha (Hybrid BM25 + Dense RRF + Reranker).",
+      "due_on": "2026-10-25T23:59:59Z",
+      "state": "open"
+    },
+    {
+      "number": 2,
+      "title": "Phase 2: Core Interview Loop - Chốt 3 UC Tháng 11 (UC-01, UC-02, UC-03)",
+      "description": "Hoàn thiện chu trình phỏng vấn cốt lõi: Phân tích CV/JD (UC-01), Sinh kịch bản InterviewScenario (UC-02), và Phỏng vấn đào sâu đa lượt TurnDecision (UC-03).",
+      "due_on": "2026-11-30T23:59:59Z",
+      "state": "open"
+    },
+    {
+      "number": 3,
+      "title": "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)",
+      "description": "Chấm điểm Rubric độc lập (UC-05), Hội đồng Grader hòa giải điểm số (UC-06), Luyện tập phản hồi STAR & Bộ nhớ dài hạn (UC-09), và Docker Sandbox (UC-04).",
+      "due_on": "2026-12-09T23:59:59Z",
+      "state": "open"
+    },
+    {
+      "number": 4,
+      "title": "Phase 4: Regression Evaluation, Trace Audit & Final Demo",
+      "description": "Chạy hồi quy toàn bộ hệ thống Eval (Recall, MAE, ICC, Latency), kiểm toán Trace log, chuẩn bị báo cáo tổng kết và buổi Demo bảo vệ đề tài.",
+      "due_on": "2026-12-15T23:59:59Z",
+      "state": "open"
+    }
+  ],
+  "labels": [
+    {
+      "name": "K1:Model-Loop",
+      "color": "1d76db",
+      "description": "Model selection, Structured Output Pydantic v2 extra='forbid', Output Parser"
+    },
+    {
+      "name": "K2:Tools-Skills",
+      "color": "0052cc",
+      "description": "LangChain Tools, Custom Agent Skills (SKILL.md), MCP Protocol"
+    },
+    {
+      "name": "K3:RAG",
+      "color": "5319e7",
+      "description": "RAG Knowledge Harness: Ingestion, Hybrid BM25+Dense RRF, Cascade Rerank, Citation"
+    },
+    {
+      "name": "K4:Memory-State",
+      "color": "0e8a16",
+      "description": "Memory management: Compaction 5 phần, Long-term candidate memory, LangGraph State"
+    },
+    {
+      "name": "K5:Workflow-HITL",
+      "color": "fbca04",
+      "description": "Multi-step workflow, Human-in-the-loop recruiter gate, Checkpoint SQLite"
+    },
+    {
+      "name": "K6:Multi-Agent",
+      "color": "d93f0b",
+      "description": "Multi-agent Panel: 3 Graders độc lập + Moderator hòa giải, Handoff orchestration"
+    },
+    {
+      "name": "K7:Verification-Eval",
+      "color": "c2e0c6",
+      "description": "Sensors kiểm chứng code, Benchmark đo Recall, MAE, Krippendorff's alpha"
+    },
+    {
+      "name": "K8:Security-Obs",
+      "color": "b60205",
+      "description": "Che 11 PII, chống Prompt Injection/Chữ ẩn, Docker Sandbox cô lập, Tracing"
+    },
+    {
+      "name": "P0:Blocker",
+      "color": "b60205",
+      "description": "Ưu tiên tối cao: Chặn tiến độ toàn nhóm, bắt buộc xử lý ngay"
+    },
+    {
+      "name": "P1:Critical",
+      "color": "d93f0b",
+      "description": "Ưu tiên cao: Tính năng cốt lõi hoặc test kiểm chuẩn bắt buộc"
+    },
+    {
+      "name": "P2:Normal",
+      "color": "0e8a16",
+      "description": "Ưu tiên thông thường: Tính năng tiêu chuẩn theo kế hoạch sprint"
+    },
+    {
+      "name": "RAG-Buoi06",
+      "color": "5319e7",
+      "description": "Bài tập nhóm Buổi 06: Xây dựng và đánh giá RAG Knowledge Harness"
+    },
+    {
+      "name": "UC-01",
+      "color": "006b75",
+      "description": "UC-01: Phân tích JD & CV thành CompetencyProfile"
+    },
+    {
+      "name": "UC-02",
+      "color": "1d76db",
+      "description": "UC-02: Thiết kế kịch bản phỏng vấn InterviewScenario"
+    },
+    {
+      "name": "UC-03",
+      "color": "0052cc",
+      "description": "UC-03: Phỏng vấn đào sâu đa lượt TurnDecision"
+    },
+    {
+      "name": "UC-04",
+      "color": "6f42c1",
+      "description": "UC-04: Đánh giá bài thi code trong Docker Sandbox"
+    },
+    {
+      "name": "UC-05",
+      "color": "e99695",
+      "description": "UC-05: Chấm điểm câu trả lời độc lập theo Rubric"
+    },
+    {
+      "name": "UC-06",
+      "color": "d93f0b",
+      "description": "UC-06: Hội đồng Grader hòa giải điểm & kiểm định độ tin cậy"
+    },
+    {
+      "name": "UC-09",
+      "color": "1f883d",
+      "description": "UC-09: Luyện tập cho ứng viên & Bộ nhớ dài hạn qua nhiều phiên"
+    },
+    {
+      "name": "Eval-Safety",
+      "color": "cfd3d7",
+      "description": "Đo lường an toàn, bảo vệ dữ liệu PII, chống thiên lệch và hồi quy"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "PHASE1-RAG-SV1",
+      "title": "[PHASE1-RAG-SV1] Biên soạn 30 câu hỏi BE Core, Chính sách dữ liệu & Chuẩn hóa Ingestion Idempotent",
+      "milestone": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "owner_role": "SV1",
+      "labels": ["K3:RAG", "K8:Security-Obs", "RAG-Buoi06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Biên soạn 30 câu hỏi Backend Core (API Design, Concurrency, Database) kèm follow-up hints và expected_signals; thiết lập tài liệu Chính sách bảo mật dữ liệu.\n- **File phụ trách:**\n  + `data/knowledge/questions/questions_sv1_be_core.json`\n  + `data/knowledge/policies/privacy_and_fairness.md`\n  + `src/rag/ingest.py` (hàm `upsert_file_idempotent` và `verify_embedding_lock`)\n- **Schema:** Tuân thủ `ScenarioQuestion` với `extra=\"forbid\"`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K3 (RAG), K8 (Security).\n- **Harness Layers:** `retrieval`, `permission`, `verification`.\n- **Ranh giới an toàn:** Mã hóa và đánh dấu cờ `is_confidential` cho các trường nhạy cảm, cơ chế khóa mô hình embedding lock ngăn sai lệch vector.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. File JSON câu hỏi chuẩn cú pháp, đầy đủ 30 câu.\n  2. Chạy hàm `upsert_file_idempotent` 2 lần liên tiếp không làm tăng số lượng chunk.\n  3. Test `verify_embedding_lock` chặn đứng model mismatch.\n- **Lệnh chạy:**\n  `pytest tests/test_rag_harness.py -k test_upsert_file_idempotent -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE1-RAG-SV2",
+      "title": "[PHASE1-RAG-SV2] Khung năng lực & Rubric Backend, 30 câu hỏi System Design & Đóng gói RAG Agent Tools",
+      "milestone": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "owner_role": "SV2",
+      "labels": ["K2:Tools-Skills", "K3:RAG", "RAG-Buoi06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng khung năng lực Backend Developer qua 4 cấp độ; biên soạn Rubric chấm điểm mật 1-5; biên soạn 30 câu hỏi System Design; đóng gói 2 LangChain tools.\n- **File phụ trách:**\n  + `data/knowledge/competencies/backend_dev.json`\n  + `data/knowledge/rubrics/rubrics_backend.json`\n  + `data/knowledge/questions/questions_sv2_be_sys.json`\n  + `src/rag/agent_tools.py`\n- **Schema:** `@tool` `search_interview_questions_tool` và `retrieve_grading_rubric_tool`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K2 (Tools/Skills), K3 (RAG).\n- **Harness Layers:** `tools`, `permission`.\n- **Ranh giới an toàn:** Khóa cứng `caller_role=\"interviewer\"` trong search tool để không bao giờ lộ rubric cho ứng viên hoặc interviewer.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Gọi `search_interview_questions_tool` không bao giờ chứa `expected_signals`.\n  2. Gọi `retrieve_grading_rubric_tool` trả về đúng Rubric 1-5 kèm mã `[chunk_id]`.\n- **Lệnh chạy:**\n  `pytest tests/test_rag_harness.py -k test_agent_tools_execution -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE1-RAG-SV3",
+      "title": "[PHASE1-RAG-SV3] Kho tri thức Data Analyst (30 câu + Rubric) & Tối ưu Hybrid Search (BM25 + RRF k=60)",
+      "milestone": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "owner_role": "SV3",
+      "labels": ["K3:RAG", "K7:Verification-Eval", "RAG-Buoi06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng kho tri thức vị trí Data Analyst (SQL Analytics, Data Modeling, Statistics); cài đặt bộ tìm kiếm lai ghép Hybrid Search kết hợp Dense Vector và Sparse BM25 qua thuật toán RRF.\n- **File phụ trách:**\n  + `data/knowledge/competencies/data_analyst.json`\n  + `data/knowledge/rubrics/rubrics_data_analyst.json`\n  + `data/knowledge/questions/questions_sv3_da_sql.json`\n  + `src/rag/hybrid_retriever.py`\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K3 (RAG), K7 (Verification).\n- **Harness Layers:** `retrieval`, `permission`.\n- **Ranh giới an toàn:** Phân tách ranh giới dữ liệu giữa `interviewer` (chỉ đọc câu hỏi) và `grader` (được đọc rubric).\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Hàm `reciprocal_rank_fusion` đưa đúng tài liệu đồng thuận lên Hạng 1.\n  2. BM25 tokenizer bóc tách chính xác các mã định danh kỹ thuật như `Q_DA_001`.\n- **Lệnh chạy:**\n  `pytest tests/test_rag_harness.py -k test_reciprocal_rank_fusion_consensus -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE1-RAG-SV4",
+      "title": "[PHASE1-RAG-SV4] Kho tri thức QA + 10 bài Code (Public/Hidden Tests), Cross-Encoder Reranker & Citation Verifier",
+      "milestone": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "owner_role": "SV4",
+      "labels": ["K3:RAG", "K8:Security-Obs", "RAG-Buoi06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Biên soạn kho tri thức QA Engineer; xây dựng ngân hàng bài tập code kèm public/hidden tests; phát triển bộ Cascade Reranker và Citation Verifier.\n- **File phụ trách:**\n  + `data/knowledge/competencies/qa_engineer.json`\n  + `data/knowledge/coding_tasks/coding_problems.json`\n  + `data/knowledge/questions/questions_sv4_qa_test.json`\n  + `src/rag/reranker.py`\n  + `src/rag/grounding.py`\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K3 (RAG), K8 (Security).\n- **Harness Layers:** `retrieval`, `verification`.\n- **Ranh giới an toàn:** Hidden test cases và Rubric được bảo vệ bảo mật tuyệt đối. Bắt buộc kích hoạt Escape Hatch khi thông tin không có trong tài liệu.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. `verify_citations` bắt chính xác 100% mã trích dẫn bịa đặt (`citation_existence_rate == 1.0`).\n  2. Cascade Reranker lọc Top 20 xuống Top 5 trong thời gian < 10ms.\n- **Lệnh chạy:**\n  `pytest tests/test_rag_harness.py -k test_verify_citations_grounding_and_hallucinations -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE1-RAG-SV5",
+      "title": "[PHASE1-RAG-SV5] 30 câu hỏi Hành vi STAR, Bộ Golden Dataset 30 câu & Báo cáo Benchmark 4 cấu hình RAG",
+      "milestone": "Phase 1: Foundation & RAG Harness (feature/rag)",
+      "owner_role": "SV5",
+      "labels": ["K3:RAG", "K7:Verification-Eval", "RAG-Buoi06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Biên soạn 30 câu hỏi hành vi theo khung STAR; thiết kế bộ Golden Dataset chuẩn (Concept, Identifier, Trap, Unanswerable); viết script benchmark tự động đo 4 cấu hình RAG và xuất báo cáo.\n- **File phụ trách:**\n  + `data/knowledge/questions/questions_sv5_behavioral.json`\n  + `evals/data/rag_golden_dataset.json`\n  + `evals/run_rag_benchmark.py`\n  + `docs/bao_cao_rag_buoi06.md`\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K3 (RAG), K7 (Verification/Eval).\n- **Harness Layers:** `workflow`, `verification`.\n- **Ranh giới an toàn:** Đo lường tỷ lệ từ chối đúng (Abstention Rate) trên các câu hỏi bẫy và câu hỏi không có trong kho.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Bộ Golden Dataset đạt chuẩn 24-30 câu hỏi bao phủ đủ 4 nhóm.\n  2. Chạy benchmark tự động hoàn thành và xuất file markdown báo cáo so sánh số liệu 4 cấu hình.\n  3. Cấu hình D đạt Recall@5 >= 80%, MRR >= 0.80 và Citation Existence Rate = 100%.\n- **Lệnh chạy:**\n  `python -m evals.run_rag_benchmark`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE2-UC01-SV1",
+      "title": "[PHASE2-UC01-SV1] Xây dựng Agent phân tích JD & CV thành CompetencyProfile (PII Redact >=95%, Bắt chữ ẩn PDF)",
+      "milestone": "Phase 2: Core Interview Loop - Chốt 3 UC Tháng 11 (UC-01, UC-02, UC-03)",
+      "owner_role": "SV1",
+      "labels": ["K1:Model-Loop", "K8:Security-Obs", "UC-01", "P0:Blocker"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng agent bóc tách JD và CV của ứng viên, tự động che 11 thuộc tính PII, phát hiện chữ ẩn/prompt injection trong PDF và trích xuất `CompetencyProfile`.\n- **File phụ trách:**\n  + `src/agents/jd_cv_analyzer.py`\n  + `src/harness/pii_redactor.py`\n  + `src/harness/pdf_parser.py`\n  + `tests/test_uc01_analyzer.py`\n- **Schema:** Đầu ra bắt buộc là `CompetencyProfile`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K1 (Model/Structured Output), K8 (Security).\n- **Harness Layers:** `context`, `verification`, `permission`.\n- **Sensor kiểm chứng:** Chạy `verify_cv_evidence_quotes` để loại bỏ 100% trích dẫn bịa khỏi `evidence_in_cv`.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Độ chính xác che PII đạt >= 95% trên 11 loại thuộc tính.\n  2. Phát hiện 100% chữ ẩn màu trắng 1pt và prompt injection trong file PDF.\n  3. 100% evidence trong `CompetencyProfile` là chuỗi con có thật trong CV.\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k \"pii or pdf or cv\" -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE2-UC02-SV2",
+      "title": "[PHASE2-UC02-SV2] Xây dựng Agent sinh kịch bản phỏng vấn InterviewScenario từ RAG (Recall@5 >= 0.8, Lệch giờ <= 10%)",
+      "milestone": "Phase 2: Core Interview Loop - Chốt 3 UC Tháng 11 (UC-01, UC-02, UC-03)",
+      "owner_role": "SV2",
+      "labels": ["K1:Model-Loop", "K3:RAG", "UC-02", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng Agent nhận `CompetencyProfile` và truy xuất ngân hàng câu hỏi qua RAG để sinh kịch bản phỏng vấn cấu trúc `InterviewScenario`.\n- **File phụ trách:**\n  + `src/agents/scenario_generator.py`\n  + `src/rag/agent_tools.py`\n  + `tests/test_uc02_scenario.py`\n- **Schema:** Đầu ra bắt buộc là `InterviewScenario`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K1 (Model Output), K3 (RAG).\n- **Harness Layers:** `tools`, `verification`, `retrieval`.\n- **Sensor kiểm chứng:** Sử dụng `verify_scenario_constraints` để đảm bảo 100% câu hỏi có nguồn gốc từ ngân hàng (hoặc có `based_on`), bao phủ đủ năng lực và tổng thời lượng lệch không quá ±10%.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Độ phủ 100% các năng lực bắt buộc trong profile.\n  2. Tổng ngân sách thời gian section không lệch quá ±10% so với `duration_min`.\n  3. 100% câu hỏi sinh ra hợp lệ theo ngân hàng câu hỏi.\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k test_verify_scenario_constraints -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE2-UC03-SV3",
+      "title": "[PHASE2-UC03-SV3] Xây dựng Agent phỏng vấn đào sâu đa lượt TurnDecision + Candidate Simulator 6 Personas",
+      "milestone": "Phase 2: Core Interview Loop - Chốt 3 UC Tháng 11 (UC-01, UC-02, UC-03)",
+      "owner_role": "SV3",
+      "labels": ["K1:Model-Loop", "K4:Memory-State", "K7:Verification-Eval", "UC-03", "P0:Blocker"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng Interviewer Agent điều phối lượt hội thoại theo cấu trúc `TurnDecision`; xây dựng Candidate Simulator mô phỏng 6 personas ứng viên để chạy phỏng vấn tự động.\n- **File phụ trách:**\n  + `src/agents/interviewer.py`\n  + `evals/simulators/candidate_simulator.py`\n  + `tests/test_uc03_interview_loop.py`\n- **Schema:** Đầu ra mỗi lượt là `TurnDecision` (`extra=\"forbid\"`).\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K1 (Model Loop), K4 (Memory/State), K7 (Verification).\n- **Harness Layers:** `state`, `workflow`, `verification`.\n- **Sensor kiểm chứng:** Chạy `verify_turn_decision_quote` kiểm tra nếu `action == \"follow_up\"` thì `referenced_answer_span` bắt buộc là chuỗi con có thật từ câu trả lời của ứng viên.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Không có câu hỏi follow-up nào bịa dẫn chứng (100% grounded).\n  2. Candidate Simulator chạy mượt mà 6 personas (từ intern ngập ngừng đến senior xuất sắc).\n  3. Không rò rỉ hidden tests ra tin nhắn gửi ứng viên (`verify_no_hidden_test_leak == True`).\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k \"turn_decision or hidden_test\" -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE3-UC05-SV4",
+      "title": "[PHASE3-UC05-SV4] Xây dựng Grader Agent chấm theo Rubric có dẫn chứng (MAE <= 0.75, 40 câu trả lời chuẩn)",
+      "milestone": "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)",
+      "owner_role": "SV4",
+      "labels": ["K1:Model-Loop", "K3:RAG", "K7:Verification-Eval", "UC-05", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng Grader Agent truy xuất Rubric mật qua RAG (`retrieve_grading_rubric_tool`), đánh giá câu trả lời và xuất `CompetencyScore` bắt buộc kèm dẫn chứng `AnswerEvidence`.\n- **File phụ trách:**\n  + `src/agents/grader.py`\n  + `evals/data/calibration_40_answers.json`\n  + `tests/test_uc05_grader.py`\n- **Schema:** Đầu ra là `CompetencyScore` (`score: 1..5 | \"insufficient_evidence\"`, `evidence: list[AnswerEvidence]`).\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K1 (Structured Output), K3 (RAG), K7 (Verification).\n- **Harness Layers:** `tools`, `verification`, `permission`.\n- **Sensor kiểm chứng:** Sử dụng `verify_competency_score_quotes` kiểm chứng 100% dẫn chứng `evidence.quote` là chuỗi con có thật trong transcript lượt tương ứng.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Sai số tuyệt đối trung bình MAE <= 0.75 trên bộ 40 câu trả lời chuẩn đã hiệu chuẩn bởi chuyên gia.\n  2. 100% điểm số (1-5) có ít nhất 1 dẫn chứng trích xuất trực tiếp từ transcript.\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k test_competency_score -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE3-UC06-SV5",
+      "title": "[PHASE3-UC06-SV5] Xây dựng Hội đồng 3 Grader chấm độc lập & Moderator giải trình (Tính ICC / Krippendorff's alpha)",
+      "milestone": "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)",
+      "owner_role": "SV5",
+      "labels": ["K5:Workflow-HITL", "K6:Multi-Agent", "K7:Verification-Eval", "UC-06", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Thiết kế mô hình Hội đồng gồm 3 Grader Agents (kiến trúc, nghiệp vụ, hành vi) chấm điểm độc lập; Moderator Agent phát hiện bất đồng điểm số (lệch > 1.0 điểm) để kích hoạt vòng giải trình và hòa giải điểm số.\n- **File phụ trách:**\n  + `src/agents/panel_moderator.py`\n  + `src/harness/agreement_metrics.py` (tính ICC và Krippendorff's alpha)\n  + `tests/test_uc06_panel.py`\n- **Schema:** `GraderEvaluation` và `PanelModerationResult`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K5 (Workflow), K6 (Multi-Agent), K7 (Verification).\n- **Harness Layers:** `workflow`, `human_approval`, `verification`.\n- **Ranh giới an toàn:** Nếu sau vòng giải trình bất đồng vẫn > 1.5 điểm, bắt buộc gắn cờ `needs_human_review = True` để chuyển chuyên viên tuyển dụng xem xét.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Hệ số đồng thuận liên đánh giá viên Krippendorff's alpha hoặc ICC đạt >= 0.70.\n  2. Kích hoạt đúng vòng giải trình khi phát hiện lệch điểm.\n- **Lệnh chạy:**\n  `pytest tests/test_uc06_panel.py -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE3-UC09-SV5",
+      "title": "[PHASE3-UC09-SV5] Xây dựng Coaching Feedback theo STAR, Skill interview-feedback & Bộ nhớ dài hạn qua nhiều phiên",
+      "milestone": "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)",
+      "owner_role": "SV5",
+      "labels": ["K2:Tools-Skills", "K4:Memory-State", "UC-09", "P1:Critical"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Xây dựng tính năng Huấn luyện cho ứng viên (Hướng A): tạo phản hồi chi tiết theo khung STAR (`QuestionCoachingFeedback`), đóng gói skill `skills/interview-feedback/`, và duy trì bộ nhớ dài hạn `CandidateLongTermMemory` qua nhiều phiên.\n- **File phụ trách:**\n  + `src/agents/coach.py`\n  + `skills/interview-feedback/SKILL.md`\n  + `src/harness/validators.py` (hàm `verify_coaching_feedback`, `verify_memory_no_pii`, `verify_second_session_focus`)\n  + `tests/test_uc09_coaching.py`\n- **Schema:** `QuestionCoachingFeedback`, `SessionPracticeSummary`, `CandidateLongTermMemory`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K2 (Skills), K4 (Memory/State).\n- **Harness Layers:** `skills`, `memory`, `verification`.\n- **Ranh giới an toàn:** Bộ nhớ dài hạn chỉ lưu `candidate_code` ẩn danh và điểm số, cấm tuyệt đối lưu PII hay nguyên văn CV (`verify_memory_no_pii`).\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Phản hồi câu hỏi hành vi tuân thủ 100% cấu trúc STAR.\n  2. Tỉ lệ câu hỏi tập trung vào năng lực yếu ở phiên thứ 2 đạt >= 60% (`verify_second_session_focus >= 0.60`).\n  3. Bộ nhớ dài hạn vượt qua kiểm tra không chứa PII.\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k \"coaching or memory or second_session\" -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    },
+    {
+      "task_id": "PHASE3-UC04-SV4",
+      "title": "[PHASE3-UC04-SV4] Tích hợp Docker Sandbox chấm code cô lập & Skill coding-assessment (UC dự phòng)",
+      "milestone": "Phase 3: Grading Panel, Coaching Memory & Sandbox (UC-05, UC-06, UC-09, UC-04)",
+      "owner_role": "SV4",
+      "labels": ["K2:Tools-Skills", "K8:Security-Obs", "UC-04", "P2:Normal"],
+      "body": "### U1 — Đặc tả Chức năng & File Phụ trách\n- **Nhiệm vụ:** Hoàn thiện hạ tầng Docker Sandbox cô lập (chạy non-root, read-only rootfs, timeout 5s, memory limit 256MB, network none) để chấm bài thi code của ứng viên với public & hidden tests; đóng gói `skills/coding-assessment/`.\n- **File phụ trách:**\n  + `src/sandbox/runner.py`\n  + `src/sandbox/Dockerfile.sandbox`\n  + `skills/coding-assessment/SKILL.md`\n  + `tests/test_uc04_sandbox.py`\n- **Schema:** Đầu ra là `SandboxExecutionResult`.\n\n### U2 — Thiết kế Tầng Harness Lõi & Mảng Kiến thức\n- **Mảng K:** K2 (Skills), K8 (Security).\n- **Harness Layers:** `tools`, `skills`, `verification`, `permission`.\n- **Ranh giới an toàn:** Hidden test cases là tài liệu mật, chỉ được nạp trực tiếp vào runner trong sandbox, không bao giờ lộ ra ngoài giao diện cho ứng viên.\n\n### U3 — Tiêu chí Nghiệm thu & Lệnh Kiểm thử\n- **DoD:**\n  1. Bắt triệt để infinite loop bằng cơ chế timeout 5 giây.\n  2. Ngăn chặn các hành vi đọc file hệ thống hoặc kết nối socket mạng độc hại.\n  3. Trả về đúng `SandboxExecutionResult` với số test pass/fail chính xác.\n- **Lệnh chạy:**\n  `pytest tests/test_core_contracts.py -k test_interview_report_and_sandbox_execution -v`\n\n### Khai báo Minh bạch Sử dụng AI & Cam kết Trách nhiệm\nTôi cam kết khai báo minh bạch công cụ AI hỗ trợ, tự rà soát 100% dòng code và hiểu rõ toàn bộ logic triển khai."
+    }
+  ]
+}
