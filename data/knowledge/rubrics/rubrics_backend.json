@@ -1,0 +1,50 @@
+[
+  {
+    "rubric_id": "RUBRIC_BE_API_DESIGN",
+    "competency_id": "BE_API_DESIGN",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không hiểu khái niệm HTTP methods hoặc status codes cơ bản; nhầm lẫn giữa GET và POST; không biết định dạng dữ liệu API.",
+      "2": "Biết CRUD API cơ bản nhưng nhầm lẫn PUT và PATCH; chưa biết xử lý validation đầu vào; mã lỗi trả về tùy tiện (luôn trả 200 kèm error message trong body).",
+      "3": "Thiết kế được RESTful API chuẩn, xử lý status code phù hợp (400, 401, 403, 404, 500); hiểu khái niệm Idempotency và phân trang offset.",
+      "4": "Thiết kế API an toàn cao với Idempotency Key cho giao dịch tài chính; áp dụng cursor-based pagination; xử lý rate limiting và versioning bài bản.",
+      "5": "Tư duy kiến trúc API phân tán cấp doanh nghiệp; thiết kế chuẩn API Gateway, Schema Registry cho gRPC/Protobuf; chiến lược deprecation zero-downtime cho đối tác lớn."
+    },
+    "sample_answers": {
+      "level_2_example": "PUT và PATCH đều là để sửa dữ liệu. Em hay dùng PUT để sửa thông tin user, truyền vào các trường cần sửa là được.",
+      "level_4_example": "PUT theo chuẩn RFC là thay thế toàn bộ resource và có tính idempotent, client gửi thiếu trường nào thì trường đó có thể bị reset. PATCH là partial update chỉ cập nhật các trường được chỉ định. Với API thanh toán, em bắt buộc client gửi Idempotency-Key dạng UUID trong header, server lưu trạng thái key trong Redis với TTL 24h và dùng Distributed Lock để chặn duplicate charge."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_BE_DB_OPTIMIZATION",
+    "competency_id": "BE_DB_OPTIMIZATION",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không biết index trong database là gì; viết truy vấn SELECT * tùy tiện trên bảng lớn; không hiểu khóa chính/khóa ngoại.",
+      "2": "Biết tạo index đơn giản nhưng không hiểu cơ chế hoạt động của B-Tree; thường xuyên để xảy ra lỗi N+1 query khi dùng ORM mà không biết nguyên nhân.",
+      "3": "Biết dùng Eager Loading (select_related / prefetch_related) triệt tiêu N+1; đọc hiểu EXPLAIN cơ bản; biết tạo Composite Index theo thứ tự cột lọc.",
+      "4": "Đọc sâu EXPLAIN ANALYZE (Buffers, Loops, Seq Scan vs Index Scan); tối ưu hóa truy vấn phức tạp triệu dòng; xử lý triệt để Connection Pooling và Deadlock.",
+      "5": "Kiến trúc sư cơ sở dữ liệu quy mô lớn: thiết kế chiến lược Sharding, Horizontal Partitioning, Read/Write Splitting, tối ưu storage engine và bộ nhớ đệm Buffer Pool."
+    },
+    "sample_answers": {
+      "level_2_example": "N+1 query là khi em lấy danh sách sách xong vòng lặp qua từng cuốn để lấy tên tác giả. Em thấy nó hơi chậm một xíu nhưng máy tính xử lý được.",
+      "level_4_example": "N+1 query xảy ra do lazy loading: 1 query lấy danh sách cha và N query con lặp trong loop. Em dùng select_related cho quan hệ Foreign Key (1-1, N-1) bằng INNER JOIN, hoặc prefetch_related cho quan hệ M-N. Khi phân tích câu query chậm, em chạy EXPLAIN (ANALYZE, BUFFERS) để kiểm tra cost, số buffer hit từ cache so với read từ đĩa, và kiểm tra composite index có tuân thủ quy tắc Leftmost Prefix không."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_BE_CONCURRENCY",
+    "competency_id": "BE_CONCURRENCY",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không phân biệt được Synchronous và Asynchronous; viết code blocking trong luồng bất đồng bộ; không hiểu khái niệm tranh chấp dữ liệu.",
+      "2": "Biết dùng async/await theo mẫu có sẵn nhưng dễ mắc lỗi blocking I/O hoặc chạy tác vụ nặng CPU gây treo event loop; chưa biết xử lý race condition.",
+      "3": "Hiểu rõ cơ chế hoạt động của Event Loop; xử lý race condition cơ bản bằng Database Transactions và Pessimistic Locking (SELECT FOR UPDATE).",
+      "4": "Xử lý thành thạo tải cao đồng thời (Flash Sale): kết hợp Redis Atomic DECR, Message Queue bất đồng bộ và Optimistic Locking với versioning.",
+      "5": "Chuyên gia về Concurrency & Distributed Systems: thiết kế kiến trúc Event-Driven, hiểu sâu các giới hạn của Redlock, áp dụng Fencing Token và cơ chế Saga Pattern."
+    },
+    "sample_answers": {
+      "level_2_example": "Khi nhiều người bấm mua cùng lúc thì em mở transaction rồi trừ số lượng trong bảng sản phẩm: UPDATE products SET quantity = quantity - 1 WHERE id = 1.",
+      "level_4_example": "Để chống overselling khi 10,000 request đến cùng lúc cho 10 món hàng, không thể để toàn bộ dội thẳng vào relational database vì sẽ gây lock contention hoặc crash pool. Em dùng Redis lưu tồn kho và chạy Lua script để kiểm tra DECR nguyên tử (atomic). Chỉ 10 request thành công ở tầng Redis mới được đẩy message vào Kafka/RabbitMQ để worker tạo đơn hàng ghi xuống database bất đồng bộ."
+    }
+  }
+]

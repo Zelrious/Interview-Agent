@@ -1,0 +1,50 @@
+[
+  {
+    "rubric_id": "RUBRIC_QA_TEST_DESIGN",
+    "competency_id": "QA_TEST_DESIGN",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không biết viết Test Case; chỉ kiểm tra cảm tính (ad-hoc) không có quy trình; không ghi nhận được các bước tái hiện lỗi.",
+      "2": "Biết viết Test Case cho Happy Path cơ bản nhưng bỏ sót các trường hợp ngoại lệ, giá trị biên và phân vùng không hợp lệ.",
+      "3": "Áp dụng thành thạo BVA và EP vào thiết kế test case; biết dùng Decision Table cho logic phức tạp; viết Bug Report đầy đủ thông tin chuẩn hóa.",
+      "4": "Thiết kế Test Strategy toàn diện dựa trên rủi ro (Risk-based Testing); tối ưu bộ test case bằng Pairwise Testing; lập kế hoạch kiểm thử tính năng lớn trong thời gian gấp.",
+      "5": "Định hình chiến lược chất lượng toàn diện (Quality Assurance to Quality Engineering): chuyển dịch sang Shift-Left, Test Pyramid tối ưu, Continuous Testing trong DevOps."
+    },
+    "sample_answers": {
+      "level_2_example": "Ô nhập tuổi 18 đến 60 thì em test số 20, 30, 40 thấy nhập được là đạt yêu cầu.",
+      "level_4_example": "Em chia 3 phân vùng tương đương: <18 (không hợp lệ), 18-60 (hợp lệ), >60 (không hợp lệ). Sau đó em lấy tập giá trị biên 2-point và 3-point: 17, 18, 19 và 59, 60, 61. Ngoài ra em bổ sung các test case ký tự đặc biệt, để trống, số âm, và số thập phân để kiểm tra tính toàn vẹn của validation tầng front-end lẫn back-end."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_QA_AUTOMATION",
+    "competency_id": "QA_AUTOMATION",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không có khái niệm về Automation Test; phụ thuộc 100% vào thao tác thủ công bằng tay; không biết dùng các công cụ hỗ trợ như Postman.",
+      "2": "Biết dùng tool record-and-playback hoặc viết script đơn giản nhưng hard-code dữ liệu và locator; script dễ vỡ khi giao diện thay đổi.",
+      "3": "Áp dụng thành thạo Page Object Model (POM) cho UI testing hoặc Pytest/Requests cho API testing; tách biệt test data và test logic.",
+      "4": "Xây dựng Framework Automation hoàn chỉnh, xử lý triệt để Flaky Tests bằng dynamic waits và test data isolation; tích hợp chạy tự động trong CI/CD pipeline.",
+      "5": "Kiến trúc sư hệ thống Test Automation phân tán đa môi trường; tối ưu hóa thời gian chạy song song (Parallel execution) quy mô hàng ngàn test cases; tự động phân tích root cause bằng AI."
+    },
+    "sample_answers": {
+      "level_2_example": "Khi test chạy bị chập chờn lúc pass lúc fail thì em thêm sleep(5) vào để nó chờ trang web tải xong.",
+      "level_4_example": "Flaky tests là kẻ thù số một làm mất niềm tin vào CI/CD. Em không bao giờ dùng time.sleep() tĩnh mà luôn dùng Dynamic Explicit Wait (chờ element có thể click hoặc network idle). Em đảm bảo tính cô lập dữ liệu (Test Data Isolation) bằng cách mỗi test case tự sinh dữ liệu qua API trước khi chạy (Setup Fixture) và dọn dẹp sau khi chạy (Teardown), không dùng chung tài khoản để có thể chạy song song an toàn trên GitHub Actions Matrix."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_BEHAVIORAL_STAR",
+    "competency_id": "BEHAVIORAL_STAR",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Trả lời lan man, không đúng trọng tâm câu hỏi; có thái độ đổ lỗi cho đồng nghiệp hoặc hoàn cảnh khi gặp sự cố; thiếu tinh thần hợp tác.",
+      "2": "Kể chuyện theo trình tự thời gian nhưng thiếu cấu trúc; chỉ nêu chung chung những việc tập thể làm (dùng 'chúng em' mà không rõ vai trò cá nhân).",
+      "3": "Trả lời rành mạch theo mô hình STAR (Situation, Task, Action, Result); nêu rõ vai trò cá nhân; thể hiện tinh thần trách nhiệm và tinh thần học hỏi từ sai lầm.",
+      "4": "Câu chuyện STAR xuất sắc với số liệu đo lường cụ thể ở phần Result; thể hiện tư duy giải quyết vấn đề có phương pháp, khả năng lắng nghe và dung hòa xung đột sâu sắc.",
+      "5": "Kỹ năng lãnh đạo truyền cảm hứng (Thought Leadership); khả năng định hình văn hóa kỹ thuật lành mạnh, cố vấn phát triển đội ngũ và đàm phán chiến lược với cấp điều hành C-level."
+    },
+    "sample_answers": {
+      "level_2_example": "Dự án đó bị lỗi sập server do bạn bên cạnh commit nhầm code. Team em cùng nhau ngồi sửa đến đêm thì cũng xong.",
+      "level_4_example": "Situation: Trong đợt triển khai phiên bản mới, em đã push nhầm câu lệnh migration gây khóa bảng User trong 15 phút. Task: Nhiệm vụ khẩn cấp là phục hồi hệ thống và ngăn chặn tái diễn. Action: Em lập tức thông báo sự cố trong kênh Incident, đề xuất và thực hiện rollback code về bản trước trong 3 phút. Sau khi ổn định, em chủ động đứng ra viết Blameless Post-mortem, phân tích nguyên nhân gốc rễ và bổ sung kiểm tra linter vào CI pipeline để tự động chặn các migration có nguy cơ khóa bảng. Result: Hệ thống phục hồi 100%, và quy trình mới đã ngăn chặn hoàn toàn sự cố tương tự trong suốt 1 năm sau đó."
+    }
+  }
+]

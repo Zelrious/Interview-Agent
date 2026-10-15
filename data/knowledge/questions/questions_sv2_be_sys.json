@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "Q_BE_007",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Bảng dữ liệu giao dịch đơn hàng của bạn đã đạt 200 triệu dòng và dung lượng 500GB, khiến các truy vấn báo cáo bị timeout. Bạn đề xuất kiến trúc phân tách Partitioning hoặc Sharding thế nào?",
+    "follow_up_hints": [
+      "Bạn chọn Sharding Key dựa trên tiêu chí nào để tránh Hotspot Partition?",
+      "Làm sao để thực hiện các truy vấn cross-shard khi cần báo cáo tổng hợp?"
+    ],
+    "expected_signals": [
+      "Phân biệt rõ Database Partitioning (trên 1 node) và Sharding (đa node)",
+      "Lựa chọn sharding key theo User_ID hoặc Tenant_ID kèm phân tích tránh skew data",
+      "Sử dụng Read-replica, Data Warehouse hoặc Scatter-Gather query cho báo cáo tổng hợp"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_008",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Trong ngôn ngữ lập trình bạn sử dụng (ví dụ Python AsyncIO hoặc Node.js), cơ chế Event Loop hoạt động như thế nào khi có một tác vụ I/O tốn thời gian?",
+    "follow_up_hints": [
+      "Nếu một hàm tính toán CPU-bound chạy trong event loop thì điều gì xảy ra?",
+      "Làm thế nào để đẩy tác vụ CPU nặng ra khỏi luồng chính của event loop?"
+    ],
+    "expected_signals": [
+      "Giải thích được luồng non-blocking: đăng ký callback/coroutine và giao I/O cho OS kernel",
+      "Chỉ ra CPU-bound task sẽ block toàn bộ event loop",
+      "Đưa ra giải pháp dùng ThreadPoolExecutor hoặc ProcessPoolExecutor cho CPU task"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_009",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "situational",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Trong một chương trình Flash Sale chỉ có 10 sản phẩm nhưng có 10,000 người dùng bấm Mua cùng lúc. Bạn xử lý Race Condition và chống Overselling như thế nào ở tầng Backend và Database?",
+    "follow_up_hints": [
+      "So sánh giải pháp dùng Optimistic Locking (version column) và Pessimistic Locking (SELECT FOR UPDATE)?",
+      "Sử dụng Redis Atomic Operations (DECR / Lua script) giải quyết bài toán này như thế nào?"
+    ],
+    "expected_signals": [
+      "Giải thích được race condition đọc tồn kho cũ trước khi ghi",
+      "Phân tích ưu nhược điểm Optimistic vs Pessimistic Locking ở mức tải cao",
+      "Đề xuất giải pháp Redis DECR / Redis Lua script để kiểm tra tồn kho ở tầng cache trước khi ghi DB"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_010",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 5,
+    "text": "Khi triển khai Distributed Lock bằng Redis (Redlock algorithm), những rủi ro nào có thể xảy ra khi gặp sự cố Clock Drift hoặc Process Pause (Stop-The-World GC)?",
+    "follow_up_hints": [
+      "Fencing Token của Martin Kleppmann giải quyết vấn đề process pause như thế nào?",
+      "Tại sao một số kiến trúc lại ưu tiên ZooKeeper/etcd hơn Redis cho distributed locking khắt khe?"
+    ],
+    "expected_signals": [
+      "Chỉ ra rủi ro client bị GC pause khiến lock hết hạn mà client không biết, dẫn đến concurrent write",
+      "Giải thích cơ chế Fencing Token (monotonic increasing counter) ở storage để từ chối token cũ",
+      "So sánh mô hình CP (Raft/ZAB trong etcd/ZooKeeper) với mô hình AP của Redis Redlock"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_011",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "So sánh hai kỹ thuật phân trang: Offset-based Pagination và Keyset/Cursor-based Pagination. Khi nào bắt buộc phải dùng Cursor-based?",
+    "follow_up_hints": [
+      "Tại sao OFFSET 1000000 LIMIT 20 lại chạy rất chậm trên cơ sở dữ liệu quan hệ?",
+      "Hiện tượng dữ liệu bị nhảy trang (page drift/duplicate items) xảy ra khi nào với Offset?"
+    ],
+    "expected_signals": [
+      "Giải thích Offset phải scan và discard N dòng đầu tiên, độ phức tạp O(N)",
+      "Keyset/Cursor dùng WHERE id > last_seen_id kết hợp index, độ phức tạp O(1)",
+      "Chỉ ra cursor-based giải quyết triệt để lỗi trùng/bỏ sót dữ liệu khi có bản ghi mới chèn liên tục (realtime feed)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_012",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Deadlock trong cơ sở dữ liệu là gì? Nêu một kịch bản đơn giản gây ra Deadlock giữa hai giao dịch (Transactions)?",
+    "follow_up_hints": [
+      "Database phát hiện và xử lý Deadlock bằng cơ chế nào?",
+      "Quy tắc nào giúp lập trình viên viết code phòng tránh Deadlock ngay từ đầu?"
+    ],
+    "expected_signals": [
+      "Deadlock là trạng thái hai transaction chờ khóa lẫn nhau tạo thành chu trình (circular wait)",
+      "Ví dụ T1 khóa A chờ B, T2 khóa B chờ A",
+      "Quy tắc phòng ngừa: luôn cập nhật các tài nguyên theo cùng một thứ tự (canonical ordering)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  }
+]

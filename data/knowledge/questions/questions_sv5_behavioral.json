@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "Q_BH_001",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Hãy kể lại một lần bạn gặp lỗi nghiêm trọng (bug critical) do chính bạn gây ra trên môi trường Production. Bạn đã xử lý tình huống đó như thế nào?",
+    "follow_up_hints": [
+      "Hành động đầu tiên bạn làm khi phát hiện lỗi là gì?",
+      "Bạn và đội nhóm đã thực hiện bài học kinh nghiệm (Post-mortem) ra sao để ngăn lỗi tái diễn?"
+    ],
+    "expected_signals": [
+      "Trách nhiệm cá nhân: không đổ lỗi, chủ động thông báo cho team lead và các bên liên quan",
+      "Hành động ứng phó: ưu tiên rollback hoặc hotfix ngay để giảm thiểu thời gian gián đoạn của người dùng",
+      "Rút kinh nghiệm: tham gia viết Blameless Post-mortem, bổ sung unit test hoặc quy trình CI/CD"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_002",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Hãy mô tả một tình huống bạn có bất đồng quan điểm kỹ thuật sâu sắc với một đồng nghiệp hoặc Tech Lead trong một quyết định kiến trúc quan trọng. Bạn đã giải quyết thế nào?",
+    "follow_up_hints": [
+      "Bạn sử dụng số liệu, prototype hoặc bằng chứng thực tế nào để bảo vệ quan điểm?",
+      "Nếu quyết định cuối cùng không theo ý bạn, bạn tuân thủ thực hiện (Disagree and Commit) ra sao?"
+    ],
+    "expected_signals": [
+      "Tập trung vào vấn đề kỹ thuật và mục tiêu kinh doanh, không biến thành công kích cá nhân",
+      "Xây dựng Proof of Concept (PoC) hoặc đưa số liệu benchmark để chứng minh luận điểm",
+      "Thể hiện tinh thần Disagree and Commit: tôn trọng quyết định chung và toàn tâm cống hiến thực hiện"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_003",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Hãy chia sẻ về một lần bạn dẫn dắt (lead) một dự án kỹ thuật có yêu cầu nghiệp vụ mơ hồ, thay đổi liên tục và tiến độ rất gấp. Bạn đã định hướng và giữ lửa cho team như thế nào?",
+    "follow_up_hints": [
+      "Làm sao để bạn chốt được scope tối thiểu (MVP) với Product Owner?",
+      "Bạn phân bổ công việc và quản lý rủi ro kiệt sức (burnout) cho các thành viên trong team ra sao?"
+    ],
+    "expected_signals": [
+      "Làm rõ mục tiêu mơ hồ: chủ động làm việc với Stakeholders chốt Scope MVP khả thi",
+      "Chia nhỏ bài toán thành các milestones ngắn hạn (sprint 1 tuần) để liên tục kiểm tra phản hồi",
+      "Hỗ trợ gỡ vướng mắc kỹ thuật cho đồng đội, công nhận đóng góp và duy trì tinh thần đoàn kết"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_004",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "intern",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Khi nhận một nhiệm vụ mới với công nghệ hoặc thư viện mà bạn chưa từng học qua ở trường, bạn thường bắt đầu tiếp cận và học hỏi như thế nào để hoàn thành đúng hạn?",
+    "follow_up_hints": [
+      "Bạn phân bổ thời gian giữa đọc tài liệu chính thức (Official Docs) và thử nghiệm viết code thực tế ra sao?",
+      "Sau bao lâu tự tìm hiểu không ra thì bạn sẽ chủ động xin hướng dẫn từ Mentor?"
+    ],
+    "expected_signals": [
+      "Chủ động đọc Official Documentation, Quickstart và tham khảo sample repo chính thức",
+      "Áp dụng nguyên tắc tự thử nghiệm 30-60 phút, chuẩn bị câu hỏi cụ thể kèm những gì đã thử trước khi hỏi Mentor",
+      "Tổng kết lại kiến thức đã học vào tài liệu cá nhân để không lặp lại cùng một thắc mắc"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_005",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Kể về một lần bạn phát hiện một thành viên trong nhóm làm việc thiếu hiệu quả hoặc có nguy cơ làm trễ hạn bàn giao của cả sprint. Bạn đã tương tác và hỗ trợ đồng nghiệp đó ra sao?",
+    "follow_up_hints": [
+      "Bạn chọn cách tiếp cận 1-on-1 riêng tư hay nhắc nhở trước tập thể?",
+      "Bạn tìm hiểu nguyên nhân gốc rễ (vấn đề kỹ thuật, cá nhân hay gia đình) như thế nào?"
+    ],
+    "expected_signals": [
+      "Gặp gỡ 1-on-1 riêng tư với sự đồng cảm và xây dựng, không chỉ trích công khai trước nhóm",
+      "Tìm hiểu nguyên nhân gốc rễ (gặp khó khăn kỹ thuật khó, chưa hiểu rõ yêu cầu, áp lực cá nhân)",
+      "Cùng đồng nghiệp lập kế hoạch chia sẻ công việc hoặc Pair Programming để giải quyết blocker"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_006",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Hãy kể về một lần bạn từ chối (push back) một yêu cầu tính năng từ Giám đốc Sản phẩm (CPO) hoặc Ban Giám Đốc vì lý do nợ kỹ thuật (technical debt) hoặc bảo mật hệ thống. Kết quả cuộc đàm phán ra sao?",
+    "follow_up_hints": [
+      "Bạn diễn giải rủi ro kỹ thuật sang ngôn ngữ kinh doanh (tổn thất doanh thu, uy tín, downtime) như thế nào?",
+      "Giải pháp thỏa hiệp dung hòa giữa tốc độ ra thị trường và độ an toàn hệ thống là gì?"
+    ],
+    "expected_signals": [
+      "Chuyển đổi rủi ro kỹ thuật thành tác động kinh doanh cụ thể (nguy cơ sập hệ thống khi chạy marketing, chi phí khắc phục)",
+      "Không nói 'Không' một cách tiêu cực mà đưa ra các phương án lựa chọn (Trade-off Matrix: Option A vs Option B)",
+      "Đạt được thỏa thuận lộ trình: triển khai tính năng giới hạn kèm cam kết trả nợ kỹ thuật ngay ở sprint kế tiếp"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  }
+]

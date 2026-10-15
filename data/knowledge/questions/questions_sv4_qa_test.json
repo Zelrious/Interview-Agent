@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "Q_QA_001",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Một ô nhập liệu tuổi yêu cầu nhận giá trị số nguyên từ 18 đến 60 tuổi. Hãy áp dụng kỹ thuật Phân vùng tương đương (Equivalence Partitioning) và Phân tích giá trị biên (Boundary Value Analysis) để thiết kế bộ Test Cases?",
+    "follow_up_hints": [
+      "Bộ giá trị biên 2-point và 3-point bao gồm những con số nào?",
+      "Các phân vùng không hợp lệ (Invalid Partitions) gồm những khoảng nào?"
+    ],
+    "expected_signals": [
+      "Xác định đúng 3 phân vùng tương đương: < 18 (invalid), 18-60 (valid), > 60 (invalid)",
+      "Liệt kê đúng các giá trị biên: 17, 18, 19 và 59, 60, 61",
+      "Bổ sung các trường hợp nhập ký tự đặc biệt, số thập phân hoặc để trống"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_002",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "situational",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Bạn được bàn giao kiểm thử tính năng Checkout thanh toán một giỏ hàng phức tạp (nhiều voucher, phương thức thanh toán, địa chỉ nhận hàng). Khi thời gian chạy regression chỉ có 4 giờ trước giờ release, bạn ưu tiên chiến lược kiểm thử như thế nào?",
+    "follow_up_hints": [
+      "Phương pháp Risk-based Testing (Kiểm thử dựa trên rủi ro) được áp dụng ra sao?",
+      "Làm thế nào để xác định các Happy Path quan trọng nhất ảnh hưởng trực tiếp đến doanh thu?"
+    ],
+    "expected_signals": [
+      "Áp dụng Risk-based Testing: phân loại rủi ro theo Impact (tác động) và Likelihood (xác suất lỗi)",
+      "Ưu tiên Happy Path P0: luồng thanh toán với phương thức phổ biến nhất (Thẻ tín dụng / Ví điện tử)",
+      "Tận dụng Automation Smoke Test có sẵn và ghi nhận rủi ro (Risk Sign-off) gửi Stakeholders"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_003",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Mô hình Page Object Model (POM) trong tự động hóa kiểm thử UI là gì? Tại sao nên áp dụng POM thay vì viết trực tiếp locator trong file test script?",
+    "follow_up_hints": [
+      "Khi giao diện UI thay đổi một ID của nút bấm, POM giúp việc sửa code dễ dàng hơn như thế nào?",
+      "Cấu trúc thư mục của một project áp dụng POM thường được tổ chức ra sao?"
+    ],
+    "expected_signals": [
+      "POM là design pattern tách biệt UI locators/actions của từng trang thành các class riêng",
+      "Tăng khả năng tái sử dụng (reusability) và giảm chi phí bảo trì khi UI thay đổi",
+      "File test script chỉ chứa assertion và các bước nghiệp vụ rõ ràng, không lẫn mã kỹ thuật"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_004",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Hiện tượng Flaky Tests (test case lúc pass lúc fail ngẫu nhiên trên CI/CD mà không đổi code) thường bắt nguồn từ những nguyên nhân nào và bạn xử lý triệt để ra sao?",
+    "follow_up_hints": [
+      "Sự khác biệt giữa Explicit Wait và Implicit Wait trong việc hạn chế flaky test là gì?",
+      "Test data bị phụ thuộc giữa các test case chạy song song (test parallelization) gây lỗi như thế nào?"
+    ],
+    "expected_signals": [
+      "Nguyên nhân từ race condition timing/animation mạng, dùng hard-coded sleep() thay vì dynamic explicit wait",
+      "Nguyên nhân phụ thuộc dữ liệu dùng chung (shared state/dirty test data) giữa các luồng chạy song song",
+      "Giải pháp: độc lập dữ liệu test (test data isolation), dùng polling assertion, và auto-retry có kiểm soát"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_005",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "situational",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Làm thế nào để tích hợp bộ Automation API Tests vào GitHub Actions Pipeline sao cho vừa chặn được code lỗi (Quality Gate) vừa không làm chậm thời gian merge PR của đội ngũ lập trình?",
+    "follow_up_hints": [
+      "Chiến lược chia tách Smoke Test (PR gate) và Full Regression Test (Nightly build) được thực hiện ra sao?",
+      "Kỹ thuật chạy song song (Parallel execution / Matrix jobs) giảm thời gian thực thi như thế nào?"
+    ],
+    "expected_signals": [
+      "Phân tầng test: chạy Smoke Tests (< 5 phút) chặn PR, dồn Full Regression chạy nightly hoặc trước release",
+      "Sử dụng Docker containerization và Matrix Jobs để chạy song song các suite kiểm thử",
+      "Gửi thông báo kết quả tự động kèm log lỗi và artifact báo cáo (Allure report) vào PR review"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_006",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Một Bug Report (báo cáo lỗi) tiêu chuẩn cần chứa những trường thông tin cơ bản nào để lập trình viên có thể tái hiện và sửa lỗi nhanh nhất?",
+    "follow_up_hints": [
+      "Tại sao trường Steps to Reproduce (các bước tái hiện) là quan trọng nhất?",
+      "Phân biệt giữa Severity (mức độ nghiêm trọng) và Priority (mức độ ưu tiên)?"
+    ],
+    "expected_signals": [
+      "Tiêu đề tóm tắt, Môi trường kiểm thử (OS, Browser, App version)",
+      "Steps to Reproduce từng bước rõ ràng, Expected Result và Actual Result",
+      "Bằng chứng đính kèm (Screenshots, Screen recording, Network/Console logs)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  }
+]

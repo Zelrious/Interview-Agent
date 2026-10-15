@@ -1,0 +1,38 @@
+[
+  {
+    "competency_id": "QA_TEST_DESIGN",
+    "name": "Thiết kế Kịch bản Kiểm thử & Kỹ thuật Black-box",
+    "role": "qa_engineer",
+    "source_reference": "Roadmap.sh QA Engineer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Nắm vững khái niệm Test Case, Test Scenario, phát hiện lỗi giao diện và viết bug report cơ bản.",
+      "junior": "Áp dụng thành thạo Boundary Value Analysis (BVA), Equivalence Partitioning (EP), Decision Table và State Transition testing.",
+      "middle": "Xây dựng Test Plan toàn diện cho tính năng phức tạp, thiết kế kịch bản kiểm thử tích hợp (Integration) và phi chức năng (Performance/Security cơ bản).",
+      "senior": "Quy hoạch chiến lược đảm bảo chất lượng tổng thể (Quality Engineering Strategy), chuyển đổi quy trình Shift-Left Testing và Continuous Testing."
+    }
+  },
+  {
+    "competency_id": "QA_AUTOMATION",
+    "name": "Tự động hóa Kiểm thử (API & UI Automation)",
+    "role": "qa_engineer",
+    "source_reference": "Roadmap.sh QA Engineer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu khái niệm kiểm thử tự động, sử dụng Postman gửi request kiểm tra status code và response body.",
+      "junior": "Viết script tự động hóa API bằng pytest/requests hoặc UI bằng Playwright/Selenium theo mô hình Page Object Model (POM).",
+      "middle": "Xây dựng automation framework hoàn chỉnh, tích hợp chạy tự động vào CI/CD pipeline (GitHub Actions/GitLab CI), tối ưu flaky tests.",
+      "senior": "Kiến trúc hệ thống Test Automation phân tán đa nền tảng, quản lý test data động, xây dựng dashboard đo lường độ phủ và hiệu quả kiểm thử."
+    }
+  },
+  {
+    "competency_id": "BEHAVIORAL_STAR",
+    "name": "Kỹ năng Hành vi, Giao tiếp & Giải quyết Vấn đề (Mô hình STAR)",
+    "role": "general",
+    "source_reference": "Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Lắng nghe tích cực, trình bày rõ ràng nhiệm vụ được giao, chủ động đặt câu hỏi khi gặp khó khăn.",
+      "junior": "Trả lời câu hỏi theo cấu trúc STAR (Situation, Task, Action, Result), thể hiện tinh thần trách nhiệm cá nhân với đầu ra công việc.",
+      "middle": "Xử lý xung đột quan điểm kỹ thuật khéo léo, giao tiếp hiệu quả với Product Manager và Designer, quản lý thời gian và rủi ro tiến độ.",
+      "senior": "Dẫn dắt và cố vấn (mentorship) cho kỹ sư trẻ, định hình văn hóa kỹ thuật, thuyết phục các bên liên quan và xử lý khủng hoảng dự án."
+    }
+  }
+]

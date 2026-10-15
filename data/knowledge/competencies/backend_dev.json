@@ -1,0 +1,38 @@
+[
+  {
+    "competency_id": "BE_API_DESIGN",
+    "name": "Thiết kế API & Kiến trúc RESTful / gRPC",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu khái niệm HTTP methods (GET, POST, PUT, DELETE), status codes cơ bản (200, 400, 404, 500) và định dạng JSON.",
+      "junior": "Thiết kế được CRUD API chuẩn RESTful, xử lý validation request, cấu trúc response thống nhất và xử lý lỗi chuẩn hóa.",
+      "middle": "Thiết kế API có phân trang (cursor/offset), versioning, idempotency key cho thanh toán, tối ưu payload và áp dụng gRPC/Protobuf khi cần.",
+      "senior": "Quy hoạch kiến trúc API Gateway, backward compatibility, rate limiting theo tier, API contracts mở rộng cho toàn hệ thống phân tán."
+    }
+  },
+  {
+    "competency_id": "BE_DB_OPTIMIZATION",
+    "name": "Tối ưu hóa Cơ sở dữ liệu & Đánh chỉ mục",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Viết được truy vấn SELECT, JOIN cơ bản, hiểu quan hệ khóa chính và khóa ngoại trong RDBMS.",
+      "junior": "Sử dụng được Index B-Tree, tránh N+1 query trong ORM, phân biệt INNER/LEFT JOIN và viết transaction cơ bản.",
+      "middle": "Đọc hiểu EXPLAIN ANALYZE, tối ưu composite index, xử lý deadlock, connection pooling và đánh giá chiến lược đánh index theo query pattern.",
+      "senior": "Quy hoạch kiến trúc Sharding, Partitioning, Read/Write Replica, tối ưu storage engine, database tuning ở quy mô hàng trăm triệu bản ghi."
+    }
+  },
+  {
+    "competency_id": "BE_CONCURRENCY",
+    "name": "Lập trình Đồng thời & Xử lý Bất đồng bộ",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu sự khác biệt giữa đồng bộ (synchronous) và bất đồng bộ (asynchronous), khái niệm Thread và Process cơ bản.",
+      "junior": "Sử dụng được async/await trong Python/Node.js, xử lý non-blocking I/O và gọi HTTP requests song song an toàn.",
+      "middle": "Xử lý race condition, áp dụng Optimistic/Pessimistic locking, sử dụng hàng đợi Message Queue (RabbitMQ/Kafka) để phân tán tải.",
+      "senior": "Thiết kế hệ thống Event-driven quy mô lớn, xử lý distributed lock với Redis/ZooKeeper, bảo đảm tính nhất quán dữ liệu eventual consistency và idempotency."
+    }
+  }
+]

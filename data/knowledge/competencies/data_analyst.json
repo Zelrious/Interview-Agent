@@ -1,0 +1,38 @@
+[
+  {
+    "competency_id": "DA_SQL_ANALYTICS",
+    "name": "Truy vấn SQL Nâng cao cho Phân tích",
+    "role": "data_analyst",
+    "source_reference": "Roadmap.sh Data Analyst / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Viết được câu lệnh SELECT, GROUP BY, ORDER BY, HAVING và lọc điều kiện WHERE cơ bản.",
+      "junior": "Sử dụng thành thạo Window Functions (ROW_NUMBER, RANK, DENSE_RANK), Common Table Expressions (CTE) và CASE WHEN phức tạp.",
+      "middle": "Phân tích Retention Cohort, Funnel Analysis bằng SQL, tối ưu thời gian chạy câu lệnh trên BigQuery/PostgreSQL, xử lý dữ liệu thời gian.",
+      "senior": "Quy hoạch cấu trúc Data Warehouse/Data Mart, tối ưu hóa truy vấn phân tích hàng tỷ dòng, xây dựng ETL/ELT pipelines chuẩn hóa."
+    }
+  },
+  {
+    "competency_id": "DA_DATA_MODELING",
+    "name": "Mô hình hóa Dữ liệu & Thiết kế Schema",
+    "role": "data_analyst",
+    "source_reference": "Roadmap.sh Data Analyst / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu sự khác biệt giữa bảng Fact và bảng Dimension, phân biệt Primary Key và Foreign Key.",
+      "junior": "Thiết kế Star Schema, Snowflake Schema cho báo cáo kinh doanh, xác định độ mịn (granularity) của bảng dữ liệu.",
+      "middle": "Xử lý Slowly Changing Dimensions (SCD Type 1, 2, 3), chuẩn hóa dữ liệu giao dịch đa nguồn, tối ưu mô hình dữ liệu cho BI dashboard.",
+      "senior": "Kiến trúc mô hình dữ liệu tổng thể doanh nghiệp (Enterprise Data Architecture), bảo đảm Data Governance, Data Lineage và Data Catalog."
+    }
+  },
+  {
+    "competency_id": "DA_STATISTICS",
+    "name": "Thống kê Ứng dụng & A/B Testing",
+    "role": "data_analyst",
+    "source_reference": "Roadmap.sh Data Analyst / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Tính toán và giải thích được Mean, Median, Mode, Variance, Standard Deviation trên tập dữ liệu.",
+      "junior": "Hiểu phân phối chuẩn (Normal Distribution), tính toán p-value, giải thích khoảng tin cậy (Confidence Interval) 95%.",
+      "middle": "Thiết kế thử nghiệm A/B Testing: tính sample size tối thiểu, kiểm tra statistical significance, tránh false positive và selection bias.",
+      "senior": "Xây dựng framework phân tích thống kê thử nghiệm toàn công ty, phân tích nguyên nhân - kết quả (Causal Inference) và dự báo chuỗi thời gian."
+    }
+  }
+]

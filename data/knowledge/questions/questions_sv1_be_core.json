@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "Q_BE_001",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Bạn hãy giải thích sự khác biệt giữa phương thức PUT và PATCH trong thiết kế RESTful API?",
+    "follow_up_hints": [
+      "Phương thức nào có tính chất Idempotent theo chuẩn HTTP RFC?",
+      "Khi nào nên ưu tiên dùng PATCH thay vì PUT trong hệ thống thực tế?"
+    ],
+    "expected_signals": [
+      "PUT thay thế toàn bộ resource, PATCH cập nhật từng phần (partial update)",
+      "PUT có tính idempotent, PATCH thông thường không đảm bảo idempotent nếu không kiểm soát",
+      "Nêu được trường hợp sử dụng thực tế (ví dụ: đổi trạng thái status thì dùng PATCH)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_002",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Làm thế nào để thiết kế một API thanh toán đảm bảo tính Idempotency khi mạng bị timeout hoặc chập chờn?",
+    "follow_up_hints": [
+      "Bạn lưu trữ và kiểm tra Idempotency Key như thế nào ở phía server?",
+      "Xử lý thế nào nếu request thứ hai đến khi request thứ nhất vẫn đang được xử lý (in-flight)?"
+    ],
+    "expected_signals": [
+      "Sử dụng Idempotency Key (UUID) gửi từ client trong header",
+      "Lưu trữ key trong Redis/Database với TTL và trạng thái (PROCESSING, COMPLETED)",
+      "Sử dụng distributed lock hoặc database unique constraint để chống duplicate execution"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_003",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "situational",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Hệ thống của bạn cần nâng cấp API từ v1 lên v2 với breaking changes trong dữ liệu trả về. Bạn thiết kế chiến lược migration như thế nào để zero-downtime cho các đối tác tích hợp?",
+    "follow_up_hints": [
+      "Làm sao để giám sát đối tác nào vẫn đang gọi API v1 cũ?",
+      "Chiến lược deprecation thông báo cho bên ngoài được áp dụng ra sao?"
+    ],
+    "expected_signals": [
+      "Duy trì đồng thời v1 và v2 (URL versioning hoặc Header versioning) trong thời gian deprecation",
+      "Sử dụng API Gateway ghi log metrics lượng request v1 theo API key/Client ID",
+      "Đặt Sunset Header (RFC 8594) và kế hoạch liên lạc chủ động trước khi tắt hẳn v1"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_004",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Lỗi N+1 query trong ORM là gì? Hãy nêu ví dụ cụ thể và cách khắc phục trong framework bạn từng dùng?",
+    "follow_up_hints": [
+      "Cơ chế Eager Loading khác Lazy Loading như thế nào trong tình huống này?",
+      "Lệnh SQL thực tế được sinh ra khi xảy ra N+1 query là gì?"
+    ],
+    "expected_signals": [
+      "Giải thích được nguyên nhân do 1 query cha kèm N query con trong vòng lặp",
+      "Đưa ra giải pháp Eager Loading (select_related, prefetch_related, JOIN)",
+      "Hiểu tác hại làm nghẽn connection pool và quá tải database"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_005",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Bạn đọc câu lệnh EXPLAIN ANALYZE như thế nào để phát hiện một câu truy vấn đang bị Seq Scan và chậm?",
+    "follow_up_hints": [
+      "Ý nghĩa của chỉ số Rows removed by filter trong kết quả EXPLAIN là gì?",
+      "Khi nào một truy vấn có Index nhưng Database vẫn quyết định chạy Seq Scan?"
+    ],
+    "expected_signals": [
+      "Phân biệt được Seq Scan (quét toàn bảng) và Index Scan / Index Only Scan",
+      "Phân tích được chi phí Actual Time, Loops, và Rows Removed by Filter",
+      "Hiểu nguyên nhân không dùng index do Cardinality thấp hoặc dùng hàm bọc cột điều kiện"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_006",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "[DEPRECATED] Hãy liệt kê các mã HTTP Status Code 200, 404, 500 nghĩa là gì?",
+    "follow_up_hints": [
+      "200 khác 201 như thế nào?",
+      "401 khác 403 ở điểm nào?"
+    ],
+    "expected_signals": [
+      "200 OK, 404 Not Found, 500 Internal Server Error",
+      "Phân biệt được nhóm mã 2xx thành công, 4xx lỗi client, 5xx lỗi server",
+      "Giải thích đúng ngữ nghĩa cơ bản"
+    ],
+    "status": "superseded",
+    "version": "v1.0-deprecated"
+  }
+]
