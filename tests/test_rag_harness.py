@@ -218,3 +218,102 @@ def test_agent_tools_execution() -> None:
     assert "RUBRIC CHẤM ĐIỂM" in rubric_output
     assert "Thang điểm" in rubric_output
     assert "Điểm 4/5" in rubric_output or "mức 4" in rubric_output.lower()
+
+
+# ==============================================================================
+# Test 7: Security Boundary for Candidate Role & Hidden Tests
+# ==============================================================================
+
+
+def test_security_boundary_candidate_role() -> None:
+    """Ứng viên (candidate) bị loại bỏ tài liệu mật và stripped expected_signals/hidden_tests."""
+    doc_task = Document(
+        page_content="Bài tập code rate limiter",
+        metadata={
+            "chunk_id": "c1:0",
+            "item_id": "CODE_001",
+            "source_type": "coding_task",
+            "is_confidential": False,
+            "hidden_tests_json": '[{"input": "hidden", "expected": "ok"}]',
+        },
+    )
+    doc_rubric = Document(
+        page_content="Rubric chấm điểm năng lực thuật toán",
+        metadata={
+            "chunk_id": "r1:0",
+            "item_id": "RUBRIC_ALGO",
+            "source_type": "rubric",
+            "is_confidential": True,
+        },
+    )
+
+    retriever = HybridKnowledgeRetriever(documents=[doc_task, doc_rubric])
+    candidate_results = retriever.retrieve(
+        query="rate limiter", caller_role="candidate", top_n=5
+    )
+
+    for doc in candidate_results:
+        assert doc.metadata.get("is_confidential") is not True
+        assert doc.metadata.get("source_type") != "rubric"
+        assert "hidden_tests_json" not in doc.metadata
+        assert "expected_signals_json" not in doc.metadata
+
+
+# ==============================================================================
+# Test 8: Upsert Idempotent with Object Store (delete & add_documents)
+# ==============================================================================
+
+
+def test_upsert_idempotent_object_store() -> None:
+    """upsert_file_idempotent hỗ trợ store có phương thức delete và add_documents."""
+
+    class MockVectorStore:
+        def __init__(self) -> None:
+            self.docs: list[Document] = []
+
+        def delete(self, where: dict) -> None:
+            doc_id = where.get("doc_id")
+            self.docs = [d for d in self.docs if d.metadata.get("doc_id") != doc_id]
+
+        def add_documents(self, documents: list[Document]) -> None:
+            self.docs.extend(documents)
+
+    store = MockVectorStore()
+    d1 = Document(page_content="Doc 1 v1", metadata={"doc_id": "file_a"})
+    upsert_file_idempotent(store, "file_a", [d1])
+    assert len(store.docs) == 1
+
+    d2 = Document(page_content="Doc 1 v2", metadata={"doc_id": "file_a"})
+    upsert_file_idempotent(store, "file_a", [d2])
+    assert len(store.docs) == 1
+    assert store.docs[0].page_content == "Doc 1 v2"
+
+
+# ==============================================================================
+# Test 9: Cascade Reranker Ranking Logic
+# ==============================================================================
+
+
+def test_cascade_reranker_logic() -> None:
+    """CascadeReranker ưu tiên document có mã định danh và ngữ cảnh khớp truy vấn."""
+    from src.rag.reranker import CascadeReranker
+
+    reranker = CascadeReranker(model_name="lightweight")
+    docs = [
+        Document(
+            page_content="Khái niệm cơ bản về kiến trúc phần mềm",
+            metadata={"chunk_id": "c1", "item_id": "GENERAL_01"},
+        ),
+        Document(
+            page_content="Tối ưu hóa cơ sở dữ liệu và đánh chỉ mục B-Tree BE_DB_OPTIMIZATION",
+            metadata={
+                "chunk_id": "c2",
+                "item_id": "BE_DB_OPTIMIZATION",
+                "competency": "BE_DB_OPTIMIZATION",
+            },
+        ),
+    ]
+
+    reranked = reranker.rerank("Năng lực BE_DB_OPTIMIZATION cấp middle", docs, top_n=2)
+    assert len(reranked) == 2
+    assert reranked[0].metadata["item_id"] == "BE_DB_OPTIMIZATION"

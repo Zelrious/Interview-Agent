@@ -10,7 +10,7 @@
       "citation_existence": 0.35,
       "faithfulness": 0.55,
       "abstention_rate": 0.0,
-      "latency_p50_ms": 6.46,
+      "latency_p50_ms": 6.26,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
@@ -33,7 +33,7 @@
       "citation_existence": 0.65,
       "faithfulness": 0.75,
       "abstention_rate": 0.0,
-      "latency_p50_ms": 2.52,
+      "latency_p50_ms": 2.24,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
@@ -56,7 +56,7 @@
       "citation_existence": 0.85,
       "faithfulness": 0.88,
       "abstention_rate": 1.0,
-      "latency_p50_ms": 2.95,
+      "latency_p50_ms": 2.68,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
@@ -79,7 +79,7 @@
       "citation_existence": 1.0,
       "faithfulness": 1.0,
       "abstention_rate": 1.0,
-      "latency_p50_ms": 4.46,
+      "latency_p50_ms": 3.94,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",

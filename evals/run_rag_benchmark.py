@@ -23,26 +23,16 @@ from __future__ import annotations
 import json
 import logging
 import statistics
+import sys
 import time
 from pathlib import Path
 from typing import Any
-
-from langchain_core.documents import Document
-
-from src.rag.grounding import ESCAPE_HATCH_TEXT, verify_citations
-from src.rag.hybrid_retriever import HybridKnowledgeRetriever, reciprocal_rank_fusion
-from src.rag.ingest import (
-    chunk_documents_fixed_size,
-    get_embeddings,
-    load_and_chunk_knowledge_base,
-)
-from src.rag.reranker import CascadeReranker
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def is_doc_hit(doc: Document, query_item: dict[str, Any]) -> bool:
+def is_doc_hit(doc: Any, query_item: dict[str, Any]) -> bool:
     """Kiểm tra xem document lấy về có phải là chunk kỳ vọng hay không."""
     expected_chunks = set(query_item.get("expected_chunk_ids", []))
     expected_items = set(query_item.get("expected_item_ids", []))
@@ -71,6 +61,8 @@ def run_single_benchmark(
     embeddings: Any,
 ) -> dict[str, Any]:
     """Chạy benchmark cho một cấu hình RAG cụ thể trên 24 câu hỏi."""
+    from src.rag.grounding import ESCAPE_HATCH_TEXT, verify_citations
+
     latencies: list[float] = []
     hits_at_5 = 0
     hits_at_20 = 0
@@ -195,10 +187,25 @@ def run_single_benchmark(
 
 def main() -> None:
     """Thực thi kiểm chuẩn toàn diện 4 cấu hình RAG."""
-    import sys
-
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
+
+    project_root = str(Path(__file__).resolve().parent.parent)
+    if project_root not in sys.path:
+        sys.path.insert(0, project_root)
+
+    from langchain_core.documents import Document
+
+    from src.rag.hybrid_retriever import (
+        HybridKnowledgeRetriever,
+        reciprocal_rank_fusion,
+    )
+    from src.rag.ingest import (
+        chunk_documents_fixed_size,
+        get_embeddings,
+        load_and_chunk_knowledge_base,
+    )
+    from src.rag.reranker import CascadeReranker
 
     logger.info("Bắt đầu chuẩn bị dữ liệu và chỉ mục cho RAG Benchmark...")
 
