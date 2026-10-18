@@ -3,10 +3,13 @@
 Implements:
 - search_interview_questions_tool: for Interviewer Agent (UC-02), locked to caller_role='interviewer'
 - retrieve_grading_rubric_tool: for Grader Agent (UC-05/06), locked to caller_role='grader'
+- rewrite_query_for_retrieval: query normalization & keyword expansion for robust retrieval
 """
 
 from __future__ import annotations
 
+import logging
+import re
 import threading
 from typing import Any
 
@@ -14,6 +17,8 @@ from langchain_core.tools import tool
 
 from src.rag.hybrid_retriever import HybridKnowledgeRetriever
 from src.rag.ingest import load_and_chunk_knowledge_base
+
+logger = logging.getLogger(__name__)
 
 _retriever_instance: HybridKnowledgeRetriever | None = None
 _retriever_lock = threading.Lock()
@@ -38,6 +43,52 @@ def set_shared_retriever(retriever: HybridKnowledgeRetriever) -> None:
         _retriever_instance = retriever
 
 
+def rewrite_query_for_retrieval(
+    query: str,
+    competency: str | None = None,
+    level: str | None = None,
+) -> str:
+    """Chuẩn hóa và làm giàu câu truy vấn cho RAG retriever.
+
+    1. Loại bỏ các tiền tố hội thoại rác (conversational fillers).
+    2. Chuẩn hóa các từ viết tắt kỹ thuật thông dụng (db, mq, cache, k8s, api).
+    3. Bổ sung mã năng lực và cấp độ để tăng độ nhạy cho cả Dense Vector và BM25.
+    """
+    clean_q = query.strip()
+
+    # 1. Loại bỏ tiền tố và từ dừng hội thoại
+    filler_patterns = [
+        r"^(hãy\s+)?(tìm|cho tôi|lấy|cần tìm|cần hỏi|đưa ra)\s+(câu hỏi|ngân hàng câu hỏi)?\s*(về|liên quan đến)?\s*",
+        r"\bcâu hỏi phỏng vấn\s*(về)?\s*",
+        r"\bcho (ứng viên|vị trí|bạn)\s*",
+    ]
+    for pattern in filler_patterns:
+        clean_q = re.sub(pattern, "", clean_q, flags=re.IGNORECASE).strip()
+
+    # 2. Chuẩn hóa từ viết tắt kỹ thuật
+    synonyms = {
+        r"\bdb\b": "database cơ sở dữ liệu",
+        r"\bmq\b": "message queue hàng đợi",
+        r"\bcache\b": "caching redis bộ nhớ đệm",
+        r"\bk8s\b": "kubernetes",
+        r"\bapi\b": "api restful",
+    }
+    for pattern, replacement in synonyms.items():
+        clean_q = re.sub(pattern, replacement, clean_q, flags=re.IGNORECASE)
+
+    # 3. Làm giàu ngữ cảnh với competency và level
+    context_tokens = []
+    if competency and competency.lower() not in clean_q.lower():
+        context_tokens.append(competency)
+    if level and level.lower() not in clean_q.lower():
+        context_tokens.append(f"cấp {level}")
+
+    if context_tokens:
+        clean_q = f"{' '.join(context_tokens)} {clean_q}".strip()
+
+    return clean_q or query
+
+
 @tool
 def search_interview_questions_tool(
     query: str,
@@ -52,7 +103,7 @@ def search_interview_questions_tool(
 
     Args:
         query: Từ khóa hoặc mô tả nội dung câu hỏi cần tìm.
-        competency: Mã năng lực cần lọc (ví dụ: BE_API_DESIGN, BE_DB_OPTIMIZATION) hoặc None.
+        competency: Mã năng lực cần lọc (ví dụ: BE_API_DESIGN, BE_DB_OPTIMIZATION, BE_CACHING_SYSTEMS) hoặc None.
         level: Cấp độ ứng viên (intern, junior, middle, senior) hoặc None.
         top_k: Số lượng câu hỏi tối đa cần lấy về (mặc định 5).
     """
@@ -63,8 +114,14 @@ def search_interview_questions_tool(
     if level:
         metadata_filter["level"] = level
 
+    # BƯỚC 1: Chuẩn hóa câu truy vấn (Query Rewriting)
+    normalized_query = rewrite_query_for_retrieval(
+        query=query, competency=competency, level=level
+    )
+
+    # BƯỚC 2: Truy xuất với chốt chặn khóa cứng caller_role="interviewer"
     results = retriever.retrieve(
-        query=query,
+        query=normalized_query,
         top_n=top_k,
         caller_role="interviewer",  # KHÓA CỨNG VAI TRÒ INTERVIEWER
         metadata_filter=metadata_filter,
@@ -75,12 +132,23 @@ def search_interview_questions_tool(
 
     output_lines = [f"Tìm thấy {len(results)} câu hỏi phù hợp:"]
     for i, doc in enumerate(results, 1):
-        cid = doc.metadata.get("chunk_id", "")
-        item_id = doc.metadata.get("item_id", "")
+        # BƯỚC 3: Kiểm tra phòng hộ thứ cấp (Defensive Security Check)
+        meta = doc.metadata or {}
+        if meta.get("is_confidential") is True or meta.get("source_type") == "rubric":
+            continue
+
+        cid = meta.get("chunk_id", "")
+        item_id = meta.get("item_id", "")
+
+        # Bảo đảm tuyệt đối không lọt expected_signals ra nội dung trả về
+        clean_content = doc.page_content
+        if "expected_signals" in clean_content:
+            clean_content = clean_content.split("expected_signals")[0].strip()
+
         output_lines.append(
             f"\n--- [Câu hỏi {i} | Mã: {item_id} | Trích dẫn: [{cid}]] ---"
         )
-        output_lines.append(doc.page_content)
+        output_lines.append(clean_content)
 
     return "\n".join(output_lines)
 
@@ -96,7 +164,7 @@ def retrieve_grading_rubric_tool(
     các tín hiệu mong đợi và ví dụ trả lời mẫu kèm mã trích dẫn [chunk_id].
 
     Args:
-        competency_id: Mã năng lực cần lấy Rubric (ví dụ: BE_API_DESIGN, DA_SQL_ANALYTICS, QA_AUTOMATION).
+        competency_id: Mã năng lực cần lấy Rubric (ví dụ: BE_API_DESIGN, BE_CACHING_SYSTEMS, BE_SYSTEM_DESIGN).
         query: Chuỗi truy vấn bổ sung (nếu muốn tìm rubric theo ngữ cảnh cụ thể).
     """
     retriever = get_shared_retriever()
