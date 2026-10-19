@@ -3,7 +3,6 @@
 from src.rag.agent_tools import (
     get_shared_retriever,
     retrieve_grading_rubric_tool,
-    rewrite_query_for_retrieval,
     search_interview_questions_tool,
     set_shared_retriever,
 )
@@ -44,7 +43,6 @@ __all__ = [
     "load_and_chunk_knowledge_base",
     "reciprocal_rank_fusion",
     "retrieve_grading_rubric_tool",
-    "rewrite_query_for_retrieval",
     "search_interview_questions_tool",
     "set_shared_retriever",
     "tokenize_for_bm25",
