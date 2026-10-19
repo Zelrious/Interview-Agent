@@ -155,9 +155,21 @@ def get_embedding_model(
                     "[EmbeddingFactory] Sử dụng Gemini embedding: %s", gemini_model_name
                 )
                 return embed
-            except (ImportError, RuntimeError, Exception) as e:
+            except ImportError as e:
                 logger.warning(
-                    "[EmbeddingFactory] Không thể khởi tạo Gemini embedding: %s. "
+                    "[EmbeddingFactory] Không thể khởi tạo Gemini embedding (ImportError): %s. "
+                    "Thử OpenAI hoặc fallback local.",
+                    e,
+                )
+            except RuntimeError as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo Gemini embedding (RuntimeError): %s. "
+                    "Thử OpenAI hoặc fallback local.",
+                    e,
+                )
+            except OSError as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo Gemini embedding (OSError): %s. "
                     "Thử OpenAI hoặc fallback local.",
                     e,
                 )
@@ -178,9 +190,21 @@ def get_embedding_model(
                     "[EmbeddingFactory] Sử dụng OpenAI embedding: text-embedding-3-small"
                 )
                 return embed
-            except (ImportError, RuntimeError, Exception) as e:
+            except ImportError as e:
                 logger.warning(
-                    "[EmbeddingFactory] Không thể khởi tạo OpenAI embedding: %s. "
+                    "[EmbeddingFactory] Không thể khởi tạo OpenAI embedding (ImportError): %s. "
+                    "Fallback về DeterministicHashEmbeddings.",
+                    e,
+                )
+            except RuntimeError as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo OpenAI embedding (RuntimeError): %s. "
+                    "Fallback về DeterministicHashEmbeddings.",
+                    e,
+                )
+            except OSError as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo OpenAI embedding (OSError): %s. "
                     "Fallback về DeterministicHashEmbeddings.",
                     e,
                 )
