@@ -16,6 +16,7 @@ from langchain_core.documents import Document
 
 from src.rag.agent_tools import (
     retrieve_grading_rubric_tool,
+    rewrite_query_for_retrieval,
     search_interview_questions_tool,
 )
 from src.rag.grounding import ESCAPE_HATCH_TEXT, verify_citations
@@ -221,6 +222,18 @@ def test_agent_tools_execution() -> None:
     assert "RUBRIC CHẤM ĐIỂM" in rubric_output
     assert "Thang điểm" in rubric_output
     assert "Điểm 4/5" in rubric_output or "mức 4" in rubric_output.lower()
+
+
+def test_rewrite_query_for_retrieval() -> None:
+    """Kiểm tra hàm chuẩn hóa câu truy vấn: loại bỏ từ dừng và làm giàu từ khóa."""
+    raw_query = "Hãy tìm cho tôi câu hỏi phỏng vấn về db tối ưu hóa"
+    rewritten = rewrite_query_for_retrieval(
+        raw_query, competency="BE_DB_OPTIMIZATION", level="junior"
+    )
+    assert "database cơ sở dữ liệu" in rewritten
+    assert "BE_DB_OPTIMIZATION" in rewritten
+    assert "cấp junior" in rewritten
+    assert "Hãy tìm cho tôi" not in rewritten
 
 
 # ==============================================================================
