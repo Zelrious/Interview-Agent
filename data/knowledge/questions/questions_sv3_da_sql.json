@@ -1,0 +1,128 @@
+[
+  {
+    "question_id": "Q_DA_001",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Sự khác biệt giữa ba hàm xếp hạng RANK(), DENSE_RANK() và ROW_NUMBER() trong SQL là gì? Nêu ví dụ khi có 2 bản ghi cùng giá trị điểm số?",
+    "follow_up_hints": [
+      "Hàm nào luôn trả về các số thứ tự liên tục không ngắt quãng?",
+      "Cú pháp PARTITION BY kết hợp với các hàm này có ý nghĩa gì?"
+    ],
+    "expected_signals": [
+      "ROW_NUMBER luôn tăng liên tục (1, 2, 3) bất kể giá trị trùng",
+      "RANK nhảy cách thứ hạng khi trùng (1, 2, 2, 4)",
+      "DENSE_RANK giữ thứ hạng trùng nhưng không nhảy cách (1, 2, 2, 3)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_002",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Hãy giải thích cách bạn viết một câu truy vấn SQL để tính tỷ lệ giữ chân người dùng (Cohort Retention) theo tháng từ bảng sự kiện đăng nhập user_logins?",
+    "follow_up_hints": [
+      "Làm sao để xác định được tháng đầu tiên người dùng đăng ký (First Cohort Month)?",
+      "Kỹ thuật nào dùng để tính chênh lệch số tháng giữa tháng hoạt động và tháng đăng ký?"
+    ],
+    "expected_signals": [
+      "Dùng CTE hoặc Window Function (MIN(login_date) OVER(PARTITION BY user_id)) để lấy cohort month",
+      "Tính số tháng chênh lệch (month_number = DATEDIFF / EXTRACT epoch)",
+      "COUNT(DISTINCT user_id) và chia tỷ lệ phần trăm so với quy mô cohort ban đầu"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_003",
+    "competency": "DA_DATA_MODELING",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "So sánh hai mô hình Star Schema và Snowflake Schema trong thiết kế Data Warehouse. Khi nào nên dùng Star Schema?",
+    "follow_up_hints": [
+      "Mô hình nào tối ưu tốc độ truy vấn hơn và tại sao?",
+      "Chuẩn hóa dữ liệu (normalization) ở các bảng Dimension thể hiện thế nào giữa hai mô hình?"
+    ],
+    "expected_signals": [
+      "Star Schema có bảng Fact ở giữa nối trực tiếp Dimension (denormalized)",
+      "Snowflake Schema chuẩn hóa các bảng Dimension thành nhiều cấp phân nhánh",
+      "Star Schema ít JOIN hơn, tối ưu tốc độ đọc cho BI dashboard và dễ hiểu cho business user"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_004",
+    "competency": "DA_DATA_MODELING",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Slowly Changing Dimension Type 2 (SCD Type 2) là gì? Bạn lưu vết lịch sử thay đổi địa chỉ của khách hàng như thế nào trong bảng dim_customer?",
+    "follow_up_hints": [
+      "Các cột kỹ thuật nào bắt buộc phải có để quản lý thời gian hiệu lực?",
+      "Làm sao để câu truy vấn báo cáo doanh số năm ngoái lấy đúng địa chỉ cũ của khách hàng tại thời điểm mua?"
+    ],
+    "expected_signals": [
+      "SCD Type 2 tạo một dòng mới khi có thay đổi dữ liệu để giữ toàn bộ lịch sử",
+      "Bắt buộc có Surrogate Key, Effective_Start_Date, Effective_End_Date và Is_Current flag",
+      "Báo cáo lịch sử JOIN với điều kiện order_date BETWEEN effective_start_date AND effective_end_date"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_005",
+    "competency": "DA_STATISTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Trong một thử nghiệm A/B Testing tính năng mới, nhóm thử nghiệm (Variant B) tăng Conversion Rate 5% so với nhóm gốc (Control A) với p-value = 0.03. Kết quả này có ý nghĩa gì và bạn có đề xuất launch ngay không?",
+    "follow_up_hints": [
+      "Ngưỡng ý nghĩa thống kê alpha thông thường là bao nhiêu và p-value = 0.03 có ý nghĩa gì?",
+      "Cần kiểm tra thêm Sample Size, Statistical Power hoặc hiện tượng Peeking Problem như thế nào?"
+    ],
+    "expected_signals": [
+      "p-value = 0.03 < 0.05 nghĩa là có ý nghĩa thống kê (statistically significant), bác bỏ H0",
+      "Chưa nên vội launch mà cần kiểm tra Minimum Detectable Effect (MDE) và Sample Ratio Mismatch (SRM)",
+      "Kiểm tra xem thử nghiệm đã chạy đủ thời gian (ít nhất 1-2 tuần đầy đủ chu kỳ kinh doanh) chưa"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_006",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "[DEPRECATED] Phân biệt sự khác nhau giữa câu lệnh WHERE và HAVING trong SQL?",
+    "follow_up_hints": [
+      "Lệnh nào lọc trước khi gom nhóm và lệnh nào lọc sau khi gom nhóm?",
+      "HAVING có thể dùng mà không có GROUP BY không?"
+    ],
+    "expected_signals": [
+      "WHERE lọc từng bản ghi trước khi GROUP BY, không dùng với hàm tổng hợp",
+      "HAVING lọc trên kết quả của các hàm tổng hợp sau khi GROUP BY",
+      "Nêu được ví dụ minh họa chính xác cú pháp"
+    ],
+    "status": "superseded",
+    "version": "v1.0-deprecated"
+  }
+]

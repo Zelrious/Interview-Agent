@@ -1,0 +1,74 @@
+[
+  {
+    "competency_id": "BE_API_DESIGN",
+    "name": "Thiết kế API & Kiến trúc RESTful / gRPC",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu khái niệm HTTP methods (GET, POST, PUT, DELETE), status codes cơ bản (200, 400, 404, 500) và định dạng JSON.",
+      "junior": "Thiết kế được CRUD API chuẩn RESTful, xử lý validation request, cấu trúc response thống nhất và xử lý lỗi chuẩn hóa.",
+      "middle": "Thiết kế API có phân trang (cursor/offset), versioning, idempotency key cho thanh toán, tối ưu payload và áp dụng gRPC/Protobuf khi cần.",
+      "senior": "Quy hoạch kiến trúc API Gateway, backward compatibility, rate limiting theo tier, API contracts mở rộng cho toàn hệ thống phân tán."
+    }
+  },
+  {
+    "competency_id": "BE_DB_OPTIMIZATION",
+    "name": "Tối ưu hóa Cơ sở dữ liệu & Đánh chỉ mục",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Viết được truy vấn SELECT, JOIN cơ bản, hiểu quan hệ khóa chính và khóa ngoại trong RDBMS.",
+      "junior": "Sử dụng được Index B-Tree, tránh N+1 query trong ORM, phân biệt INNER/LEFT JOIN và viết transaction cơ bản.",
+      "middle": "Đọc hiểu EXPLAIN ANALYZE, tối ưu composite index, xử lý deadlock, connection pooling và đánh giá chiến lược đánh index theo query pattern.",
+      "senior": "Quy hoạch kiến trúc Sharding, Partitioning, Read/Write Replica, tối ưu storage engine, database tuning ở quy mô hàng trăm triệu bản ghi."
+    }
+  },
+  {
+    "competency_id": "BE_CONCURRENCY",
+    "name": "Lập trình Đồng thời & Xử lý Bất đồng bộ",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer / Dropbox Engineering Career Framework - CC-BY",
+    "levels": {
+      "intern": "Hiểu sự khác biệt giữa đồng bộ (synchronous) và bất đồng bộ (asynchronous), khái niệm Thread và Process cơ bản.",
+      "junior": "Sử dụng được async/await trong Python/Node.js, xử lý non-blocking I/O và gọi HTTP requests song song an toàn.",
+      "middle": "Xử lý race condition, áp dụng Optimistic/Pessimistic locking, sử dụng hàng đợi Message Queue (RabbitMQ/Kafka) để phân tán tải.",
+      "senior": "Thiết kế hệ thống Event-driven quy mô lớn, xử lý distributed lock với Redis/ZooKeeper, bảo đảm tính nhất quán dữ liệu eventual consistency và idempotency."
+    }
+  },
+  {
+    "competency_id": "BE_CACHING_SYSTEMS",
+    "name": "Hệ thống Caching & Tối ưu hóa Bộ nhớ đệm",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer (CC BY-NC-SA 4.0) / AWS Caching Best Practices",
+    "levels": {
+      "intern": "Hiểu khái niệm Cache, phân biệt Cache trong bộ nhớ cục bộ (In-memory) và Remote Cache (Redis/Memcached), giải thích được vai trò của TTL.",
+      "junior": "Triển khai được mô hình Cache-Aside (Lazy Loading), thiết lập TTL phù hợp cho từng loại dữ liệu, sử dụng thành thạo các kiểu dữ liệu Redis cơ bản (String, Hash, Set).",
+      "middle": "Xử lý triệt để các sự cố kinh điển: Cache Penetration (Bloom Filter, Cache Null Object), Cache Breakdown (Mutex Lock/Singleflight), Cache Avalanche (TTL Jitter), và hiểu các chính sách giải phóng bộ nhớ (LRU, LFU).",
+      "senior": "Quy hoạch kiến trúc Multi-level Caching (L1 Local Cache + L2 Distributed Redis), thiết kế chiến lược Cache Invalidation realtime qua Change Data Capture (CDC / Debezium / Kafka), bảo đảm tính nhất quán dữ liệu (Cache Consistency)."
+    }
+  },
+  {
+    "competency_id": "BE_MESSAGE_QUEUE",
+    "name": "Hàng đợi Thông điệp & Kiến trúc Hướng Sự kiện",
+    "role": "backend_dev",
+    "source_reference": "Roadmap.sh Backend Developer (CC BY-NC-SA 4.0) / Designing Data-Intensive Applications (Martin Kleppmann)",
+    "levels": {
+      "intern": "Hiểu khái niệm Message Queue (Producer, Consumer, Broker), phân biệt giao tiếp đồng bộ (HTTP RPC) và bất đồng bộ (Message-driven).",
+      "junior": "Sử dụng được Message Broker cơ bản (RabbitMQ / Kafka / Redis PubSub) để xử lý tác vụ nền (gửi email, xử lý ảnh), cấu hình Ack/Nack cơ bản.",
+      "middle": "Xử lý các bài toán độ tin cậy: At-least-once delivery, thiết kế Consumer Idempotent (Idempotency Key / Outbox Pattern), định tuyến tin nhắn lỗi vào Dead Letter Queue (DLQ) và retry backoff.",
+      "senior": "Thiết kế hệ thống Event-driven quy mô lớn: Kafka Partitioning & Rebalancing, tối ưu Throughput vs Latency, xử lý thứ tự thông điệp nghiêm ngặt (Strict Ordering), kiến trúc Transactional Outbox pattern và Event Sourcing."
+    }
+  },
+  {
+    "competency_id": "BE_SYSTEM_DESIGN",
+    "name": "Thiết kế Hệ thống Phân tán & Khả năng Mở rộng",
+    "role": "backend_dev",
+    "source_reference": "Dropbox Engineering Career Framework (CC BY 4.0) / System Design Primer (CC BY-SA 4.0)",
+    "levels": {
+      "intern": "Nắm được mô hình Client-Server, khái niệm Tải (Traffic/Throughput), Băng thông (Bandwidth), Độ trễ (Latency) và điểm nghẽn Single Point of Failure (SPOF).",
+      "junior": "Phân biệt Scale Up (Vertical) và Scale Out (Horizontal), hiểu vai trò của Load Balancer (Round Robin, Least Connection), cấu hình Stateless Backend Server cơ bản.",
+      "middle": "Áp dụng định lý CAP và PACELC vào lựa chọn Database; thiết kế các cơ chế phòng hộ: Rate Limiting (Token Bucket / Leaky Bucket), Circuit Breaker, Bulkhead, Graceful Degradation.",
+      "senior": "Kiến trúc toàn diện hệ thống phân tán High Availability (99.99% SLA): Database Sharding, Global Load Balancing (Anycast/DNS), Distributed Tracing (OpenTelemetry), Disaster Recovery (Multi-Region / Active-Active)."
+    }
+  }
+]

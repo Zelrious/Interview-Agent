@@ -1,0 +1,50 @@
+[
+  {
+    "rubric_id": "RUBRIC_DA_SQL_ANALYTICS",
+    "competency_id": "DA_SQL_ANALYTICS",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không viết được câu lệnh SELECT và WHERE cơ bản; nhầm lẫn giữa AND và OR; không hiểu quan hệ kết bảng.",
+      "2": "Viết được truy vấn GROUP BY cơ bản nhưng chưa biết dùng Window Functions; lúng túng khi xử lý giá trị NULL trong hàm tổng hợp.",
+      "3": "Sử dụng thành thạo Window Functions (RANK, DENSE_RANK, ROW_NUMBER, LAG, LEAD) và Common Table Expressions (CTE); viết được phân tích Cohort cơ bản.",
+      "4": "Thiết kế truy vấn phân tích phễu chuyển đổi (Funnel Analysis) và Cohort Retention đa chiều phức tạp; tối ưu hóa partition pruning trên BigQuery/Redshift.",
+      "5": "Chuyên gia tối ưu hóa SQL phân tích trên dữ liệu hàng tỷ bản ghi (Big Data); thiết kế khung chuẩn hóa dữ liệu Metric Layer và Semantic Layer cho doanh nghiệp."
+    },
+    "sample_answers": {
+      "level_2_example": "Em dùng ORDER BY điểm số DESC rồi LIMIT lấy ra người cao nhất. Nếu có hai người bằng điểm thì em chưa rõ hàm nào chia đều thứ hạng.",
+      "level_4_example": "Em phân biệt rõ: ROW_NUMBER cấp số thứ tự duy nhất không trùng; RANK cấp cùng thứ hạng cho giá trị bằng nhau nhưng nhảy bước (1, 2, 2, 4); DENSE_RANK cũng chia cùng thứ hạng nhưng số thứ tự liên tục (1, 2, 2, 3). Khi phân tích cohort retention theo tháng, em dùng MIN(login_date) OVER (PARTITION BY user_id) để đánh dấu cohort, rồi dùng DATE_TRUNC để tính khoảng cách tháng và đếm số unique user hoạt động lại."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_DA_DATA_MODELING",
+    "competency_id": "DA_DATA_MODELING",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không phân biệt được bảng dữ liệu sự kiện (Fact) và bảng thông tin danh mục (Dimension); lưu toàn bộ dữ liệu vào một file phẳng duy nhất.",
+      "2": "Hiểu khái niệm Star Schema nhưng chưa nắm rõ độ mịn (granularity); khi thiết kế dễ gây trùng lặp dữ liệu hoặc tạo quan hệ vòng tròn (circular relationships).",
+      "3": "Thiết kế chuẩn Star Schema và Snowflake Schema phục vụ BI reporting; hiểu SCD Type 1 (ghi đè) và SCD Type 2 (thêm dòng mới).",
+      "4": "Xây dựng mô hình dữ liệu SCD Type 2 hoàn chỉnh với Surrogate Key, Effective Date và Current Flag; giải quyết xung đột dữ liệu đa nguồn hiệu quả.",
+      "5": "Kiến trúc sư mô hình dữ liệu doanh nghiệp (Enterprise Data Bus Matrix); thiết kế Conformed Dimensions, Data Lineage và bảo đảm tuân thủ Data Governance."
+    },
+    "sample_answers": {
+      "level_2_example": "Em tạo một bảng khách hàng, khi khách hàng đổi địa chỉ thì em UPDATE thẳng cột address thành địa chỉ mới.",
+      "level_4_example": "Để phục vụ báo cáo phân tích chính xác theo thời gian thực tế xảy ra đơn hàng, em áp dụng SCD Type 2: bảng dim_customer sẽ lưu surrogate key, natural key customer_id, các thuộc tính, cùng 3 trường kỹ thuật: effective_start_date, effective_end_date và is_current. Khi có cập nhật địa chỉ, dòng cũ được đóng lại (is_current = false, end_date = now) và chèn một dòng mới với start_date = now. Bảng Fact đơn hàng sẽ liên kết với surrogate key của khách hàng tại thời điểm mua."
+    }
+  },
+  {
+    "rubric_id": "RUBRIC_DA_STATISTICS",
+    "competency_id": "DA_STATISTICS",
+    "rubric_version": "v2.0",
+    "scale": {
+      "1": "Không hiểu các khái niệm thống kê mô tả cơ bản (trung bình, trung vị, độ lệch chuẩn); không phân biệt được số tương đối và số tuyệt đối.",
+      "2": "Biết tính trung bình và phần trăm nhưng hiểu sai về p-value (nghĩ p-value là xác suất giả thuyết H0 đúng); đưa ra kết luận vội vàng khi số liệu còn nhỏ.",
+      "3": "Hiểu đúng bản chất p-value, khoảng tin cậy 95%, phân phối chuẩn và giả thuyết H0/H1; nắm được quy trình A/B Testing cơ bản.",
+      "4": "Thiết kế thử nghiệm A/B Testing chuẩn mực: tính toán Sample Size dựa trên MDE, Statistical Power (80%), Significance Level (5%); kiểm soát Sample Ratio Mismatch (SRM).",
+      "5": "Chuyên gia về Thử nghiệm và Causal Inference: giải quyết các bài toán thử nghiệm nâng cao (Interference/Network Effects, Multi-armed Bandit, Difference-in-Differences)."
+    },
+    "sample_answers": {
+      "level_2_example": "Thấy Variant B có tỷ lệ chuyển đổi cao hơn và p-value = 0.03 nhỏ hơn 0.05 là chứng minh tính năng mới tốt rồi, em khuyên launch luôn.",
+      "level_4_example": "p-value = 0.03 nhỏ hơn alpha = 0.05 có ý nghĩa thống kê, nhưng em chưa vội launch ngay mà kiểm tra 3 điều kiện tiên quyết: 1) Sample Ratio Mismatch (SRM) bằng Chi-Square test để đảm bảo lưu lượng phân bổ đúng 50/50; 2) Thử nghiệm đã chạy đủ thời gian ít nhất 1-2 tuần đầy đủ hiệu ứng ngày trong tuần (day-of-week effect) chưa; 3) Sample size đã đạt ngưỡng công suất thống kê (Statistical Power 80%) đã tính trước thử nghiệm để tránh hiện tượng Peeking Problem hay False Positive."
+    }
+  }
+]

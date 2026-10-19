@@ -1,0 +1,218 @@
+[
+  {
+    "query_id": "GOLD_01",
+    "category": "concept",
+    "query": "Mô tả hành vi mong đợi của kỹ sư Backend ở cấp middle đối với năng lực BE_API_DESIGN là gì?",
+    "expected_item_ids": ["BE_API_DESIGN"],
+    "expected_chunk_ids": ["41e545b57bc0:0"],
+    "is_unanswerable": false,
+    "description": "Hỏi về khung năng lực BE_API_DESIGN ở cấp middle"
+  },
+  {
+    "query_id": "GOLD_02",
+    "category": "concept",
+    "query": "Khung năng lực DA_SQL_ANALYTICS yêu cầu kỹ năng gì ở cấp junior?",
+    "expected_item_ids": ["DA_SQL_ANALYTICS"],
+    "expected_chunk_ids": ["3e18f0395286:0"],
+    "is_unanswerable": false,
+    "description": "Hỏi về khung năng lực DA_SQL_ANALYTICS ở cấp junior"
+  },
+  {
+    "query_id": "GOLD_03",
+    "category": "concept",
+    "query": "Tiêu chuẩn đánh giá năng lực QA_TEST_DESIGN ở cấp middle là gì?",
+    "expected_item_ids": ["QA_TEST_DESIGN"],
+    "expected_chunk_ids": ["c38e2d4e057b:0"],
+    "is_unanswerable": false,
+    "description": "Hỏi về khung năng lực QA_TEST_DESIGN cấp middle"
+  },
+  {
+    "query_id": "GOLD_04",
+    "category": "concept",
+    "query": "Mô hình STAR trong đánh giá năng lực hành vi BEHAVIORAL_STAR gồm những gì ở cấp junior và middle?",
+    "expected_item_ids": ["BEHAVIORAL_STAR"],
+    "expected_chunk_ids": ["7c55324c3b34:2"],
+    "is_unanswerable": false,
+    "description": "Hỏi về khung năng lực BEHAVIORAL_STAR"
+  },
+  {
+    "query_id": "GOLD_05",
+    "category": "concept",
+    "query": "Tiêu chí chấm điểm mức 4 của Rubric năng lực BE_API_DESIGN yêu cầu những gì?",
+    "expected_item_ids": ["RUBRIC_BE_API_DESIGN"],
+    "expected_chunk_ids": ["9a3f8a04a79a:0"],
+    "is_unanswerable": false,
+    "description": "Hỏi về tiêu chí mức 4 trong Rubric BE_API_DESIGN"
+  },
+  {
+    "query_id": "GOLD_06",
+    "category": "concept",
+    "query": "Trong Rubric BE_DB_OPTIMIZATION, câu trả lời mẫu mức 2 khác mức 4 ở điểm nào?",
+    "expected_item_ids": ["RUBRIC_BE_DB_OPTIMIZATION"],
+    "expected_chunk_ids": ["0a6a76d6e162:1"],
+    "is_unanswerable": false,
+    "description": "Hỏi về so sánh mức 2 và mức 4 Rubric BE_DB_OPTIMIZATION"
+  },
+  {
+    "query_id": "GOLD_07",
+    "category": "concept",
+    "query": "Tiêu chí đánh giá mức 4 trong Rubric DA_STATISTICS về A/B Testing là gì?",
+    "expected_item_ids": ["RUBRIC_DA_STATISTICS"],
+    "expected_chunk_ids": ["2f0c03ac11d6:2"],
+    "is_unanswerable": false,
+    "description": "Hỏi về tiêu chí mức 4 Rubric DA_STATISTICS"
+  },
+  {
+    "query_id": "GOLD_08",
+    "category": "concept",
+    "query": "Tiêu chí chấm điểm mức 2 và mức 4 cho năng lực QA_AUTOMATION trong Rubric như thế nào?",
+    "expected_item_ids": ["RUBRIC_QA_AUTOMATION"],
+    "expected_chunk_ids": ["6df28f40519c:1"],
+    "is_unanswerable": false,
+    "description": "Hỏi về rubric chấm điểm QA_AUTOMATION"
+  },
+  {
+    "query_id": "GOLD_09",
+    "category": "identifier",
+    "query": "Nội dung và gợi ý hỏi đào sâu của câu hỏi Q_BE_001 là gì?",
+    "expected_item_ids": ["Q_BE_001"],
+    "expected_chunk_ids": ["8a921a205f8c:0"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_BE_001"
+  },
+  {
+    "query_id": "GOLD_10",
+    "category": "identifier",
+    "query": "Câu hỏi Q_BE_002 kiểm tra về vấn đề gì và có những gợi ý nào?",
+    "expected_item_ids": ["Q_BE_002"],
+    "expected_chunk_ids": ["0cb6031ac460:1"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_BE_002"
+  },
+  {
+    "query_id": "GOLD_11",
+    "category": "identifier",
+    "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
+    "expected_item_ids": ["Q_BE_003"],
+    "expected_chunk_ids": ["2d9be11c1d23:2"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_BE_003"
+  },
+  {
+    "query_id": "GOLD_12",
+    "category": "identifier",
+    "query": "Nội dung câu hỏi Q_DA_001 hỏi về các hàm xếp hạng nào trong SQL?",
+    "expected_item_ids": ["Q_DA_001"],
+    "expected_chunk_ids": ["4ecfeff6cc44:0"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_DA_001"
+  },
+  {
+    "query_id": "GOLD_13",
+    "category": "identifier",
+    "query": "Nội dung của câu hỏi Q_QA_001 về kiểm thử giá trị biên là gì?",
+    "expected_item_ids": ["Q_QA_001"],
+    "expected_chunk_ids": ["a694b79d91f8:0"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_QA_001"
+  },
+  {
+    "query_id": "GOLD_14",
+    "category": "identifier",
+    "query": "Câu hỏi Q_BH_001 yêu cầu ứng viên chia sẻ về tình huống gì?",
+    "expected_item_ids": ["Q_BH_001"],
+    "expected_chunk_ids": ["6b94b2c493ea:0"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã câu hỏi Q_BH_001"
+  },
+  {
+    "query_id": "GOLD_15",
+    "category": "identifier",
+    "query": "Nội dung đề bài và yêu cầu của bài tập code CODE_001 là gì?",
+    "expected_item_ids": ["CODE_001"],
+    "expected_chunk_ids": ["7f38266e48cd:0"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã bài tập code CODE_001"
+  },
+  {
+    "query_id": "GOLD_16",
+    "category": "identifier",
+    "query": "Bài tập code CODE_002 yêu cầu viết hàm gì và xử lý log như thế nào?",
+    "expected_item_ids": ["CODE_002"],
+    "expected_chunk_ids": ["8437f874c2d3:1"],
+    "is_unanswerable": false,
+    "description": "Truy vấn chính xác mã bài tập code CODE_002"
+  },
+  {
+    "query_id": "GOLD_17",
+    "category": "trap",
+    "query": "Câu hỏi Q_BE_006 về HTTP status code hiện có trạng thái gì và có còn hiệu lực không?",
+    "expected_item_ids": ["Q_BE_006"],
+    "expected_chunk_ids": ["f5720335dc15:5"],
+    "is_unanswerable": false,
+    "description": "Câu hỏi bẫy phiên bản cũ: Q_BE_006 đã bị superseded"
+  },
+  {
+    "query_id": "GOLD_18",
+    "category": "trap",
+    "query": "Câu hỏi Q_DA_006 phân biệt WHERE và HAVING có phiên bản nào và trạng thái hiện tại là gì?",
+    "expected_item_ids": ["Q_DA_006"],
+    "expected_chunk_ids": ["04f390cd4868:5"],
+    "is_unanswerable": false,
+    "description": "Câu hỏi bẫy phiên bản cũ: Q_DA_006 đã bị superseded"
+  },
+  {
+    "query_id": "GOLD_19",
+    "category": "trap",
+    "query": "Thời hạn lưu trữ tối đa của bản ghi âm thanh phỏng vấn theo chính sách là bao nhiêu ngày?",
+    "expected_item_ids": ["POL_3"],
+    "expected_chunk_ids": ["dd1675c6bed9:3"],
+    "is_unanswerable": false,
+    "description": "Câu hỏi bẫy thời hạn lưu trữ: âm thanh lưu 30 ngày (khác CV lưu 90 ngày)"
+  },
+  {
+    "query_id": "GOLD_20",
+    "category": "trap",
+    "query": "Theo chính sách bảo mật, dữ liệu CV và transcript phỏng vấn được lưu trữ trong thời gian bao lâu trước khi tiêu hủy?",
+    "expected_item_ids": ["POL_3"],
+    "expected_chunk_ids": ["dd1675c6bed9:3"],
+    "is_unanswerable": false,
+    "description": "Câu hỏi thời hạn lưu trữ: CV và transcript lưu 90 ngày"
+  },
+  {
+    "query_id": "GOLD_21",
+    "category": "unanswerable",
+    "query": "Mức lương khởi điểm và phụ cấp ăn trưa của vị trí Backend Developer là bao nhiêu?",
+    "expected_item_ids": [],
+    "expected_chunk_ids": [],
+    "is_unanswerable": true,
+    "description": "Câu hỏi không có trong kho: Mức lương khởi điểm và phụ cấp"
+  },
+  {
+    "query_id": "GOLD_22",
+    "category": "unanswerable",
+    "query": "Quy trình xin visa bảo lãnh sang Nhật của công ty?",
+    "expected_item_ids": [],
+    "expected_chunk_ids": [],
+    "is_unanswerable": true,
+    "description": "Câu hỏi không có trong kho: Quy trình visa Nhật"
+  },
+  {
+    "query_id": "GOLD_23",
+    "category": "unanswerable",
+    "query": "Tiêu chí chấm chứng chỉ SAP ERP?",
+    "expected_item_ids": [],
+    "expected_chunk_ids": [],
+    "is_unanswerable": true,
+    "description": "Câu hỏi không có trong kho: Chứng chỉ SAP ERP"
+  },
+  {
+    "query_id": "GOLD_24",
+    "category": "unanswerable",
+    "query": "Chính sách nghỉ thai sản của công ty?",
+    "expected_item_ids": [],
+    "expected_chunk_ids": [],
+    "is_unanswerable": true,
+    "description": "Câu hỏi không có trong kho: Nghỉ thai sản"
+  }
+]
