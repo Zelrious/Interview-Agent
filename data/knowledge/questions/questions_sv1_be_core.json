@@ -5,8 +5,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Bạn hãy giải thích sự khác biệt giữa phương thức PUT và PATCH trong thiết kế RESTful API?",
     "follow_up_hints": [
       "Phương thức nào có tính chất Idempotent theo chuẩn HTTP RFC?",
@@ -26,8 +26,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "vi",
+    "difficulty": 3,
     "text": "Làm thế nào để thiết kế một API thanh toán đảm bảo tính Idempotency khi mạng bị timeout hoặc chập chờn?",
     "follow_up_hints": [
       "Bạn lưu trữ và kiểm tra Idempotency Key như thế nào ở phía server?",
@@ -47,8 +47,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "situational",
-    "difficulty": 4,
     "language": "vi",
+    "difficulty": 4,
     "text": "Hệ thống của bạn cần nâng cấp API từ v1 lên v2 với breaking changes trong dữ liệu trả về. Bạn thiết kế chiến lược migration như thế nào để zero-downtime cho các đối tác tích hợp?",
     "follow_up_hints": [
       "Làm sao để giám sát đối tác nào vẫn đang gọi API v1 cũ?",
@@ -68,8 +68,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Lỗi N+1 query trong ORM là gì? Hãy nêu ví dụ cụ thể và cách khắc phục trong framework bạn từng dùng?",
     "follow_up_hints": [
       "Cơ chế Eager Loading khác Lazy Loading như thế nào trong tình huống này?",
@@ -89,8 +89,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "vi",
+    "difficulty": 3,
     "text": "Bạn đọc câu lệnh EXPLAIN ANALYZE như thế nào để phát hiện một câu truy vấn đang bị Seq Scan và chậm?",
     "follow_up_hints": [
       "Ý nghĩa của chỉ số Rows removed by filter trong kết quả EXPLAIN là gì?",
@@ -110,8 +110,8 @@
     "role": "backend_dev",
     "level": "intern",
     "type": "technical",
-    "difficulty": 1,
     "language": "vi",
+    "difficulty": 1,
     "text": "[DEPRECATED] Hãy liệt kê các mã HTTP Status Code 200, 404, 500 nghĩa là gì?",
     "follow_up_hints": [
       "200 khác 201 như thế nào?",
@@ -131,8 +131,8 @@
     "role": "backend_dev",
     "level": "intern",
     "type": "technical",
-    "difficulty": 1,
     "language": "en",
+    "difficulty": 1,
     "text": "What is the difference between REST and gRPC? When would you choose gRPC over REST for a backend service?",
     "follow_up_hints": [
       "How does Protocol Buffers (protobuf) serialization differ from JSON?",
@@ -154,8 +154,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Webhook và Polling là hai mô hình nhận dữ liệu từ hệ thống bên thứ ba. Hãy so sánh ưu nhược điểm của từng mô hình và đưa ra ví dụ khi nên chọn mỗi loại?",
     "follow_up_hints": [
       "Làm thế nào để đảm bảo Webhook delivery an toàn và xác thực nguồn gốc?",
@@ -176,8 +176,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "Explain cursor-based pagination vs offset-based pagination. Why is cursor-based pagination preferred for large datasets?",
     "follow_up_hints": [
       "What consistency problem occurs with offset pagination when records are inserted between requests?",
@@ -198,8 +198,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "JWT (JSON Web Token) và Session-based Authentication khác nhau như thế nào? Hãy giải thích ưu nhược điểm của từng phương pháp?",
     "follow_up_hints": [
       "Làm thế nào để revoke một JWT đã phát hành trước thời gian hết hạn?",
@@ -220,8 +220,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "Describe the Refresh Token Rotation strategy. How does it prevent token replay attacks when a refresh token is stolen?",
     "follow_up_hints": [
       "What should happen when the server detects a refresh token being reused?",
@@ -242,8 +242,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "SQL Injection là gì? Hãy đưa ra một ví dụ tấn công và giải thích các kỹ thuật phòng thủ chính?",
     "follow_up_hints": [
       "Parameterized query khác Stored Procedure như thế nào trong bối cảnh phòng chống SQL Injection?",
@@ -264,8 +264,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "Explain CORS (Cross-Origin Resource Sharing) and CSRF (Cross-Site Request Forgery). How do you protect against each attack vector in a REST API?",
     "follow_up_hints": [
       "Does CORS configuration alone protect against CSRF?",
@@ -286,8 +286,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "technical",
-    "difficulty": 4,
     "language": "vi",
+    "difficulty": 4,
     "text": "Phân biệt RBAC (Role-Based Access Control) và ABAC (Attribute-Based Access Control). Khi nào một hệ thống nên chuyển từ RBAC sang ABAC?",
     "follow_up_hints": [
       "Làm thế nào để tổ chức policy ABAC hiệu quả khi có hàng nghìn rules?",
@@ -308,8 +308,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "vi",
+    "difficulty": 3,
     "text": "Bạn cần triển khai Rate Limiting cho một public API. Hãy trình bày các thuật toán Rate Limiting phổ biến và cách chọn thuật toán phù hợp?",
     "follow_up_hints": [
       "Token Bucket và Leaky Bucket xử lý burst traffic khác nhau như thế nào?",
@@ -330,8 +330,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Race condition là gì? Hãy đưa ra ví dụ về race condition khi nhiều goroutine hoặc thread cùng cập nhật một biến đếm?",
     "follow_up_hints": [
       "Mutex và Semaphore giải quyết race condition theo cơ chế nào?",
@@ -352,8 +352,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "What is a deadlock and what are the four necessary conditions (Coffman conditions) for a deadlock to occur? How do you prevent or detect deadlocks in a distributed system?",
     "follow_up_hints": [
       "How does lock ordering prevent deadlocks?",
@@ -374,8 +374,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "vi",
+    "difficulty": 3,
     "text": "Giải thích GIL (Global Interpreter Lock) trong CPython. GIL ảnh hưởng như thế nào đến khả năng xử lý song song của Python? Cách vượt qua giới hạn này?",
     "follow_up_hints": [
       "Tại sao GIL không ảnh hưởng đến I/O-bound tasks nhiều như CPU-bound tasks?",
@@ -396,8 +396,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "technical",
-    "difficulty": 4,
     "language": "en",
+    "difficulty": 4,
     "text": "Compare async I/O event loop (single-threaded) vs multi-threading for handling high-concurrency backend workloads. When does each model break down?",
     "follow_up_hints": [
       "What happens to an async event loop when a CPU-bound coroutine blocks the loop without yielding?",
@@ -418,8 +418,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Connection Pooling là gì và tại sao nó quan trọng trong backend service kết nối database? Cấu hình pool size như thế nào cho hợp lý?",
     "follow_up_hints": [
       "Điều gì xảy ra khi tất cả connection trong pool đang bận và có request mới?",
@@ -440,8 +440,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "vi",
+    "difficulty": 3,
     "text": "Giải thích thuộc tính ACID trong database transaction. Cho ví dụ thực tế khi thiếu từng thuộc tính có thể dẫn đến sự cố gì?",
     "follow_up_hints": [
       "BASE (Basically Available, Soft state, Eventually consistent) là gì và áp dụng trong trường hợp nào?",
@@ -462,8 +462,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "technical",
-    "difficulty": 5,
     "language": "en",
+    "difficulty": 5,
     "text": "Explain the four standard transaction isolation levels (Read Uncommitted, Read Committed, Repeatable Read, Serializable) and the anomalies each level prevents. When would you choose Serializable despite its performance cost?",
     "follow_up_hints": [
       "What is a phantom read and why does Repeatable Read not prevent it in all databases?",
@@ -484,8 +484,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Giải thích sự khác biệt giữa B-Tree Index và Hash Index trong database. Mỗi loại phù hợp với kiểu truy vấn nào?",
     "follow_up_hints": [
       "Tại sao B-Tree Index được dùng làm mặc định trong hầu hết các RDBMS?",
@@ -506,8 +506,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "difficulty": 2,
     "language": "vi",
+    "difficulty": 2,
     "text": "Cache-aside (Lazy Loading) và Write-through là hai chiến lược caching phổ biến. Hãy giải thích luồng hoạt động của mỗi loại và so sánh ưu nhược điểm?",
     "follow_up_hints": [
       "Cache-aside xử lý cache miss như thế nào? Có nguy cơ gì khi nhiều request đồng thời cache miss?",
@@ -528,8 +528,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "Describe the three main cache failure modes: Cache Stampede (Thundering Herd), Cache Penetration, and Cache Avalanche. How do you mitigate each?",
     "follow_up_hints": [
       "How does probabilistic early expiration (PER) help with Cache Stampede?",
@@ -550,8 +550,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "situational",
-    "difficulty": 4,
     "language": "vi",
+    "difficulty": 4,
     "text": "Hệ thống e-commerce của bạn đang chịu tải cực cao trong sự kiện flash sale. Cache Redis bị Cache Avalanche do tất cả key TTL cùng hết hạn lúc 00:00. Bạn sẽ xử lý tình huống này theo những bước nào ngay lập tức và về lâu dài?",
     "follow_up_hints": [
       "Jitter (độ lệch ngẫu nhiên TTL) giúp gì trong tình huống này?",
@@ -572,8 +572,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "difficulty": 3,
     "language": "en",
+    "difficulty": 3,
     "text": "What is the Circuit Breaker pattern? Describe its three states and explain how it protects downstream services during outages.",
     "follow_up_hints": [
       "How does the half-open state prevent a recovering service from being overwhelmed immediately?",
@@ -594,8 +594,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "technical",
-    "difficulty": 5,
     "language": "en",
+    "difficulty": 5,
     "text": "Design a Retry with Exponential Backoff and Jitter strategy for a service making calls to an unreliable third-party payment API. What are the pitfalls of naive retry and how does backoff with jitter solve them?",
     "follow_up_hints": [
       "What is a retry storm and how does jitter help prevent it?",
@@ -616,8 +616,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "technical",
-    "difficulty": 5,
     "language": "vi",
+    "difficulty": 5,
     "text": "[DEPRECATED v1] OAuth2 la gi? Phan biet cac grant type: Authorization Code, Client Credentials, Implicit.",
     "follow_up_hints": [
       "Authorization Code voi PKCE khac gi Authorization Code thong thuong?",
@@ -638,8 +638,8 @@
     "role": "backend_dev",
     "level": "intern",
     "type": "technical",
-    "difficulty": 1,
     "language": "en",
+    "difficulty": 1,
     "text": "What does HTTP status code 201, 400, 401, 403, 409, and 429 mean? When would you return each in a REST API?",
     "follow_up_hints": [
       "What is the semantic difference between 401 Unauthorized and 403 Forbidden?",
