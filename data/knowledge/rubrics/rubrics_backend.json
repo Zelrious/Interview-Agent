@@ -46,53 +46,5 @@
       "level_2_example": "Khi nhiều người bấm mua cùng lúc thì em mở transaction rồi trừ số lượng trong bảng sản phẩm: UPDATE products SET quantity = quantity - 1 WHERE id = 1.",
       "level_4_example": "Để chống overselling khi 10,000 request đến cùng lúc cho 10 món hàng, không thể để toàn bộ dội thẳng vào relational database vì sẽ gây lock contention hoặc crash pool. Em dùng Redis lưu tồn kho và chạy Lua script để kiểm tra DECR nguyên tử (atomic). Chỉ 10 request thành công ở tầng Redis mới được đẩy message vào Kafka/RabbitMQ để worker tạo đơn hàng ghi xuống database bất đồng bộ."
     }
-  },
-  {
-    "rubric_id": "RUBRIC_BE_CACHING_SYSTEMS",
-    "competency_id": "BE_CACHING_SYSTEMS",
-    "rubric_version": "v2.0",
-    "scale": {
-      "1": "Không hiểu lý do cần dùng Cache; nhầm lẫn giữa Database và Cache; không giải thích được TTL là gì hoặc để cache vĩnh viễn không hết hạn.",
-      "2": "Biết lưu key-value vào Redis nhưng không biết mô hình Cache-Aside; không có cơ chế xóa cache khi dữ liệu trong database bị sửa/xóa; không lường trước nguy cơ cạn kiệt RAM server.",
-      "3": "Áp dụng chuẩn mô hình Cache-Aside; thiết lập TTL hợp lý; phân biệt được giải thuật giải phóng bộ nhớ (Eviction policy: LRU, LFU); hiểu nguyên nhân và nguy cơ của Cache Stampede.",
-      "4": "Xử lý chuyên sâu các sự cố sản xuất: Cache Avalanche (thêm jitter ngẫu nhiên vào TTL), Cache Penetration (Bloom Filter hoặc cache null key), và dùng Distributed Lock (SETNX) chống Cache Breakdown.",
-      "5": "Kiến trúc sư hệ thống Caching quy mô lớn: kết hợp Local In-process Cache (Caffeine/Guava) và Distributed Cache (Redis Cluster), thiết kế cơ chế Cache Invalidation realtime dựa trên CDC (Debezium/Kafka) đảm bảo eventual consistency."
-    },
-    "sample_answers": {
-      "level_2_example": "Em dùng Redis để lưu dữ liệu hay dùng. Cứ query DB xong thì em lưu vào Redis với key là tên bảng, khi nào cần lấy ra thì đọc từ Redis cho nhanh, khi nào server đầy RAM thì em restart lại Redis.",
-      "level_4_example": "Em áp dụng mô hình Cache-Aside: app đọc Redis trước, nếu miss thì truy vấn Database rồi ghi ngược vào Redis kèm TTL có thêm jitter ngẫu nhiên (ví dụ 300s +- 30s) để tránh Cache Avalanche khi nhiều key hết hạn cùng lúc. Để xử lý Cache Breakdown cho key nóng, em dùng Redis SETNX làm mutex lock để chỉ duy nhất một luồng query DB và tái tạo cache, các luồng khác chờ hoặc trả về stale data tạm thời. Ngoài ra với dữ liệu không tồn tại, em cache null key kèm TTL ngắn (60s) hoặc dùng Bloom Filter để ngăn Cache Penetration dội vào DB."
-    }
-  },
-  {
-    "rubric_id": "RUBRIC_BE_MESSAGE_QUEUE",
-    "competency_id": "BE_MESSAGE_QUEUE",
-    "rubric_version": "v2.0",
-    "scale": {
-      "1": "Không phân biệt được Synchronous HTTP và Asynchronous Messaging; không biết Broker, Producer, Consumer là gì; tư duy xử lý mọi tác vụ nặng trực tiếp trong request-response loop.",
-      "2": "Biết đẩy message vào queue để worker xử lý nhưng auto-ack ngay khi nhận; không lường trước việc mất tin nhắn khi worker crash; không xử lý tin nhắn bị gửi lặp lại.",
-      "3": "Hiểu rõ cơ chế Manual Ack/Nack; thiết lập cơ chế Retry có Exponential Backoff; cấu hình Dead Letter Exchange/Queue (DLQ) để gom tin nhắn lỗi không xử lý được.",
-      "4": "Thiết kế Consumer đảm bảo tính Idempotent xử lý tin nhắn trùng lặp (dùng Idempotency Key / Redis SETNX / Unique constraint); áp dụng Transactional Outbox Pattern kết hợp Debezium để đồng bộ DB và Queue không mất dữ liệu.",
-      "5": "Chuyên gia Event-Driven Architecture & Streaming: tối ưu hóa Kafka Producer batching/compression, quản lý Partition Skew, xử lý Rebalance storm trong Consumer Group, thiết kế Schema Registry và kiểm soát chặt chẽ Message Ordering xuyên suốt các phân vùng."
-    },
-    "sample_answers": {
-      "level_2_example": "Khi user đặt hàng xong thì em đẩy message chứa email và id đơn hàng vào RabbitMQ. Phía worker em bật auto_ack=True cho tiện, nhận được tin thì gửi email, nếu lỗi thì em print log ra console.",
-      "level_4_example": "Trong hệ thống phân tán, mạng chập chờn sẽ dẫn đến At-least-once delivery nên tin nhắn chắc chắn có thể bị gửi lặp. Consumer bắt buộc phải thiết kế Idempotent: em lưu message_id vào Redis/Database với Unique Constraint; trước khi xử lý phải kiểm tra nếu ID đã tồn tại thì bỏ qua và ack ngay. Với tác vụ ghi DB kèm gửi message, em không gửi thẳng vào queue trong cùng transaction DB vì dễ mất message nếu queue down; em dùng Transactional Outbox Pattern: lưu event vào bảng outbox trong cùng transaction DB, sau đó dùng Debezium CDC hoặc worker riêng poll outbox đẩy sang Kafka. Nếu xử lý thất bại sau 3 lần retry exponential backoff thì đẩy vào Dead Letter Queue (DLQ) kèm alerting."
-    }
-  },
-  {
-    "rubric_id": "RUBRIC_BE_SYSTEM_DESIGN",
-    "competency_id": "BE_SYSTEM_DESIGN",
-    "rubric_version": "v2.0",
-    "scale": {
-      "1": "Không phân biệt được Scale Up và Scale Out; lưu session trực tiếp trong bộ nhớ app server khiến không thể chạy nhiều instance; không biết Single Point of Failure là gì.",
-      "2": "Biết đặt Load Balancer trước các server nhưng chưa biết xử lý database bottleneck; chưa có giải pháp bảo vệ hệ thống khi bị quá tải đột ngột (Traffic Spike).",
-      "3": "Thiết kế được kiến trúc Stateless Backend (lưu session/token trong Redis); phân biệt rõ ràng các thuật toán cân bằng tải; hiểu và áp dụng được Rate Limiting cơ bản.",
-      "4": "Thiết kế hệ thống chịu lỗi cao (Resilience): áp dụng Circuit Breaker pattern (Resilience4j/Hystrix) chống sập lan chuyền (cascading failure), Rate Limiting phân tán bằng Token Bucket với Redis Lua script, phân tích sâu đánh đổi CAP.",
-      "5": "Kiến trúc sư trưởng hệ thống triệu người dùng: quy hoạch Multi-Region Active-Active, giải quyết bài toán Data Replication Lag, Consensus Protocol (Raft/Paxos), thiết kế Disaster Recovery Plan (RPO/RTO) và Observability chuẩn OpenTelemetry."
-    },
-    "sample_answers": {
-      "level_2_example": "Khi hệ thống có nhiều người truy cập thì em nâng cấp cấu hình VPS lên CPU và RAM cao hơn. Nếu vẫn chậm thì em thuê thêm 1 server nữa rồi dùng Nginx chia đều 50-50 request cho 2 server.",
-      "level_4_example": "Để thiết kế hệ thống phục vụ 100,000 RPS, trước hết các Web Server phải hoàn toàn Stateless để có thể Auto-scaling theo CPU/Network metrics phía sau Application Load Balancer. Tại tầng API Gateway, em triển khai Rate Limiting theo thuật toán Token Bucket kết hợp Redis Lua script để chặn brute-force và DDoS. Giữa các microservices, em cấu hình Circuit Breaker và Timeout: nếu Service B bị chậm, Circuit Breaker tại Service A sẽ ngắt mạch (Open state) và fallback trả dữ liệu tạm, tránh nghẽn thread pool làm sập lan chuyền (cascading failure). Ở tầng dữ liệu, em tách biệt Read/Write Replica và áp dụng CQRS kèm distributed caching."
-    }
   }
 ]

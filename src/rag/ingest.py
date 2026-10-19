@@ -145,12 +145,16 @@ def get_embedding_model(
             try:
                 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
-                gemini_model_name = "models/text-embedding-004"
+                gemini_model_name = os.getenv(
+                    "EMBEDDING_MODEL_NAME", "models/gemini-embedding-001"
+                )
                 embed = GoogleGenerativeAIEmbeddings(
                     model=gemini_model_name,
                     google_api_key=gemini_key,
                 )
-                embed.model_name = "gemini-embedding"  # type: ignore[attr-defined]
+                object.__setattr__(
+                    embed, "model_name", "gemini-embedding"
+                )  # Pydantic v2 compat
                 logger.info(
                     "[EmbeddingFactory] Sử dụng Gemini embedding: %s", gemini_model_name
                 )
