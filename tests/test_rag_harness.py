@@ -24,6 +24,9 @@ from src.rag.hybrid_retriever import (
     reciprocal_rank_fusion,
 )
 from src.rag.ingest import (
+    DeterministicHashEmbeddings,
+    get_embedding_model,
+    get_ingestion_stats,
     upsert_file_idempotent,
     verify_embedding_lock,
 )
@@ -317,3 +320,173 @@ def test_cascade_reranker_logic() -> None:
     reranked = reranker.rerank("Năng lực BE_DB_OPTIMIZATION cấp middle", docs, top_n=2)
     assert len(reranked) == 2
     assert reranked[0].metadata["item_id"] == "BE_DB_OPTIMIZATION"
+
+
+# ==============================================================================
+# Test 10: questions_sv1_be_core.json — Schema Validation (SV1 Task 1.1)
+# ==============================================================================
+
+
+def test_sv1_questions_schema_and_count() -> None:
+    """Kiểm tra questions_sv1_be_core.json có đúng >= 30 câu hỏi hợp lệ, đủ trường bắt buộc."""
+    import json
+    from pathlib import Path
+
+    q_path = Path("data/knowledge/questions/questions_sv1_be_core.json")
+    assert q_path.exists(), f"File không tồn tại: {q_path}"
+
+    with open(q_path, encoding="utf-8") as f:
+        questions = json.load(f)
+
+    # Kiểm tra tổng số câu hỏi
+    assert len(questions) >= 30, f"Cần >= 30 câu hỏi, hiện có {len(questions)}"
+
+    # Các trường bắt buộc theo schema
+    required_fields = {
+        "question_id",
+        "competency",
+        "role",
+        "level",
+        "type",
+        "difficulty",
+        "language",
+        "text",
+        "follow_up_hints",
+        "expected_signals",
+        "status",
+    }
+    valid_levels = {"intern", "junior", "middle", "senior"}
+    valid_statuses = {"active", "superseded", "draft"}
+    valid_languages = {"vi", "en"}
+
+    for q in questions:
+        qid = q.get("question_id", "UNKNOWN")
+
+        # Kiểm tra đủ trường bắt buộc
+        missing = required_fields - q.keys()
+        assert not missing, f"{qid}: thiếu trường {missing}"
+
+        # Kiểm tra giá trị hợp lệ
+        assert q["level"] in valid_levels, f"{qid}: level '{q['level']}' không hợp lệ"
+        assert (
+            q["status"] in valid_statuses
+        ), f"{qid}: status '{q['status']}' không hợp lệ"
+        assert (
+            q["language"] in valid_languages
+        ), f"{qid}: language '{q['language']}' không hợp lệ"
+        assert (
+            isinstance(q["difficulty"], int) and 1 <= q["difficulty"] <= 5
+        ), f"{qid}: difficulty phải là int 1-5, nhận {q['difficulty']}"
+        assert (
+            isinstance(q["follow_up_hints"], list) and len(q["follow_up_hints"]) >= 2
+        ), f"{qid}: follow_up_hints phải có >= 2 gợi ý"
+        assert (
+            isinstance(q["expected_signals"], list) and len(q["expected_signals"]) >= 3
+        ), f"{qid}: expected_signals phải có >= 3 tín hiệu"
+
+    # Phải có ít nhất 2 câu superseded (phục vụ test lọc metadata phiên bản)
+    superseded = [q for q in questions if q["status"] == "superseded"]
+    assert (
+        len(superseded) >= 2
+    ), f"Cần >= 2 câu 'superseded' để test metadata filtering, hiện có {len(superseded)}"
+
+    # Phải bao phủ cả 2 ngôn ngữ
+    langs = {q["language"] for q in questions}
+    assert "vi" in langs, "Phải có câu hỏi tiếng Việt (vi)"
+    assert "en" in langs, "Phải có câu hỏi tiếng Anh (en)"
+
+    # Phải bao phủ cả 4 cấp độ
+    levels = {q["level"] for q in questions}
+    assert (
+        levels == valid_levels
+    ), f"Phải bao phủ đủ 4 cấp độ {valid_levels}, hiện có {levels}"
+
+
+# ==============================================================================
+# Test 11: get_embedding_model() fallback khi không có API key hợp lệ
+# ==============================================================================
+
+
+def test_get_embedding_model_fallback_without_api_keys(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """get_embedding_model() fallback an toàn về DeterministicHashEmbeddings khi không có API key."""
+    # Đảm bảo KHÔNG có API key hợp lệ trong môi trường
+    monkeypatch.setenv("GEMINI_API_KEY", "YOUR_API_KEY_HERE")
+    monkeypatch.setenv("GOOGLE_API_KEY", "")
+    monkeypatch.setenv("OPENAI_API_KEY", "YOUR_API_KEY_HERE")
+
+    embed_model = get_embedding_model(preferred_provider="auto")
+
+    # Phải fallback về DeterministicHashEmbeddings, KHÔNG crash
+    assert isinstance(
+        embed_model, DeterministicHashEmbeddings
+    ), f"Mong đợi DeterministicHashEmbeddings, nhận {type(embed_model).__name__}"
+    assert embed_model.model_name == "deterministic-hash-v1"
+
+    # Thử embed thực tế để đảm bảo không crash
+    vectors = embed_model.embed_documents(["test fallback", "another text"])
+    assert len(vectors) == 2
+    assert len(vectors[0]) == 384
+
+    # Kiểm tra offline_mode=True cũng cho kết quả tương tự
+    embed_offline = get_embedding_model(offline_mode=True)
+    assert isinstance(embed_offline, DeterministicHashEmbeddings)
+    assert embed_offline.model_name == "deterministic-hash-v1"
+
+
+# ==============================================================================
+# Test 12: upsert_file_idempotent — double run không nhân bản chunk
+# ==============================================================================
+
+
+def test_upsert_idempotent_double_run_fresh_store() -> None:
+    """Chạy upsert_file_idempotent 2 lần liên tiếp trên store mới không nhân bản chunk."""
+    from src.rag.ingest import _generate_doc_id
+
+    fresh_store: list[Document] = []
+    source_key = "question:Q_BE_TEST_IDEMPOTENT"
+    doc_id = _generate_doc_id(source_key)
+
+    def make_chunks(version: str) -> list[Document]:
+        return [
+            Document(
+                page_content=f"Chunk 0 - {version}",
+                metadata={"doc_id": doc_id, "source_type": "question"},
+            ),
+            Document(
+                page_content=f"Chunk 1 - {version}",
+                metadata={"doc_id": doc_id, "source_type": "question"},
+            ),
+            Document(
+                page_content=f"Chunk 2 - {version}",
+                metadata={"doc_id": doc_id, "source_type": "question"},
+            ),
+        ]
+
+    # Lần 1: nạp 3 chunk
+    upsert_file_idempotent(fresh_store, doc_id, make_chunks("v1"))
+    assert (
+        len(fresh_store) == 3
+    ), f"Sau lần 1: mong đợi 3 chunk, nhận {len(fresh_store)}"
+
+    # Kiểm tra chunk_id được sinh tất định: {doc_id}:0, {doc_id}:1, {doc_id}:2
+    chunk_ids = [c.metadata["chunk_id"] for c in fresh_store]
+    assert chunk_ids == [f"{doc_id}:0", f"{doc_id}:1", f"{doc_id}:2"]
+
+    # Lần 2: nạp lại với dữ liệu cập nhật
+    upsert_file_idempotent(fresh_store, doc_id, make_chunks("v2"))
+    assert (
+        len(fresh_store) == 3
+    ), f"Sau lần 2: tổng chunk KHÔNG được tăng gấp đôi, mong đợi 3, nhận {len(fresh_store)}"
+
+    # Nội dung phải là version mới nhất
+    assert all(
+        "v2" in c.page_content for c in fresh_store
+    ), "Nội dung phải được cập nhật sang v2"
+
+    # Kiểm tra get_ingestion_stats() hoạt động đúng
+    stats = get_ingestion_stats(fresh_store)
+    assert stats["total"] == 3
+    assert stats["by_source_type"].get("question") == 3
+    assert stats["confidential_count"] == 0

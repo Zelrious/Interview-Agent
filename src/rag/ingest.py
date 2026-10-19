@@ -2,10 +2,12 @@
 
 Implements:
 - Deterministic hash-based embeddings (offline fallback) & cloud embeddings
+- Factory `get_embedding_model()` với auto-detect Gemini / OpenAI / DeterministicHash
 - Embedding lock verification
 - Structure-aware chunking (questions, competencies, rubrics, coding tasks, policies)
 - Coordinate metadata tagging (doc_id, chunk_id, is_confidential, etc.)
 - Idempotent upserting
+- Ingestion statistics via `get_ingestion_stats()`
 """
 
 from __future__ import annotations
@@ -25,6 +27,9 @@ from langchain_core.embeddings import Embeddings
 logger = logging.getLogger(__name__)
 
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "local-deterministic-minilm")
+
+# Tiền tố mẫu cho API key chưa được cấu hình thực
+_PLACEHOLDER_PREFIXES = ("your_", "YOUR_", "sk-xxx", "<your", "<YOUR")
 
 
 class DeterministicHashEmbeddings(Embeddings):
@@ -90,8 +95,113 @@ class DeterministicHashEmbeddings(Embeddings):
         return self._embed_text(text)
 
 
+def _is_valid_api_key(value: str | None) -> bool:
+    """Kiểm tra giá trị API key có thực sự được cấu hình (không phải placeholder)."""
+    if not value:
+        return False
+    stripped = value.strip()
+    if not stripped:
+        return False
+    # Loại bỏ các giá trị mẫu / placeholder phổ biến
+    lower = stripped.lower()
+    for prefix in _PLACEHOLDER_PREFIXES:
+        if lower.startswith(prefix.lower()):
+            return False
+    return True
+
+
+def get_embedding_model(
+    preferred_provider: str = "auto",
+    offline_mode: bool = False,
+) -> Embeddings:
+    """Factory khởi tạo Embedding model với fallback tự động.
+
+    Ưu tiên theo thứ tự:
+    1. Gemini (nếu GEMINI_API_KEY hoặc GOOGLE_API_KEY hợp lệ và preferred_provider != 'openai')
+    2. OpenAI (nếu OPENAI_API_KEY hợp lệ)
+    3. DeterministicHashEmbeddings (fallback offline — không crash, ghi log cảnh báo)
+
+    Args:
+        preferred_provider: 'auto' | 'gemini' | 'openai' | 'local'
+        offline_mode: Khi True, bỏ qua kiểm tra API key và dùng local ngay lập tức.
+
+    Returns:
+        Embeddings instance với thuộc tính model_name được gán rõ ràng.
+    """
+    if offline_mode or preferred_provider == "local":
+        logger.info(
+            "[EmbeddingFactory] offline_mode=True hoặc preferred_provider='local'. "
+            "Sử dụng DeterministicHashEmbeddings (deterministic-hash-v1)."
+        )
+        model = DeterministicHashEmbeddings(
+            model_name="deterministic-hash-v1", dimension=384
+        )
+        return model
+
+    # --- Thử Gemini ---
+    if preferred_provider in ("auto", "gemini"):
+        gemini_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        if _is_valid_api_key(gemini_key):
+            try:
+                from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+                gemini_model_name = "models/text-embedding-004"
+                embed = GoogleGenerativeAIEmbeddings(
+                    model=gemini_model_name,
+                    google_api_key=gemini_key,
+                )
+                embed.model_name = "gemini-embedding"  # type: ignore[attr-defined]
+                logger.info(
+                    "[EmbeddingFactory] Sử dụng Gemini embedding: %s", gemini_model_name
+                )
+                return embed
+            except (ImportError, RuntimeError, Exception) as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo Gemini embedding: %s. "
+                    "Thử OpenAI hoặc fallback local.",
+                    e,
+                )
+
+    # --- Thử OpenAI ---
+    if preferred_provider in ("auto", "openai"):
+        openai_key = os.getenv("OPENAI_API_KEY")
+        if _is_valid_api_key(openai_key):
+            try:
+                from langchain_openai import OpenAIEmbeddings
+
+                embed = OpenAIEmbeddings(
+                    model="text-embedding-3-small",
+                    openai_api_key=openai_key,
+                )
+                embed.model_name = "text-embedding-3-small"  # type: ignore[attr-defined]
+                logger.info(
+                    "[EmbeddingFactory] Sử dụng OpenAI embedding: text-embedding-3-small"
+                )
+                return embed
+            except (ImportError, RuntimeError, Exception) as e:
+                logger.warning(
+                    "[EmbeddingFactory] Không thể khởi tạo OpenAI embedding: %s. "
+                    "Fallback về DeterministicHashEmbeddings.",
+                    e,
+                )
+
+    # --- Fallback mặc định: DeterministicHashEmbeddings ---
+    logger.warning(
+        "[EmbeddingFactory] KHÔNG tìm thấy API key hợp lệ cho Gemini hoặc OpenAI. "
+        "Tự động fallback về DeterministicHashEmbeddings (model_name='deterministic-hash-v1'). "
+        "Hệ thống vẫn hoạt động bình thường ở chế độ offline/test."
+    )
+    model = DeterministicHashEmbeddings(
+        model_name="deterministic-hash-v1", dimension=384
+    )
+    return model
+
+
 def get_embeddings(model_name: str | None = None) -> Embeddings:
-    """Khởi tạo Embedding model dựa trên cấu hình môi trường."""
+    """Khởi tạo Embedding model dựa trên cấu hình môi trường (legacy wrapper).
+
+    Prefer sử dụng `get_embedding_model()` cho code mới.
+    """
     selected = model_name or EMBEDDING_MODEL_NAME
 
     if selected.startswith("text-embedding") and os.getenv("OPENAI_API_KEY"):
@@ -114,11 +224,24 @@ def get_embeddings(model_name: str | None = None) -> Embeddings:
 
 
 def verify_embedding_lock(store_meta: dict[str, Any], expected_model: str) -> None:
-    """Xác nhận mô hình embedding dùng lúc truy vấn khớp 100% với lúc build index."""
+    """Xác nhận mô hình embedding dùng lúc truy vấn khớp 100% với lúc build index.
+
+    Bắt buộc gọi hàm này trước mọi thao tác query để đảm bảo tính nhất quán
+    của vector space. Nếu model không khớp, ném AssertionError ngay lập tức.
+
+    Args:
+        store_meta: Dict metadata của store, phải chứa key 'embedding_model'.
+        expected_model: Tên model embedding đang dùng để truy vấn.
+
+    Raises:
+        AssertionError: Khi model lúc ingest khác model lúc query.
+    """
     actual_model = store_meta.get("embedding_model")
-    assert (
-        actual_model == expected_model
-    ), f"Embedding Lock Mismatch: Store được build bằng '{actual_model}', nhưng query dùng '{expected_model}'!"
+    assert actual_model == expected_model, (
+        f"Embedding Lock Mismatch: Store được build bằng '{actual_model}', "
+        f"nhưng query dùng '{expected_model}'! "
+        "Hãy rebuild index với đúng model hoặc dùng lại model cũ."
+    )
 
 
 def _generate_doc_id(key: str) -> str:
@@ -343,8 +466,22 @@ def chunk_documents_fixed_size(
 
 
 def upsert_file_idempotent(store: Any, doc_id: str, chunks: list[Document]) -> None:
-    """Cập nhật dữ liệu idempotent: xóa toàn bộ chunk cũ cùng doc_id trước khi thêm chunk mới."""
-    # Nếu store là Chroma VectorStore
+    """Cập nhật dữ liệu idempotent: xóa toàn bộ chunk cũ cùng doc_id trước khi thêm chunk mới.
+
+    Đảm bảo chạy lại nhiều lần (idempotent) — tổng số chunk không bị nhân bản.
+    chunk_id cho mỗi chunk được sinh tất định theo dạng `{doc_id}:{idx}`.
+
+    Args:
+        store: Vector store (Chroma-like), in-memory list, hoặc object có thuộc tính `.chunks`.
+        doc_id: Định danh tài liệu nguồn (12-char hex từ _generate_doc_id).
+        chunks: Danh sách Document chunks cần ghi vào store.
+    """
+    # Sinh chunk_id tất định cho mỗi chunk trước khi upsert
+    for idx, chunk in enumerate(chunks):
+        chunk.metadata["doc_id"] = doc_id
+        chunk.metadata["chunk_id"] = f"{doc_id}:{idx}"
+
+    # Nếu store là Chroma VectorStore (có delete và add_documents)
     if hasattr(store, "delete") and hasattr(store, "add_documents"):
         try:
             store.delete(where={"doc_id": doc_id})
@@ -352,10 +489,63 @@ def upsert_file_idempotent(store: Any, doc_id: str, chunks: list[Document]) -> N
             logger.debug("Lỗi khi xóa chunk cũ trong store: %s", e)
         if chunks:
             store.add_documents(chunks)
-    # Nếu store là in-memory list (ví dụ trong mock/test store)
+    # Nếu store là in-memory list (dùng trong mock/test)
     elif isinstance(store, list):
         store[:] = [c for c in store if c.metadata.get("doc_id") != doc_id]
         store.extend(chunks)
+    # Nếu store là object có thuộc tính .chunks (custom mock)
     elif hasattr(store, "chunks") and isinstance(store.chunks, list):
         store.chunks = [c for c in store.chunks if c.metadata.get("doc_id") != doc_id]
         store.chunks.extend(chunks)
+    else:
+        logger.warning(
+            "[upsert_file_idempotent] Không nhận dạng được kiểu store: %s. "
+            "Bỏ qua upsert cho doc_id='%s'.",
+            type(store).__name__,
+            doc_id,
+        )
+
+
+def get_ingestion_stats(chunks: list[Document]) -> dict[str, Any]:
+    """Thống kê số lượng chunk theo source_type và status để in log kiểm chứng.
+
+    Args:
+        chunks: Danh sách Document chunks đã được load và phân mảnh.
+
+    Returns:
+        Dict chứa:
+        - total: tổng số chunk
+        - by_source_type: dict đếm chunk theo source_type
+        - by_status: dict đếm chunk theo status
+        - confidential_count: số chunk is_confidential=True
+    """
+    stats: dict[str, Any] = {
+        "total": len(chunks),
+        "by_source_type": {},
+        "by_status": {},
+        "confidential_count": 0,
+    }
+
+    for chunk in chunks:
+        meta = chunk.metadata
+
+        # Đếm theo source_type
+        src = meta.get("source_type", "unknown")
+        stats["by_source_type"][src] = stats["by_source_type"].get(src, 0) + 1
+
+        # Đếm theo status
+        status = meta.get("status", "unknown")
+        stats["by_status"][status] = stats["by_status"].get(status, 0) + 1
+
+        # Đếm chunk mật
+        if meta.get("is_confidential", False):
+            stats["confidential_count"] += 1
+
+    logger.info(
+        "[IngestionStats] Tổng chunk: %d | Theo loại: %s | Theo trạng thái: %s | Mật: %d",
+        stats["total"],
+        stats["by_source_type"],
+        stats["by_status"],
+        stats["confidential_count"],
+    )
+    return stats

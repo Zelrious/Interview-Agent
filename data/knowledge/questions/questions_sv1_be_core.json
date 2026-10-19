@@ -5,8 +5,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "language": "vi",
     "difficulty": 2,
+    "language": "vi",
     "text": "Bạn hãy giải thích sự khác biệt giữa phương thức PUT và PATCH trong thiết kế RESTful API?",
     "follow_up_hints": [
       "Phương thức nào có tính chất Idempotent theo chuẩn HTTP RFC?",
@@ -26,8 +26,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "language": "vi",
     "difficulty": 3,
+    "language": "vi",
     "text": "Làm thế nào để thiết kế một API thanh toán đảm bảo tính Idempotency khi mạng bị timeout hoặc chập chờn?",
     "follow_up_hints": [
       "Bạn lưu trữ và kiểm tra Idempotency Key như thế nào ở phía server?",
@@ -47,8 +47,8 @@
     "role": "backend_dev",
     "level": "senior",
     "type": "situational",
-    "language": "vi",
     "difficulty": 4,
+    "language": "vi",
     "text": "Hệ thống của bạn cần nâng cấp API từ v1 lên v2 với breaking changes trong dữ liệu trả về. Bạn thiết kế chiến lược migration như thế nào để zero-downtime cho các đối tác tích hợp?",
     "follow_up_hints": [
       "Làm sao để giám sát đối tác nào vẫn đang gọi API v1 cũ?",
@@ -68,8 +68,8 @@
     "role": "backend_dev",
     "level": "junior",
     "type": "technical",
-    "language": "vi",
     "difficulty": 2,
+    "language": "vi",
     "text": "Lỗi N+1 query trong ORM là gì? Hãy nêu ví dụ cụ thể và cách khắc phục trong framework bạn từng dùng?",
     "follow_up_hints": [
       "Cơ chế Eager Loading khác Lazy Loading như thế nào trong tình huống này?",
@@ -89,8 +89,8 @@
     "role": "backend_dev",
     "level": "middle",
     "type": "technical",
-    "language": "vi",
     "difficulty": 3,
+    "language": "vi",
     "text": "Bạn đọc câu lệnh EXPLAIN ANALYZE như thế nào để phát hiện một câu truy vấn đang bị Seq Scan và chậm?",
     "follow_up_hints": [
       "Ý nghĩa của chỉ số Rows removed by filter trong kết quả EXPLAIN là gì?",
@@ -110,8 +110,8 @@
     "role": "backend_dev",
     "level": "intern",
     "type": "technical",
-    "language": "vi",
     "difficulty": 1,
+    "language": "vi",
     "text": "[DEPRECATED] Hãy liệt kê các mã HTTP Status Code 200, 404, 500 nghĩa là gì?",
     "follow_up_hints": [
       "200 khác 201 như thế nào?",
@@ -124,5 +124,535 @@
     ],
     "status": "superseded",
     "version": "v1.0-deprecated"
+  },
+  {
+    "question_id": "Q_BE_007",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "intern",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "en",
+    "text": "What is the difference between REST and gRPC? When would you choose gRPC over REST for a backend service?",
+    "follow_up_hints": [
+      "How does Protocol Buffers (protobuf) serialization differ from JSON?",
+      "What are the limitations of gRPC in browser-based frontends?",
+      "What transport protocol does gRPC rely on?"
+    ],
+    "expected_signals": [
+      "REST uses HTTP/1.1 + JSON while gRPC uses HTTP/2 + Protocol Buffers (binary, smaller payload)",
+      "gRPC supports bidirectional streaming and is better for inter-service communication with low latency",
+      "gRPC requires code generation from .proto files; REST is more flexible and human-readable",
+      "Mentions use cases: gRPC for microservices RPC, REST for public APIs and browser clients"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_008",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Webhook và Polling là hai mô hình nhận dữ liệu từ hệ thống bên thứ ba. Hãy so sánh ưu nhược điểm của từng mô hình và đưa ra ví dụ khi nên chọn mỗi loại?",
+    "follow_up_hints": [
+      "Làm thế nào để đảm bảo Webhook delivery an toàn và xác thực nguồn gốc?",
+      "Polling với interval 1 giây khác gì Long Polling?"
+    ],
+    "expected_signals": [
+      "Polling: client chủ động gọi định kỳ, đơn giản nhưng tốn tài nguyên và không real-time",
+      "Webhook: server đẩy dữ liệu khi sự kiện xảy ra, real-time hơn nhưng client phải có endpoint public",
+      "Webhook cần xác thực chữ ký HMAC-SHA256 để chống giả mạo",
+      "Ví dụ hợp lý: Polling cho job status ngắn hạn, Webhook cho payment gateway notification"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_009",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "Explain cursor-based pagination vs offset-based pagination. Why is cursor-based pagination preferred for large datasets?",
+    "follow_up_hints": [
+      "What consistency problem occurs with offset pagination when records are inserted between requests?",
+      "How would you implement cursor pagination using a timestamp or UUID field?"
+    ],
+    "expected_signals": [
+      "Offset pagination uses LIMIT/OFFSET which causes performance degradation on large tables (full scan to offset)",
+      "Cursor pagination encodes the last seen record (e.g., created_at + id) so DB can seek directly via index",
+      "Offset pagination suffers from data skew: new inserts shift records causing duplicates or gaps across pages",
+      "Cursor must be opaque (base64 encoded) and include enough fields for stable ordering"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_010",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "JWT (JSON Web Token) và Session-based Authentication khác nhau như thế nào? Hãy giải thích ưu nhược điểm của từng phương pháp?",
+    "follow_up_hints": [
+      "Làm thế nào để revoke một JWT đã phát hành trước thời gian hết hạn?",
+      "Session được lưu ở đâu trong hệ thống phân tán nhiều server?"
+    ],
+    "expected_signals": [
+      "JWT: stateless, token tự chứa claims, server không cần lưu trạng thái; Session: stateful, server lưu session store",
+      "JWT khó revoke ngay lập tức (cần blacklist hoặc short-lived token); Session dễ invalidate hơn",
+      "JWT phù hợp microservices/stateless; Session phù hợp monolith với Redis session store",
+      "Nêu được rủi ro JWT nếu secret key lộ: toàn bộ token đang hoạt động bị compromise"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_011",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "Describe the Refresh Token Rotation strategy. How does it prevent token replay attacks when a refresh token is stolen?",
+    "follow_up_hints": [
+      "What should happen when the server detects a refresh token being reused?",
+      "How do you safely store refresh tokens on mobile vs web clients?"
+    ],
+    "expected_signals": [
+      "Each use of a refresh token issues a new refresh token and invalidates the old one (rotation)",
+      "If a stolen token is used, the server detects two parties attempting to use it and can revoke the entire family",
+      "Refresh token families track lineage; reuse of any ancestor triggers revocation of all descendants",
+      "Storage: HttpOnly Secure cookie for web (prevents XSS); encrypted secure storage for mobile"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_012",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "SQL Injection là gì? Hãy đưa ra một ví dụ tấn công và giải thích các kỹ thuật phòng thủ chính?",
+    "follow_up_hints": [
+      "Parameterized query khác Stored Procedure như thế nào trong bối cảnh phòng chống SQL Injection?",
+      "ORM có tự động bảo vệ chống SQL Injection không? Khi nào ORM vẫn có thể bị tấn công?"
+    ],
+    "expected_signals": [
+      "SQL Injection xảy ra khi input người dùng được nối trực tiếp vào câu truy vấn SQL",
+      "Ví dụ cụ thể: username = ' OR '1'='1 dẫn đến bypass authentication",
+      "Phòng thủ: Parameterized queries / Prepared Statements là biện pháp chính",
+      "Lớp bổ sung: Input validation, least-privilege DB user, WAF"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_013",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "Explain CORS (Cross-Origin Resource Sharing) and CSRF (Cross-Site Request Forgery). How do you protect against each attack vector in a REST API?",
+    "follow_up_hints": [
+      "Does CORS configuration alone protect against CSRF?",
+      "What role does the SameSite cookie attribute play in CSRF defense?"
+    ],
+    "expected_signals": [
+      "CORS: Browser enforces same-origin policy; CORS headers (Access-Control-Allow-Origin) grant controlled cross-origin access",
+      "CSRF: Forged cross-origin requests that exploit a user's authenticated session (cookies are automatically sent)",
+      "CORS headers protect client-side visibility but do NOT prevent CSRF (server still processes the request)",
+      "CSRF mitigations: SameSite=Strict/Lax cookies, synchronizer CSRF token in custom headers, Double Submit Cookie pattern"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_014",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Phân biệt RBAC (Role-Based Access Control) và ABAC (Attribute-Based Access Control). Khi nào một hệ thống nên chuyển từ RBAC sang ABAC?",
+    "follow_up_hints": [
+      "Làm thế nào để tổ chức policy ABAC hiệu quả khi có hàng nghìn rules?",
+      "ReBAC (Relationship-Based Access Control) như Google Zanzibar giải quyết vấn đề gì mà RBAC/ABAC không làm được?"
+    ],
+    "expected_signals": [
+      "RBAC: quyền gắn với role tĩnh, đơn giản, phù hợp hệ thống ít biến thể quyền",
+      "ABAC: quyền đánh giá động dựa trên thuộc tính subject/resource/environment (thời gian, địa điểm, sensitivity)",
+      "Chuyển sang ABAC khi RBAC bùng nổ role (role explosion), cần kiểm soát theo ngữ cảnh động",
+      "ABAC phức tạp hơn về policy management và audit; cần engine đánh giá như OPA (Open Policy Agent)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_015",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Bạn cần triển khai Rate Limiting cho một public API. Hãy trình bày các thuật toán Rate Limiting phổ biến và cách chọn thuật toán phù hợp?",
+    "follow_up_hints": [
+      "Token Bucket và Leaky Bucket xử lý burst traffic khác nhau như thế nào?",
+      "Làm thế nào để Rate Limit hoạt động đúng trong môi trường nhiều instance (distributed)?"
+    ],
+    "expected_signals": [
+      "Mô tả được ít nhất 3 thuật toán: Fixed Window, Sliding Window Log, Token Bucket, Leaky Bucket",
+      "Token Bucket cho phép burst trong giới hạn; Leaky Bucket làm mượt traffic đầu ra",
+      "Distributed Rate Limiting cần Redis với Lua script hoặc Redis INCR+EXPIRE để đảm bảo atomic",
+      "Cân nhắc granularity: per-IP, per-user, per-API-key và trả về Retry-After header"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_016",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Race condition là gì? Hãy đưa ra ví dụ về race condition khi nhiều goroutine hoặc thread cùng cập nhật một biến đếm?",
+    "follow_up_hints": [
+      "Mutex và Semaphore giải quyết race condition theo cơ chế nào?",
+      "Sự khác biệt giữa Mutex và Read-Write Lock (RWMutex) trong thực tế?"
+    ],
+    "expected_signals": [
+      "Race condition: kết quả phụ thuộc vào thứ tự thực thi không xác định của nhiều thread/goroutine",
+      "Ví dụ cụ thể: counter++ không atomic vì bao gồm read-modify-write, có thể bị interleave",
+      "Mutex đảm bảo mutual exclusion: chỉ một goroutine vào critical section tại một thời điểm",
+      "RWMutex tối ưu hơn khi read nhiều write ít: nhiều reader đồng thời, writer exclusive"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_017",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "What is a deadlock and what are the four necessary conditions (Coffman conditions) for a deadlock to occur? How do you prevent or detect deadlocks in a distributed system?",
+    "follow_up_hints": [
+      "How does lock ordering prevent deadlocks?",
+      "What is a livelock and how does it differ from a deadlock?"
+    ],
+    "expected_signals": [
+      "Four Coffman conditions: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+      "Prevention: establish total ordering on lock acquisition to eliminate Circular Wait",
+      "Detection: timeout-based detection, wait-for graph cycle detection in distributed systems",
+      "Distributed deadlock is harder: requires coordination (e.g., distributed lock with heartbeat and TTL)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_018",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Giải thích GIL (Global Interpreter Lock) trong CPython. GIL ảnh hưởng như thế nào đến khả năng xử lý song song của Python? Cách vượt qua giới hạn này?",
+    "follow_up_hints": [
+      "Tại sao GIL không ảnh hưởng đến I/O-bound tasks nhiều như CPU-bound tasks?",
+      "Python 3.13 free-threaded mode (PEP 703) thay đổi gì so với CPython truyền thống?"
+    ],
+    "expected_signals": [
+      "GIL là một mutex trong CPython ngăn nhiều thread chạy bytecode Python song song thực sự",
+      "CPU-bound: nhiều thread không tăng hiệu suất; I/O-bound: GIL được release khi chờ I/O",
+      "Vượt GIL: dùng multiprocessing (process riêng, memory riêng), asyncio cho I/O, hoặc extension C/Cython",
+      "GIL bảo vệ reference counting của CPython memory model, loại bỏ GIL cần thay thế bằng per-object locking"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_019",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "difficulty": 4,
+    "language": "en",
+    "text": "Compare async I/O event loop (single-threaded) vs multi-threading for handling high-concurrency backend workloads. When does each model break down?",
+    "follow_up_hints": [
+      "What happens to an async event loop when a CPU-bound coroutine blocks the loop without yielding?",
+      "How does Node.js handle CPU-bound tasks given it has a single-threaded event loop?"
+    ],
+    "expected_signals": [
+      "Event loop: single thread, non-blocking I/O via callbacks/coroutines, low memory overhead per connection",
+      "Multi-threading: OS-level concurrency, each thread has stack overhead, prone to race conditions and GIL in Python",
+      "Event loop breaks down with CPU-bound work (starves other coroutines); use thread/process pool for CPU tasks",
+      "Multi-threading breaks down at very high concurrency due to context-switch overhead and memory per thread"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_020",
+    "competency": "BE_CONCURRENCY",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Connection Pooling là gì và tại sao nó quan trọng trong backend service kết nối database? Cấu hình pool size như thế nào cho hợp lý?",
+    "follow_up_hints": [
+      "Điều gì xảy ra khi tất cả connection trong pool đang bận và có request mới?",
+      "Pool size quá lớn có gây ra vấn đề gì cho phía database server không?"
+    ],
+    "expected_signals": [
+      "Connection Pool tái sử dụng kết nối DB đã mở thay vì tạo mới mỗi request (tốn kém về latency và tài nguyên)",
+      "Quá tải khi pool cạn: request phải chờ hoặc timeout; cấu hình max_overflow và pool_timeout hợp lý",
+      "Công thức cơ bản: pool_size xap xi (num_cores x 2) + active_io_threads theo HikariCP guideline",
+      "Quá nhiều connection: database server bị OOM, context switch overhead, và lock contention tăng"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_021",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Giải thích thuộc tính ACID trong database transaction. Cho ví dụ thực tế khi thiếu từng thuộc tính có thể dẫn đến sự cố gì?",
+    "follow_up_hints": [
+      "BASE (Basically Available, Soft state, Eventually consistent) là gì và áp dụng trong trường hợp nào?",
+      "Durability được đảm bảo như thế nào trong PostgreSQL khi server crash ngay sau COMMIT?"
+    ],
+    "expected_signals": [
+      "Atomicity: all-or-nothing; ví dụ chuyển tiền: trừ tài khoản A nhưng cộng tài khoản B thất bại sẽ rollback",
+      "Consistency: transaction đưa DB từ valid state sang valid state; ví dụ vi phạm foreign key constraint",
+      "Isolation: transaction đồng thời không can thiệp nhau; ví dụ dirty read khi thiếu isolation",
+      "Durability: dữ liệu committed bền vững dù crash; PostgreSQL dùng WAL (Write-Ahead Log)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_022",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "difficulty": 5,
+    "language": "en",
+    "text": "Explain the four standard transaction isolation levels (Read Uncommitted, Read Committed, Repeatable Read, Serializable) and the anomalies each level prevents. When would you choose Serializable despite its performance cost?",
+    "follow_up_hints": [
+      "What is a phantom read and why does Repeatable Read not prevent it in all databases?",
+      "How does PostgreSQL implement Serializable Snapshot Isolation (SSI) differently from traditional locking?"
+    ],
+    "expected_signals": [
+      "Read Uncommitted: dirty read possible; Read Committed: no dirty read but non-repeatable read possible",
+      "Repeatable Read: no dirty/non-repeatable reads but phantom reads possible (in standard SQL); MySQL RR prevents phantoms via gap locks",
+      "Serializable: prevents all anomalies (dirty, non-repeatable, phantom); highest contention and lowest throughput",
+      "Use Serializable for financial ledger, inventory deduction, or any scenario where write skew anomaly must be prevented"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_023",
+    "competency": "BE_DB_OPTIMIZATION",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Giải thích sự khác biệt giữa B-Tree Index và Hash Index trong database. Mỗi loại phù hợp với kiểu truy vấn nào?",
+    "follow_up_hints": [
+      "Tại sao B-Tree Index được dùng làm mặc định trong hầu hết các RDBMS?",
+      "Hash Index có hỗ trợ range query (BETWEEN, >, <) không? Tại sao?"
+    ],
+    "expected_signals": [
+      "B-Tree: cân bằng, hỗ trợ equality, range, ORDER BY, prefix LIKE; phù hợp hầu hết truy vấn",
+      "Hash Index: O(1) lookup cho equality query; KHONG ho tro range queries do luu hash value",
+      "B-Tree là default vì đa năng; Hash Index chỉ tối ưu cho exact-match lookup với very high cardinality",
+      "PostgreSQL Hash Index persistent từ v10; trước đó không crash-safe nên ít dùng"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_024",
+    "competency": "BE_CACHING",
+    "role": "backend_dev",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Cache-aside (Lazy Loading) và Write-through là hai chiến lược caching phổ biến. Hãy giải thích luồng hoạt động của mỗi loại và so sánh ưu nhược điểm?",
+    "follow_up_hints": [
+      "Cache-aside xử lý cache miss như thế nào? Có nguy cơ gì khi nhiều request đồng thời cache miss?",
+      "Write-through có thể gây vấn đề gì về hiệu suất ghi?"
+    ],
+    "expected_signals": [
+      "Cache-aside: app doc cache truoc; miss -> doc DB -> ghi vao cache -> tra ve; cache chi chua du lieu duoc truy cap",
+      "Write-through: mỗi write ghi đồng thời vào cache và DB; đảm bảo consistency nhưng tăng write latency",
+      "Cache-aside: nguy cơ Thundering Herd khi cache miss đồng loạt (cache stampede)",
+      "Write-through: cache có thể bị lấp đầy dữ liệu ít được đọc (write nhiều read ít)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_025",
+    "competency": "BE_CACHING",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "Describe the three main cache failure modes: Cache Stampede (Thundering Herd), Cache Penetration, and Cache Avalanche. How do you mitigate each?",
+    "follow_up_hints": [
+      "How does probabilistic early expiration (PER) help with Cache Stampede?",
+      "What is a Bloom Filter and how does it address Cache Penetration?"
+    ],
+    "expected_signals": [
+      "Cache Stampede: simultaneous cache miss causes all requests to hit DB; mitigate with mutex lock / probabilistic early expiration",
+      "Cache Penetration: queries for non-existent keys bypass cache and hammer DB; mitigate with Bloom Filter or caching null values with short TTL",
+      "Cache Avalanche: mass expiration of cache entries simultaneously causing DB overload; mitigate with TTL jitter and multi-layer caching",
+      "Defense in depth: combine Bloom Filter + mutex lock + TTL jitter for production systems"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_026",
+    "competency": "BE_CACHING",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "situational",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Hệ thống e-commerce của bạn đang chịu tải cực cao trong sự kiện flash sale. Cache Redis bị Cache Avalanche do tất cả key TTL cùng hết hạn lúc 00:00. Bạn sẽ xử lý tình huống này theo những bước nào ngay lập tức và về lâu dài?",
+    "follow_up_hints": [
+      "Jitter (độ lệch ngẫu nhiên TTL) giúp gì trong tình huống này?",
+      "Circuit Breaker pattern có thể phối hợp với caching như thế nào để bảo vệ database?"
+    ],
+    "expected_signals": [
+      "Immediate: kich hoat Circuit Breaker de giam so request den DB; enable fallback response hoac degraded mode",
+      "Warming up cache trước sự kiện (pre-warming) với dữ liệu dự đoán hot",
+      "Long-term: thêm jitter vào TTL (random ±10-20% của base TTL) để phân tán expiration",
+      "Layered caching: L1 local in-process cache (short TTL) + L2 Redis; L1 hap thu burst trong thoi gian Redis recover"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_027",
+    "competency": "BE_CACHING",
+    "role": "backend_dev",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "en",
+    "text": "What is the Circuit Breaker pattern? Describe its three states and explain how it protects downstream services during outages.",
+    "follow_up_hints": [
+      "How does the half-open state prevent a recovering service from being overwhelmed immediately?",
+      "What metrics should drive the transition from Closed to Open state?"
+    ],
+    "expected_signals": [
+      "Circuit Breaker: wraps calls to external services; trips open when failure threshold exceeded, preventing cascading failures",
+      "Closed state: normal operation, failures counted; Open state: requests fail-fast without calling downstream",
+      "Half-open: allows limited probe requests through; if successful transitions to Closed, else returns to Open",
+      "Metrics: error rate threshold (e.g., >50% in 10s window), latency percentile (p99 > 2s), minimum request volume"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_028",
+    "competency": "BE_CACHING",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "difficulty": 5,
+    "language": "en",
+    "text": "Design a Retry with Exponential Backoff and Jitter strategy for a service making calls to an unreliable third-party payment API. What are the pitfalls of naive retry and how does backoff with jitter solve them?",
+    "follow_up_hints": [
+      "What is a retry storm and how does jitter help prevent it?",
+      "How do you distinguish between retriable errors (transient) and non-retriable errors (permanent) in an HTTP response?"
+    ],
+    "expected_signals": [
+      "Naive retry (immediate): all clients retry at same time causing synchronized load spike (retry storm)",
+      "Exponential backoff: delay = min(base * 2^attempt, max_delay); spreads retry attempts over time",
+      "Full jitter: delay = random(0, min(cap, base * 2^attempt)); reduces collision probability significantly",
+      "Non-retriable: 4xx client errors (400, 422, 401); Retriable: 429 (rate limit with Retry-After), 503, 500 transient, network timeout"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BE_029",
+    "competency": "BE_SECURITY",
+    "role": "backend_dev",
+    "level": "senior",
+    "type": "technical",
+    "difficulty": 5,
+    "language": "vi",
+    "text": "[DEPRECATED v1] OAuth2 la gi? Phan biet cac grant type: Authorization Code, Client Credentials, Implicit.",
+    "follow_up_hints": [
+      "Authorization Code voi PKCE khac gi Authorization Code thong thuong?",
+      "Tai sao Implicit Flow bi coi la khong an toan va bi loai bo trong OAuth 2.1?"
+    ],
+    "expected_signals": [
+      "OAuth2 là authorization framework, không phải authentication",
+      "Authorization Code: server-side apps, code exchange voi secret; Client Credentials: machine-to-machine",
+      "Implicit Flow: token trong URL fragment, de bi lo qua browser history va referrer header",
+      "PKCE (RFC 7636) thay the Implicit cho public clients, dung code_verifier/code_challenge"
+    ],
+    "status": "superseded",
+    "version": "v1.0-deprecated"
+  },
+  {
+    "question_id": "Q_BE_030",
+    "competency": "BE_API_DESIGN",
+    "role": "backend_dev",
+    "level": "intern",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "en",
+    "text": "What does HTTP status code 201, 400, 401, 403, 409, and 429 mean? When would you return each in a REST API?",
+    "follow_up_hints": [
+      "What is the semantic difference between 401 Unauthorized and 403 Forbidden?",
+      "When should you use 409 Conflict vs 422 Unprocessable Entity?",
+      "What header should accompany a 429 Too Many Requests response?"
+    ],
+    "expected_signals": [
+      "201 Created: successful resource creation (POST); include Location header pointing to new resource",
+      "400 Bad Request: malformed syntax; 401: missing/invalid credentials; 403: authenticated but not authorized",
+      "409 Conflict: state conflict (duplicate, concurrent modification); 422: syntactically valid but semantically wrong",
+      "429 Too Many Requests: rate limit exceeded; must return Retry-After header with wait duration"
+    ],
+    "status": "active",
+    "version": "v2.0"
   }
 ]
