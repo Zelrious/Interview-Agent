@@ -11,7 +11,9 @@ Covers:
 
 from __future__ import annotations
 
+import time
 import pytest
+from src.rag.reranker import CascadeReranker, LightweightCrossAttentionScorer
 from langchain_core.documents import Document
 
 from src.rag.agent_tools import (
@@ -503,3 +505,241 @@ def test_upsert_idempotent_double_run_fresh_store() -> None:
     assert stats["total"] == 3
     assert stats["by_source_type"].get("question") == 3
     assert stats["confidential_count"] == 0
+
+
+# ==============================================================================
+# Test 14: questions_sv4_qa_test.json — Schema Validation (SV4 Task 1.4)
+# ==============================================================================
+
+
+def test_sv4_qa_questions_schema_and_count() -> None:
+    """Kiểm tra questions_sv4_qa_test.json có đúng >= 30 câu hỏi hợp lệ, đủ 4 cấp độ, đủ 2 ngôn ngữ."""
+    import json
+    from pathlib import Path
+
+    q_path = Path("data/knowledge/questions/questions_sv4_qa_test.json")
+    assert q_path.exists(), f"File không tồn tại: {q_path}"
+
+    with open(q_path, encoding="utf-8") as f:
+        questions = json.load(f)
+
+    # Kiểm tra tổng số câu hỏi (đủ 30 câu theo đặc tả)
+    assert len(questions) >= 30, f"Cần >= 30 câu hỏi QA, hiện có {len(questions)}"
+
+    required_fields = {
+        "question_id",
+        "competency",
+        "role",
+        "level",
+        "type",
+        "difficulty",
+        "language",
+        "text",
+        "follow_up_hints",
+        "expected_signals",
+        "status",
+    }
+    valid_levels = {"intern", "junior", "middle", "senior"}
+    valid_statuses = {"active", "superseded", "draft"}
+    valid_languages = {"vi", "en"}
+
+    for q in questions:
+        qid = q.get("question_id", "UNKNOWN")
+
+        # Kiểm tra đủ trường bắt buộc
+        missing = required_fields - q.keys()
+        assert not missing, f"{qid}: thiếu trường {missing}"
+
+        # Kiểm tra giá trị hợp lệ
+        assert q["level"] in valid_levels, f"{qid}: level '{q['level']}' không hợp lệ"
+        assert q["status"] in valid_statuses, f"{qid}: status '{q['status']}' không hợp lệ"
+        assert q["language"] in valid_languages, f"{qid}: language '{q['language']}' không hợp lệ"
+        assert isinstance(q["difficulty"], int) and 1 <= q["difficulty"] <= 5, f"{qid}: difficulty phải là int 1-5"
+        assert isinstance(q["follow_up_hints"], list) and len(q["follow_up_hints"]) >= 2, f"{qid}: follow_up_hints >= 2"
+        assert isinstance(q["expected_signals"], list) and len(q["expected_signals"]) >= 3, f"{qid}: expected_signals >= 3"
+
+    # Phải có ít nhất 2 câu superseded (phục vụ test lọc metadata phiên bản)
+    superseded = [q for q in questions if q["status"] == "superseded"]
+    assert len(superseded) >= 2, f"Cần >= 2 câu superseded, hiện có {len(superseded)}"
+
+    # Phải bao phủ cả 2 ngôn ngữ (vi, en)
+    langs = {q["language"] for q in questions}
+    assert "vi" in langs, "Phải có câu hỏi tiếng Việt (vi)"
+    assert "en" in langs, "Phải có câu hỏi tiếng Anh (en)"
+
+    # Phải bao phủ đủ cả 4 cấp độ
+    levels = {q["level"] for q in questions}
+    assert levels == valid_levels, f"Phải bao phủ đủ 4 cấp độ {valid_levels}, hiện có {levels}"
+
+
+# ==============================================================================
+# Test 15: qa_engineer.json — Competencies Validation (SV4 Task 1.4)
+# ==============================================================================
+
+
+def test_sv4_qa_competencies_schema_and_count() -> None:
+    """Kiểm tra qa_engineer.json có đúng >= 5 năng lực chuẩn, bao phủ 4 cấp độ."""
+    import json
+    from pathlib import Path
+
+    c_path = Path("data/knowledge/competencies/qa_engineer.json")
+    assert c_path.exists(), f"File không tồn tại: {c_path}"
+
+    with open(c_path, encoding="utf-8") as f:
+        comps = json.load(f)
+
+    assert len(comps) >= 5, f"Cần >= 5 năng lực QA, hiện có {len(comps)}"
+    valid_levels = {"intern", "junior", "middle", "senior"}
+
+    for c in comps:
+        cid = c.get("competency_id", "UNKNOWN")
+        assert "name" in c, f"{cid}: thiếu name"
+        assert "role" in c, f"{cid}: thiếu role"
+        assert "levels" in c, f"{cid}: thiếu levels"
+        levels = set(c["levels"].keys())
+        assert levels == valid_levels, f"{cid}: thiếu cấp độ {valid_levels - levels}"
+
+
+# ==============================================================================
+# Test 16: coding_problems.json — Coding Problems Validation (SV4 Task 1.4)
+# ==============================================================================
+
+
+def test_sv4_coding_problems_schema_and_count() -> None:
+    """Kiểm tra coding_problems.json có đúng >= 10 bài tập, đủ public_tests và hidden_tests."""
+    import json
+    from pathlib import Path
+
+    cp_path = Path("data/knowledge/coding_tasks/coding_problems.json")
+    assert cp_path.exists(), f"File không tồn tại: {cp_path}"
+
+    with open(cp_path, encoding="utf-8") as f:
+        problems = json.load(f)
+
+    assert len(problems) >= 10, f"Cần >= 10 bài tập code, hiện có {len(problems)}"
+
+    for p in problems:
+        pid = p.get("problem_id", "UNKNOWN")
+        assert "title" in p, f"{pid}: thiếu title"
+        assert "prompt" in p, f"{pid}: thiếu prompt"
+        assert "competency" in p, f"{pid}: thiếu competency"
+        assert "level" in p, f"{pid}: thiếu level"
+
+        pub = p.get("public_tests", [])
+        assert isinstance(pub, list) and len(pub) >= 1, f"{pid}: cần >= 1 public_tests"
+        for t in pub:
+            assert "input" in t and "expected" in t, f"{pid}: public_test thiếu input/expected"
+
+        hid = p.get("hidden_tests", [])
+        assert isinstance(hid, list) and len(hid) >= 2, f"{pid}: cần >= 2 hidden_tests"
+        for t in hid:
+            assert "input" in t and "expected" in t, f"{pid}: hidden_test thiếu input/expected"
+
+# ==============================================================================
+# Test 17: Reranker hardening (SV4 Task 1.4)
+# ==============================================================================
+
+
+def _qa_docs(n: int = 20) -> list[Document]:
+    return [
+        Document(
+            page_content=f"nội dung chung số {i}",
+            metadata={
+                "item_id": f"Q_QA_{i:03d}",
+                "role": "qa_engineer",
+                "level": "junior",
+                "rrf_score": 0.03 - i * 0.001,
+            },
+        )
+        for i in range(n)
+    ]
+
+
+def test_sv4_rerank_top20_to_top5() -> None:
+    result = CascadeReranker("lightweight").rerank("kiểm thử", _qa_docs(20), top_n=5)
+    assert len(result) == 5
+
+
+def test_sv4_rerank_edge_sizes() -> None:
+    r = CascadeReranker("lightweight")
+    assert r.rerank("x", []) == []
+    assert len(r.rerank("x", _qa_docs(3))) == 3
+
+
+def test_sv4_rerank_exact_identifier_wins() -> None:
+    docs = _qa_docs(20)
+    docs[15] = Document(
+        page_content="thiết kế test case biên",
+        metadata={"item_id": "Q_QA_015", "role": "qa_engineer"},
+    )
+    top = CascadeReranker("lightweight").rerank("Q_QA_015", docs)
+    assert top[0].metadata["item_id"] == "Q_QA_015"
+
+
+def test_sv4_rerank_identifier_not_substring() -> None:
+    """CODE_001 không được khớp nhầm với CODE_0010."""
+    wrong = Document(page_content="CODE_0010 bài khó", metadata={"item_id": "CODE_0010"})
+    right = Document(page_content="bài dễ", metadata={"item_id": "CODE_001"})
+    top = CascadeReranker("lightweight").rerank("CODE_001", [wrong, right])
+    assert top[0].metadata["item_id"] == "CODE_001"
+
+
+def test_sv4_rerank_vietnamese_not_fragmented() -> None:
+    doc = Document(page_content="kiểm thử hiệu năng với k6", metadata={})
+    score = LightweightCrossAttentionScorer.score("kiểm thử hiệu năng", doc)
+    assert score >= 9.0  # phải khớp được cụm 3 từ tiếng Việt
+
+
+def test_sv4_rerank_superseded_ranked_lower() -> None:
+    old = Document(
+        page_content="kiểm thử hiệu năng công cụ cũ",
+        metadata={"item_id": "Q_QA_020", "status": "superseded"},
+    )
+    new = Document(
+        page_content="kiểm thử hiệu năng công cụ cũ",
+        metadata={"item_id": "Q_QA_021", "status": "active"},
+    )
+    top = CascadeReranker("lightweight").rerank("kiểm thử hiệu năng", [old, new])
+    assert top[0].metadata["item_id"] == "Q_QA_021"
+
+
+def test_sv4_rerank_latency_under_10ms() -> None:
+    r, docs = CascadeReranker("lightweight"), _qa_docs(20)
+    r.rerank("warm up", docs)
+    start = time.perf_counter()
+    r.rerank("load test jmeter bottleneck", docs)
+    assert (time.perf_counter() - start) * 1000 < 10
+
+
+# ==============================================================================
+# Test 18: Grounding edge cases (SV4 Task 1.4)
+# ==============================================================================
+
+_VALID = {"8a921a205f8c:0", "0cb6031ac460:1"}
+
+
+def test_sv4_citations_all_valid_multiple() -> None:
+    r = verify_citations("Ý một [8a921a205f8c:0]. Ý hai [0cb6031ac460:1].", _VALID)
+    assert r["is_grounded"] is True
+    assert r["citation_existence_rate"] == 1.0
+    assert r["invalid_citations"] == []
+
+
+def test_sv4_citations_one_fake_among_many() -> None:
+    r = verify_citations(
+        "A [8a921a205f8c:0], B [0cb6031ac460:1], C [fake00000000:7].", _VALID
+    )
+    assert r["is_grounded"] is False
+    assert r["citation_existence_rate"] < 1.0
+    assert r["invalid_citations"] == ["fake00000000:7"]
+
+
+def test_sv4_citations_no_citation_not_grounded() -> None:
+    r = verify_citations("Câu trả lời khẳng định nhưng không dẫn nguồn nào.", _VALID)
+    assert r["is_grounded"] is False
+
+
+def test_sv4_escape_hatch_with_whitespace() -> None:
+    r = verify_citations(f"  {ESCAPE_HATCH_TEXT}\n", _VALID)
+    assert r["is_escape_hatch"] is True
+    assert r["is_grounded"] is True

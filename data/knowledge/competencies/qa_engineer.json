@@ -24,6 +24,30 @@
     }
   },
   {
+    "competency_id": "QA_PERFORMANCE_TESTING",
+    "name": "Kiểm thử Hiệu năng & Chịu tải (Performance Testing)",
+    "role": "qa_engineer",
+    "source_reference": "Roadmap.sh QA Engineer - CC-BY",
+    "levels": {
+      "intern": "Phân biệt được Load, Stress, Spike và Endurance testing; hiểu các chỉ số cơ bản như response time và throughput.",
+      "junior": "Viết kịch bản tải đơn giản bằng JMeter, k6 hoặc Locust; đọc báo cáo với response time, error rate và percentile (p95/p99).",
+      "middle": "Thiết kế workload model sát thực tế, đặt SLO/ngưỡng chấp nhận, phối hợp với dev để xác định bottleneck ở tầng ứng dụng và cơ sở dữ liệu.",
+      "senior": "Xây dựng chiến lược performance engineering xuyên suốt vòng đời, tích hợp kiểm thử tải vào CI/CD, phân tích capacity planning và nguyên nhân gốc của suy giảm hiệu năng."
+    }
+  },
+  {
+    "competency_id": "QA_SECURITY_TESTING",
+    "name": "Kiểm thử An ninh Bảo mật (Security Testing)",
+    "role": "qa_engineer",
+    "source_reference": "OWASP Top 10 / Roadmap.sh QA Engineer - CC-BY",
+    "levels": {
+      "intern": "Hiểu các khái niệm bảo mật cơ bản (xác thực, phân quyền, mã hóa) và nhận biết các lỗ hổng phổ biến như SQL Injection, XSS ở mức khái niệm.",
+      "junior": "Thiết kế test case kiểm tra input validation, xác thực/phân quyền và quản lý phiên theo OWASP Top 10 trên môi trường kiểm thử.",
+      "middle": "Kiểm thử bảo mật API (BOLA/IDOR, rate limiting, lộ dữ liệu nhạy cảm), sử dụng công cụ quét như OWASP ZAP và phân loại mức độ rủi ro của lỗ hổng.",
+      "senior": "Tích hợp SAST/DAST và quét phụ thuộc vào CI/CD, xây dựng threat model, kiểm thử cô lập đa tenant và điều phối khắc phục lỗ hổng với các đội phát triển."
+    }
+  },
+  {
     "competency_id": "BEHAVIORAL_STAR",
     "name": "Kỹ năng Hành vi, Giao tiếp & Giải quyết Vấn đề (Mô hình STAR)",
     "role": "general",

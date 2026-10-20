@@ -124,5 +124,509 @@
     ],
     "status": "active",
     "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_007",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Hãy phân biệt Test Scenario, Test Case và Test Plan. Cho một ví dụ ngắn với chức năng đăng nhập.",
+    "follow_up_hints": [
+      "Một Test Scenario có thể sinh ra nhiều Test Case không? Cho ví dụ.",
+      "Một Test Case tốt cần có những thành phần nào (precondition, steps, expected result)?"
+    ],
+    "expected_signals": [
+      "Test Plan là tài liệu kế hoạch tổng thể: phạm vi, chiến lược, nguồn lực, lịch trình",
+      "Test Scenario là mô tả mức cao 'kiểm thử cái gì' (ví dụ: đăng nhập thành công), Test Case là các bước cụ thể kèm dữ liệu và kết quả mong đợi",
+      "Ví dụ đúng: một scenario đăng nhập sinh nhiều case (sai mật khẩu, tài khoản bị khóa, để trống trường)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_008",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "en",
+    "difficulty": 1,
+    "text": "What is the difference between verification and validation in software testing? Give one example of each.",
+    "follow_up_hints": [
+      "Which of the two can be done without running the code?",
+      "Where do code reviews and requirement walkthroughs fit?"
+    ],
+    "expected_signals": [
+      "Verification checks that the product is built according to the specification ('are we building the product right?')",
+      "Validation checks that the product meets the user's real needs ('are we building the right product?')",
+      "Gives sensible examples, e.g. review/inspection for verification and UAT or exploratory testing for validation"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_009",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Theo bạn, khi nào nên tự động hóa kiểm thử và khi nào nên giữ kiểm thử thủ công? Hãy nêu ít nhất hai ví dụ cho mỗi trường hợp.",
+    "follow_up_hints": [
+      "Vì sao các test case được lặp lại nhiều lần mỗi lần release lại phù hợp để tự động hóa?",
+      "Kiểm thử khám phá (exploratory testing) có thay thế được bằng automation không?"
+    ],
+    "expected_signals": [
+      "Nên tự động hóa: regression lặp lại, smoke test, kiểm thử API ổn định, dữ liệu lớn",
+      "Nên giữ thủ công: kiểm thử khám phá, kiểm thử khả dụng (usability), tính năng còn thay đổi liên tục",
+      "Nhận thức được chi phí bảo trì script và rằng automation không thay thế hoàn toàn kiểm thử thủ công"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_010",
+    "competency": "QA_PERFORMANCE_TESTING",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Phân biệt Load Testing, Stress Testing và Spike Testing. Mỗi loại trả lời cho câu hỏi gì về hệ thống?",
+    "follow_up_hints": [
+      "Endurance (Soak) Testing khác với ba loại trên ở điểm nào?",
+      "Chỉ số nào bạn sẽ theo dõi khi chạy một bài load test?"
+    ],
+    "expected_signals": [
+      "Load test: kiểm tra hệ thống với mức tải kỳ vọng thông thường hoặc cao điểm dự kiến",
+      "Stress test: tăng tải vượt ngưỡng để tìm điểm gãy và xem hệ thống phục hồi thế nào",
+      "Spike test: tải tăng đột biến trong thời gian ngắn; có nhắc tới response time, throughput hoặc error rate"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_011",
+    "competency": "QA_SECURITY_TESTING",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "technical",
+    "language": "en",
+    "difficulty": 2,
+    "text": "At a conceptual level, what is SQL injection, and what would you check on a login form in a test environment to see whether input is handled safely?",
+    "follow_up_hints": [
+      "Why do parameterized queries (prepared statements) prevent this class of bug?",
+      "Besides the login form, which other inputs could be vulnerable?"
+    ],
+    "expected_signals": [
+      "Explains that untrusted input is interpreted as part of a SQL statement, which can alter the query",
+      "Suggests checking input validation/error messages with special characters on an authorized test environment only",
+      "Mentions the fix: parameterized queries, input validation and least-privilege database accounts"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_012",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "qa_engineer",
+    "level": "intern",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 1,
+    "text": "Hãy kể về một lần bạn bị kẹt khi làm bài tập hoặc dự án và không biết cách giải quyết. Bạn đã làm gì tiếp theo? (Gợi ý trả lời theo cấu trúc STAR)",
+    "follow_up_hints": [
+      "Bạn đã thử những cách nào trước khi nhờ người khác giúp?",
+      "Bạn rút ra bài học gì để lần sau xử lý nhanh hơn?"
+    ],
+    "expected_signals": [
+      "Mô tả rõ bối cảnh và nhiệm vụ cụ thể (Situation, Task)",
+      "Hành động chủ động: tự tìm hiểu tài liệu, thử giả thuyết, sau đó đặt câu hỏi cụ thể cho người có kinh nghiệm",
+      "Nêu kết quả và bài học rút ra, thể hiện tinh thần học hỏi"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_013",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Một cửa hàng giảm 10% nếu khách là thành viên và 15% nếu đơn hàng từ 500.000đ trở lên; khi thỏa cả hai điều kiện thì được giảm cao nhất là 20%. Hãy dùng Decision Table để thiết kế test case.",
+    "follow_up_hints": [
+      "Có bao nhiêu tổ hợp điều kiện và bạn có thể gộp tổ hợp nào?",
+      "Giá trị biên 499.999đ và 500.000đ được kiểm thử ra sao?"
+    ],
+    "expected_signals": [
+      "Lập đúng bảng quyết định 2 điều kiện (thành viên/không, đơn >= 500.000đ/không) với 4 tổ hợp",
+      "Xác định đúng kết quả cho từng tổ hợp: 0%, 10%, 15%, 20%",
+      "Bổ sung giá trị biên của ngưỡng 500.000đ và trường hợp dữ liệu không hợp lệ (số âm, rỗng)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_014",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "en",
+    "difficulty": 2,
+    "text": "When writing UI automation with Playwright or Selenium, how do you choose locators? Why is a dedicated attribute such as data-testid often preferred over an absolute XPath?",
+    "follow_up_hints": [
+      "How would a layout change break a long XPath but not a data-testid locator?",
+      "When is it acceptable to rely on visible text or ARIA roles instead?"
+    ],
+    "expected_signals": [
+      "Prefers stable, intent-revealing locators (data-testid, id, ARIA role/label) over brittle absolute XPath or deep CSS chains",
+      "Explains that XPath tied to DOM structure breaks on harmless layout changes, raising maintenance cost",
+      "Mentions agreeing on test attributes with developers and keeping locators inside Page Objects"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_015",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Khi tự động hóa kiểm thử một API REST bằng Postman hoặc pytest/requests, ngoài việc kiểm tra status code, bạn còn assert những gì trong response?",
+    "follow_up_hints": [
+      "Kiểm tra schema của response JSON có lợi ích gì so với chỉ so sánh vài trường?",
+      "Bạn xử lý dữ liệu test tạo ra bởi API (POST) sau khi chạy xong như thế nào?"
+    ],
+    "expected_signals": [
+      "Assert nội dung body: giá trị trường, kiểu dữ liệu, schema/cấu trúc JSON",
+      "Kiểm tra header (Content-Type), thời gian phản hồi và thông điệp lỗi cho trường hợp tiêu cực (negative test)",
+      "Có chiến lược dọn dẹp hoặc cô lập dữ liệu test (teardown, dữ liệu duy nhất cho mỗi lần chạy)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_016",
+    "competency": "QA_PERFORMANCE_TESTING",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Trong báo cáo load test, vì sao nên xem percentile p95/p99 thay vì chỉ nhìn thời gian phản hồi trung bình? Hãy nêu thêm hai chỉ số quan trọng khác.",
+    "follow_up_hints": [
+      "Cho ví dụ một tình huống trung bình trông tốt nhưng p99 rất tệ.",
+      "Throughput và error rate liên hệ với nhau thế nào khi tăng số người dùng ảo?"
+    ],
+    "expected_signals": [
+      "Giải thích trung bình che giấu các request chậm (outlier); p95/p99 phản ánh trải nghiệm của nhóm người dùng chậm nhất",
+      "Nêu được thêm các chỉ số như throughput (requests/giây), error rate, mức sử dụng CPU/bộ nhớ",
+      "Hiểu rằng cần đối chiếu các chỉ số với SLO/ngưỡng chấp nhận đã định trước"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_017",
+    "competency": "QA_SECURITY_TESTING",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Phân biệt Authentication và Authorization. Hãy thiết kế các test case kiểm tra lỗi IDOR (Insecure Direct Object Reference) trên endpoint GET /api/orders/{id}.",
+    "follow_up_hints": [
+      "Làm sao kiểm tra người dùng A không xem được đơn hàng của người dùng B?",
+      "Server nên trả về mã trạng thái nào khi truy cập trái phép (403 hay 404) và vì sao?"
+    ],
+    "expected_signals": [
+      "Authentication xác định bạn là ai; Authorization xác định bạn được phép làm gì",
+      "Test case: dùng token của user A để truy cập id đơn hàng thuộc user B, và thử thay đổi id tuần tự",
+      "Kỳ vọng bị từ chối (403/404), không lộ dữ liệu; đề xuất kiểm tra cả trường hợp không có token và token hết hạn"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_018",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 2,
+    "text": "Dự án web Angular cũ của công ty đang dùng Protractor để chạy kiểm thử end-to-end. Hãy trình bày cách bạn viết một test đăng nhập bằng Protractor và cách xử lý việc chờ Angular ổn định (waitForAngular).",
+    "follow_up_hints": [
+      "Khi chuyển sang ứng dụng không dùng Angular, bạn phải cấu hình gì khác?",
+      "Cơ chế tự động đồng bộ (synchronization) của Protractor hoạt động ra sao?"
+    ],
+    "expected_signals": [
+      "Biết Protractor là framework E2E được thiết kế riêng cho Angular, dùng WebDriverJS và cơ chế waitForAngular",
+      "Viết được luồng cơ bản: mở trang, nhập thông tin bằng locator (by.model/by.css), click và assert kết quả",
+      "Nhận biết Protractor đã ngừng phát triển; nên cân nhắc chuyển sang Playwright, Cypress hoặc WebdriverIO"
+    ],
+    "status": "superseded",
+    "version": "v1.0"
+  },
+  {
+    "question_id": "Q_QA_019",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "situational",
+    "language": "en",
+    "difficulty": 3,
+    "text": "One day before release you find a bug that corrupts the shipping address for about 2% of orders. The developer says it is not a blocker. How do you decide whether to ship, and how do you communicate your position?",
+    "follow_up_hints": [
+      "Which data would you gather to assess impact (affected users, revenue, workaround)?",
+      "How do you handle it if the product owner decides to ship anyway?"
+    ],
+    "expected_signals": [
+      "Assesses severity with evidence: frequency, user and revenue impact, data corruption, availability of a workaround",
+      "Presents options (fix now, feature flag, hotfix plan, rollback plan) rather than a simple yes/no",
+      "Communicates the risk transparently to stakeholders and records the decision (risk sign-off)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_020",
+    "competency": "QA_PERFORMANCE_TESTING",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Đội của bạn chuẩn bị chiến dịch flash sale với dự kiến 20.000 người dùng đồng thời vào đặt hàng. Hãy thiết kế bài load test bằng k6 hoặc JMeter: workload model, ramp-up, tiêu chí đạt (SLO) và dữ liệu test.",
+    "follow_up_hints": [
+      "Làm sao ước lượng số người dùng ảo và think time từ dữ liệu production?",
+      "Môi trường test khác production thì kết quả có đáng tin không?"
+    ],
+    "expected_signals": [
+      "Xây dựng workload model từ hành vi thực tế (tỷ lệ các luồng: duyệt, thêm giỏ hàng, thanh toán), có think time",
+      "Thiết kế ramp-up, giai đoạn giữ tải ổn định và spike; đặt SLO rõ ràng (p95 latency, error rate dưới ngưỡng)",
+      "Chuẩn bị dữ liệu test đủ lớn, môi trường gần production, giám sát tài nguyên hệ thống và DB trong lúc chạy"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_021",
+    "competency": "QA_SECURITY_TESTING",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "language": "en",
+    "difficulty": 3,
+    "text": "Pick three risks from the OWASP API Security Top 10 that matter for a typical REST API and describe how you would test for each.",
+    "follow_up_hints": [
+      "How would you test for Broken Object Level Authorization at scale?",
+      "Which tools (e.g. OWASP ZAP, Burp Suite) can support this, and what are their limits?"
+    ],
+    "expected_signals": [
+      "Selects relevant risks (e.g. BOLA, broken authentication, excessive data exposure, lack of rate limiting) and explains them correctly",
+      "Gives concrete test approaches per risk: cross-user access attempts, token tampering, response field review, request-burst tests",
+      "Notes tools help but manual and logic-based testing is still needed; tests run only with authorization"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_022",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Hệ thống gồm nhiều microservice phụ thuộc nhau, các bài E2E chạy chậm và hay hỏng. Contract Testing (ví dụ Pact) giúp được gì và bạn kết hợp nó với E2E như thế nào?",
+    "follow_up_hints": [
+      "Consumer-driven contract khác gì với việc test tích hợp thông thường?",
+      "Bạn đặt contract test ở đâu trong CI/CD pipeline?"
+    ],
+    "expected_signals": [
+      "Giải thích contract test kiểm tra thỏa thuận giữa consumer và provider mà không cần dựng toàn bộ hệ thống",
+      "Lợi ích: phản hồi nhanh, ít flaky, phát hiện thay đổi phá vỡ API sớm; E2E chỉ giữ cho vài luồng quan trọng",
+      "Biết chạy contract test trong CI của từng service và dùng broker/can-i-deploy để chặn thay đổi không tương thích"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_023",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Hãy kể về một lần bạn bất đồng với lập trình viên về mức độ nghiêm trọng của một bug. Bạn xử lý thế nào và kết quả ra sao? (Trả lời theo cấu trúc STAR)",
+    "follow_up_hints": [
+      "Bạn đã dùng dữ liệu hoặc bằng chứng gì để thuyết phục?",
+      "Nếu làm lại bạn sẽ thay đổi điều gì?"
+    ],
+    "expected_signals": [
+      "Mô tả đúng bối cảnh, vai trò của bản thân và mục tiêu chung (chất lượng sản phẩm), không đổ lỗi cá nhân",
+      "Hành động: lắng nghe quan điểm của dev, đưa bằng chứng (log, số liệu tác động), tìm giải pháp thỏa hiệp hoặc leo thang đúng lúc",
+      "Nêu kết quả cụ thể (bug được sửa, quy ước mức độ nghiêm trọng mới) và bài học rút ra"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_024",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 3,
+    "text": "Trước đây nhóm dùng PhantomJS làm headless browser để chạy kiểm thử UI trên CI. Hãy giải thích cách cấu hình và các hạn chế gặp phải khi dùng PhantomJS.",
+    "follow_up_hints": [
+      "Vì sao kết quả test trên PhantomJS có thể khác với trình duyệt thật?",
+      "Bạn sẽ thay thế bằng giải pháp nào?"
+    ],
+    "expected_signals": [
+      "Biết PhantomJS là headless browser dựa trên WebKit cũ, thường được điều khiển qua Selenium/GhostDriver",
+      "Nêu hạn chế: thiếu hỗ trợ tính năng web hiện đại (ES6+), kết quả render không giống trình duyệt thật, dự án đã ngừng bảo trì",
+      "Đề xuất thay bằng Chrome/Firefox headless hoặc Playwright chạy trong container"
+    ],
+    "status": "superseded",
+    "version": "v1.0"
+  },
+  {
+    "question_id": "Q_QA_025",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "situational",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Công ty chuẩn bị tách một hệ thống monolith thành microservice. Hãy xây dựng chiến lược kiểm thử tổng thể (Test Strategy) và nêu cách áp dụng Shift-Left cho dự án này.",
+    "follow_up_hints": [
+      "Bạn phân bổ nỗ lực giữa unit, integration, contract và E2E ra sao (test pyramid)?",
+      "Những chỉ số nào bạn dùng để biết chiến lược đang hiệu quả?"
+    ],
+    "expected_signals": [
+      "Phân tích rủi ro của migration (tương thích dữ liệu, độ trễ giữa dịch vụ, rollback) để xác định trọng tâm kiểm thử",
+      "Đề xuất test pyramid cùng contract testing và kiểm thử không chức năng; đưa kiểm thử sớm vào quy trình phát triển (Shift-Left)",
+      "Định nghĩa chỉ số chất lượng (defect escape rate, thời gian phản hồi của pipeline, độ ổn định test) và kế hoạch cải tiến liên tục"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_026",
+    "competency": "QA_AUTOMATION",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "situational",
+    "language": "en",
+    "difficulty": 4,
+    "text": "Your regression suite takes four hours to run and about 15% of failures are flaky, so developers have stopped trusting it. How do you restructure it, and how do you argue for the investment?",
+    "follow_up_hints": [
+      "How would you triage and quarantine flaky tests without hiding real failures?",
+      "Which metrics would you show to prove the ROI to management?"
+    ],
+    "expected_signals": [
+      "Diagnoses before acting: measure flakiness per test, categorize root causes, quarantine flaky tests with an owner and deadline",
+      "Restructures toward a test pyramid, pushes checks down to API/unit level, parallelizes and shards the suite, makes tests independent",
+      "Justifies investment with metrics (pipeline duration, flaky rate, escaped defects, developer wait time)"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_027",
+    "competency": "QA_PERFORMANCE_TESTING",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Trong bài load test, p99 latency tăng vọt khi tải vượt 3.000 request/giây dù CPU server ứng dụng chỉ ở mức 40%. Bạn điều tra nguyên nhân gốc theo trình tự nào?",
+    "follow_up_hints": [
+      "Làm sao phân biệt bottleneck ở connection pool, khóa (lock) cơ sở dữ liệu và độ trễ dịch vụ bên thứ ba?",
+      "Công cụ giám sát và tracing nào hỗ trợ việc này?"
+    ],
+    "expected_signals": [
+      "Tiếp cận có hệ thống: kiểm tra từng tầng (ứng dụng, DB, mạng, dịch vụ phụ thuộc), thay đổi một biến mỗi lần",
+      "Nêu các nguyên nhân khả dĩ khi CPU thấp: cạn connection pool/thread pool, lock contention, truy vấn chậm, chờ I/O",
+      "Dùng metrics, distributed tracing, slow query log và profiling để xác nhận giả thuyết, sau đó chạy lại test để kiểm chứng bản sửa"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_028",
+    "competency": "QA_SECURITY_TESTING",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "situational",
+    "language": "en",
+    "difficulty": 4,
+    "text": "You are asked to add security testing (SAST, DAST and dependency scanning) to the CI/CD pipeline without slowing developers down or flooding them with false positives. What is your approach?",
+    "follow_up_hints": [
+      "Which checks should block a merge and which should only report?",
+      "How do you handle findings that are accepted as risk?"
+    ],
+    "expected_signals": [
+      "Layers the checks by speed: fast SAST and dependency scans on pull requests, heavier DAST on nightly or staging builds",
+      "Defines severity thresholds for blocking, tunes rules to cut false positives, and provides clear remediation guidance",
+      "Sets up ownership, triage and an exception process with expiry dates, and tracks metrics such as time-to-fix"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_029",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "behavioral",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Hãy kể về một lần bạn kèm cặp (mentor) một QA mới hoặc thay đổi cách đội làm việc để cải thiện chất lượng. Bạn đo hiệu quả như thế nào? (Trả lời theo cấu trúc STAR)",
+    "follow_up_hints": [
+      "Bạn xử lý thế nào khi có thành viên không đồng tình với thay đổi?",
+      "Bạn đảm bảo thay đổi được duy trì sau khi bạn rời dự án ra sao?"
+    ],
+    "expected_signals": [
+      "Xác định rõ vấn đề và mục tiêu, dựa trên dữ liệu thay vì cảm tính",
+      "Hành động: thiết kế lộ trình, phản hồi thường xuyên, tạo tài liệu hoặc quy trình chung và lấy sự đồng thuận của các bên",
+      "Đo kết quả bằng chỉ số cụ thể (giảm bug thoát, tăng tốc độ onboarding) và nêu bài học về dẫn dắt"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_030",
+    "competency": "QA_SECURITY_TESTING",
+    "role": "qa_engineer",
+    "level": "senior",
+    "type": "technical",
+    "language": "vi",
+    "difficulty": 4,
+    "text": "Một hệ thống SaaS đa tenant (multi-tenant) lưu dữ liệu của nhiều khách hàng trong cùng cơ sở dữ liệu. Bạn thiết kế chiến lược kiểm thử cô lập tenant và phân quyền (RBAC) như thế nào?",
+    "follow_up_hints": [
+      "Những điểm nào trong hệ thống dễ làm rò rỉ dữ liệu giữa các tenant (cache, tìm kiếm, export, background job)?",
+      "Làm sao tự động hóa các kiểm tra này trong CI?"
+    ],
+    "expected_signals": [
+      "Xây dựng ma trận vai trò x tài nguyên x hành động và kiểm thử cả quyền được phép lẫn bị từ chối",
+      "Thiết kế test truy cập chéo tenant ở mọi tầng: API, truy vấn DB, cache, tìm kiếm, tệp xuất và tác vụ nền",
+      "Tự động hóa thành bộ regression bảo mật chạy trong CI và bổ sung kiểm thử thủ công cho các luồng nghiệp vụ phức tạp"
+    ],
+    "status": "active",
+    "version": "v2.0"
   }
 ]

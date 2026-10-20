@@ -11,76 +11,100 @@ from __future__ import annotations
 import logging
 import os
 import re
+import unicodedata
 from typing import Any
 
 from langchain_core.documents import Document
 
 logger = logging.getLogger(__name__)
 
+_ID_PATTERN = re.compile(
+    r"\b(?:q_[a-z0-9_]+|be_[a-z0-9_]+|da_[a-z0-9_]+|qa_[a-z0-9_]+"
+    r"|code_[a-z0-9_]+|rubric_[a-z0-9_]+|behavioral_[a-z0-9_]+)\b"
+)
+# \w hiểu Unicode nên giữ nguyên từ tiếng Việt có dấu (không tách vụn)
+_TOKEN_PATTERN = re.compile(r"\w+", re.UNICODE)
+_STOPWORDS = frozenset(
+    {
+        "và", "là", "của", "có", "cho", "với", "một", "các", "những", "được", "trong",
+        "the", "and", "for", "with", "that", "this", "are", "how", "what",
+    }
+)
+_SUPERSEDED_PENALTY = 5.0
+
+
+def _norm(text: str) -> str:
+    """Chuẩn hóa NFC + lowercase để so khớp tiếng Việt ổn định."""
+    return unicodedata.normalize("NFC", text).lower()
+
+
+def _tokens(text: str) -> list[str]:
+    return [
+        w for w in _TOKEN_PATTERN.findall(text) if len(w) >= 2 and w not in _STOPWORDS
+    ]
+
 
 class LightweightCrossAttentionScorer:
     """Bộ chấm điểm chéo nhẹ (Lightweight Cross-Attention Scorer).
 
-    Đánh giá mức độ liên quan ngữ nghĩa và định danh kỹ thuật giữa query và document:
-    1. Khớp chính xác mã định danh (Q_BE_001, BE_DB_OPTIMIZATION, CODE_001, ...)
-    2. Tỉ lệ trùng lặp token có ý nghĩa (Token Overlap)
-    3. Trùng khớp cụm từ (N-gram phrase matching)
-    4. Mức độ tương đồng thuộc tính metadata (vai trò, cấp độ, năng lực)
+    Đánh giá mức độ liên quan giữa query và document:
+    1. Khớp chính xác mã định danh (theo token nguyên vẹn, không khớp substring)
+    2. Trùng khớp cụm từ (N-gram phrase matching)
+    3. Tỉ lệ trùng lặp token có ý nghĩa (Token Overlap)
+    4. Tương đồng metadata (vai trò, cấp độ)
+    5. Phạt tài liệu superseded (trừ khi query gọi đích danh ID)
+    6. Điểm RRF ban đầu
     """
 
     @staticmethod
     def score(query: str, doc: Document) -> float:
-        q_lower = query.lower()
-        d_lower = doc.page_content.lower()
+        q_lower = _norm(query)
+        d_lower = _norm(doc.page_content)
         meta = doc.metadata
 
         score = 0.0
 
-        # 1. Khớp chính xác mã định danh (Technical Identifier Match)
-        query_identifiers = re.findall(
-            r"\b(?:q_[a-z0-9_]+|be_[a-z0-9_]+|da_[a-z0-9_]+|qa_[a-z0-9_]+|code_[a-z0-9_]+|rubric_[a-z0-9_]+)\b",
-            q_lower,
-        )
+        # 1. Khớp chính xác mã định danh (dedupe + so theo token nguyên vẹn)
+        d_all_tokens = set(_TOKEN_PATTERN.findall(d_lower))
         item_id = str(meta.get("item_id", "")).lower()
         competency = str(meta.get("competency", "")).lower()
+        explicit_id_hit = False
 
-        for ident in query_identifiers:
-            if ident == item_id or ident in d_lower or ident == competency:
+        for ident in set(_ID_PATTERN.findall(q_lower)):
+            if ident in (item_id, competency) or ident in d_all_tokens:
                 score += 15.0
+                explicit_id_hit = True
 
-        # 2. Khớp cụm từ nguyên văn (Exact Phrase Match)
-        # Bóc tách các cụm từ quan trọng trong query (từ 2 đến 4 từ)
-        q_words = [
-            w
-            for w in re.findall(r"[A-Za-z0-9_]+|[\u00C0-\u1EF9]+", q_lower)
-            if len(w) >= 2
-        ]
+        # 2. Khớp cụm từ nguyên văn (từ 2 đến 3 từ)
+        q_words = _tokens(q_lower)
         if len(q_words) >= 2:
-            for n in [3, 2]:
+            for n in (3, 2):
                 for i in range(len(q_words) - n + 1):
-                    phrase = " ".join(q_words[i : i + n])
-                    if phrase in d_lower:
+                    if " ".join(q_words[i : i + n]) in d_lower:
                         score += 3.0 * n
 
-        # 3. Độ phủ Token (Token Overlap)
-        d_words = set(re.findall(r"[A-Za-z0-9_]+|[\u00C0-\u1EF9]+", d_lower))
-        matching_tokens = [w for w in q_words if w in d_words]
+        # 3. Độ phủ token
+        d_words = set(_tokens(d_lower))
         if q_words:
-            overlap_ratio = len(matching_tokens) / len(q_words)
-            score += overlap_ratio * 8.0
+            matching = sum(1 for w in q_words if w in d_words)
+            score += (matching / len(q_words)) * 8.0
 
-        # 4. Tương đồng Metadata (Role & Level)
-        target_role = str(meta.get("role", "")).lower()
-        if target_role and target_role in q_lower:
+        # 4. Tương đồng metadata (role, level) với word boundary
+        q_plain = q_lower.replace("_", " ")
+        target_role = str(meta.get("role", "")).lower().replace("_", " ")
+        if target_role and target_role in q_plain:
             score += 2.0
 
         target_level = str(meta.get("level", "")).lower()
-        if target_level and target_level in q_lower:
+        if target_level and re.search(rf"\b{re.escape(target_level)}\b", q_plain):
             score += 2.0
 
-        # 5. Điểm số RRF ban đầu (nếu có)
-        rrf_prior = float(meta.get("rrf_score", 0.0))
-        score += rrf_prior * 10.0
+        # 5. Phạt câu superseded, trừ khi query gọi đích danh mã của nó
+        if str(meta.get("status", "")).lower() == "superseded" and not explicit_id_hit:
+            score -= _SUPERSEDED_PENALTY
+
+        # 6. Điểm RRF ban đầu (an toàn với None)
+        score += float(meta.get("rrf_score") or 0.0) * 10.0
 
         return score
 
@@ -132,7 +156,7 @@ class CascadeReranker:
                 score = LightweightCrossAttentionScorer.score(query, doc)
                 scored_docs.append((doc, score))
 
-        # Sắp xếp giảm dần theo điểm số rerank
+        # Sắp xếp giảm dần (sort ổn định: điểm bằng nhau giữ thứ tự của retriever)
         scored_docs.sort(key=lambda x: x[1], reverse=True)
 
         reranked_results: list[Document] = []
