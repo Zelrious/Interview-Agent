@@ -65,6 +65,175 @@
       {
         "input": "deduplicate_transactions([{'transaction_id': 'TX_A', 'val': 1, 'updated_at': 500}, {'transaction_id': 'TX_A', 'val': 2, 'updated_at': 100}, {'transaction_id': 'TX_A', 'val': 3, 'updated_at': 500}])",
         "expected": "[{'transaction_id': 'TX_A', 'val': 1, 'updated_at': 500}]"
+      },
+      {
+        "input": "deduplicate_transactions([])",
+        "expected": "[]"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_004",
+    "title": "Validate Age Input",
+    "competency": "QA_TEST_DESIGN",
+    "level": "intern",
+    "prompt": "Viết hàm `validate_age_input(raw) -> str` kiểm tra dữ liệu nhập vào ô tuổi. Trả về `'valid'` nếu `raw` là chuỗi chỉ gồm chữ số (cho phép khoảng trắng hai đầu) và có giá trị nguyên từ 18 đến 60 (bao gồm hai đầu); mọi trường hợp còn lại (rỗng, số thập phân, số âm, ký tự chữ, không phải chuỗi) trả về `'invalid'`.",
+    "public_tests": [
+      {
+        "input": "[validate_age_input(x) for x in ['18', '17', '60']]",
+        "expected": "['valid', 'invalid', 'valid']"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "[validate_age_input(x) for x in ['59', '61', ' 30 ']]",
+        "expected": "['valid', 'invalid', 'valid']"
+      },
+      {
+        "input": "[validate_age_input(x) for x in ['', '18.5', 'abc', '-20', None, 25]]",
+        "expected": "['invalid', 'invalid', 'invalid', 'invalid', 'invalid', 'invalid']"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_005",
+    "title": "Boundary Value Generator",
+    "competency": "QA_TEST_DESIGN",
+    "level": "junior",
+    "prompt": "Viết hàm `generate_boundary_values(min_value: int, max_value: int) -> list[int]` sinh bộ giá trị biên 3-point cho khoảng hợp lệ [min_value, max_value]: gồm `min-1, min, min+1, max-1, max, max+1`. Kết quả không chứa giá trị trùng lặp và được sắp xếp tăng dần. Nếu `min_value > max_value` trả về danh sách rỗng.",
+    "public_tests": [
+      {
+        "input": "generate_boundary_values(18, 60)",
+        "expected": "[17, 18, 19, 59, 60, 61]"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "generate_boundary_values(1, 2)",
+        "expected": "[0, 1, 2, 3]"
+      },
+      {
+        "input": "[generate_boundary_values(5, 5), generate_boundary_values(10, 3)]",
+        "expected": "[[4, 5, 6], []]"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_006",
+    "title": "Exponential Backoff Schedule",
+    "competency": "QA_AUTOMATION",
+    "level": "junior",
+    "prompt": "Viết hàm `compute_backoff_schedule(retries: int, base_delay: float, factor: float, max_delay: float) -> list[float]` trả về thời gian chờ (giây) trước mỗi lần thử lại theo exponential backoff: lần thứ i (bắt đầu từ 0) chờ `min(base_delay * factor**i, max_delay)`. Mỗi phần tử là kiểu float. Nếu `retries <= 0` trả về danh sách rỗng.",
+    "public_tests": [
+      {
+        "input": "compute_backoff_schedule(4, 1, 2, 30)",
+        "expected": "[1.0, 2.0, 4.0, 8.0]"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "compute_backoff_schedule(5, 2, 3, 50)",
+        "expected": "[2.0, 6.0, 18.0, 50.0, 50.0]"
+      },
+      {
+        "input": "[compute_backoff_schedule(0, 1, 2, 10), compute_backoff_schedule(-3, 1, 2, 10)]",
+        "expected": "[[], []]"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_007",
+    "title": "Flatten Nested JSON",
+    "competency": "QA_AUTOMATION",
+    "level": "middle",
+    "prompt": "Viết hàm `flatten_json(obj: dict, sep: str = '.') -> dict` làm phẳng một đối tượng JSON lồng nhau thành dict một cấp. Khóa của dict con được nối bằng `sep`; phần tử của list dùng chỉ số làm khóa (ví dụ `a.c.0`). Dict hoặc list rỗng ở cấp lồng được giữ nguyên làm giá trị tại khóa tương ứng. Nếu `obj` rỗng trả về `{}`.",
+    "public_tests": [
+      {
+        "input": "flatten_json({'a': {'b': 1, 'c': [2, 3]}})",
+        "expected": "{'a.b': 1, 'a.c.0': 2, 'a.c.1': 3}"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "[flatten_json({}), flatten_json({'a': {}, 'b': []})]",
+        "expected": "[{}, {'a': {}, 'b': []}]"
+      },
+      {
+        "input": "flatten_json({'x': {'y': {'z': None}}, 'l': [{'k': 1}]}, sep='/')",
+        "expected": "{'x/y/z': None, 'l/0/k': 1}"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_008",
+    "title": "JSON Response Contract Diff",
+    "competency": "QA_AUTOMATION",
+    "level": "middle",
+    "prompt": "Viết hàm `diff_json_schema(expected: dict, actual: dict) -> dict` so sánh cấu trúc giữa một response mẫu và response thực tế (contract testing). Trả về dict có ba khóa `'missing'` (khóa có trong expected nhưng thiếu trong actual), `'extra'` (khóa có trong actual nhưng không có trong expected) và `'type_mismatch'` (khóa có ở cả hai nhưng khác kiểu dữ liệu). Mỗi khóa là danh sách đường dẫn dạng `a.b.c`, sắp xếp tăng dần. Chỉ so sánh đệ quy vào bên trong khi cả hai giá trị đều là dict; không so sánh nội dung list. Phân biệt bool và int là hai kiểu khác nhau.",
+    "public_tests": [
+      {
+        "input": "diff_json_schema({'id': 1, 'name': 'a', 'tags': []}, {'id': '1', 'name': 'b', 'extra': True})",
+        "expected": "{'missing': ['tags'], 'extra': ['extra'], 'type_mismatch': ['id']}"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "diff_json_schema({'user': {'id': 1, 'email': 'x'}}, {'user': {'id': 2}})",
+        "expected": "{'missing': ['user.email'], 'extra': [], 'type_mismatch': []}"
+      },
+      {
+        "input": "diff_json_schema({'a': 1, 'b': None, 'c': True}, {'a': 1, 'b': 'x', 'c': 1})",
+        "expected": "{'missing': [], 'extra': [], 'type_mismatch': ['b', 'c']}"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_009",
+    "title": "Flaky Test Detector",
+    "competency": "QA_AUTOMATION",
+    "level": "senior",
+    "prompt": "Viết hàm `detect_flaky_tests(runs: list[dict], threshold: float) -> list[tuple[str, float]]` phát hiện test không ổn định từ lịch sử chạy CI. Mỗi phần tử của `runs` có dạng `{'test': str, 'commit': str, 'passed': bool}`. Một test bị coi là flaky tại một commit nếu trên cùng commit đó nó có cả kết quả pass và fail. Với mỗi test, `flaky_rate = số commit flaky / tổng số commit có chạy test đó`, làm tròn 2 chữ số thập phân. Chỉ trả về các test có ít nhất một commit flaky và `flaky_rate >= threshold`, dưới dạng `(tên_test, flaky_rate)`, sắp xếp giảm dần theo `flaky_rate`, nếu bằng nhau thì tăng dần theo tên test.",
+    "public_tests": [
+      {
+        "input": "detect_flaky_tests([{'test': 't1', 'commit': 'c1', 'passed': True}, {'test': 't1', 'commit': 'c1', 'passed': False}, {'test': 't1', 'commit': 'c2', 'passed': True}, {'test': 't2', 'commit': 'c1', 'passed': True}, {'test': 't2', 'commit': 'c2', 'passed': True}], 0.0)",
+        "expected": "[('t1', 0.5)]"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "detect_flaky_tests([{'test': 't', 'commit': 'c1', 'passed': True}, {'test': 't', 'commit': 'c2', 'passed': False}], 0.0)",
+        "expected": "[]"
+      },
+      {
+        "input": "detect_flaky_tests([{'test': 't_a', 'commit': 'c1', 'passed': True}, {'test': 't_a', 'commit': 'c1', 'passed': False}, {'test': 't_a', 'commit': 'c2', 'passed': True}, {'test': 't_a', 'commit': 'c3', 'passed': True}, {'test': 't_b', 'commit': 'c1', 'passed': True}, {'test': 't_b', 'commit': 'c1', 'passed': False}, {'test': 't_b', 'commit': 'c2', 'passed': False}, {'test': 't_b', 'commit': 'c2', 'passed': True}, {'test': 't_c', 'commit': 'c1', 'passed': False}, {'test': 't_c', 'commit': 'c1', 'passed': True}, {'test': 't_c', 'commit': 'c2', 'passed': True}], 0.5)",
+        "expected": "[('t_b', 1.0), ('t_c', 0.5)]"
+      },
+      {
+        "input": "detect_flaky_tests([], 0.5)",
+        "expected": "[]"
+      }
+    ]
+  },
+  {
+    "problem_id": "CODE_010",
+    "title": "Mask Sensitive Fields",
+    "competency": "QA_SECURITY_TESTING",
+    "level": "middle",
+    "prompt": "Viết hàm `mask_sensitive_fields(data, sensitive_keys: list[str], mask: str = '***')` trả về một bản sao của dữ liệu JSON (dict/list lồng nhau) trong đó giá trị của mọi khóa nằm trong `sensitive_keys` được thay bằng `mask`. So khớp tên khóa không phân biệt hoa thường, áp dụng ở mọi cấp lồng kể cả bên trong list. Không được sửa đổi dữ liệu gốc.",
+    "public_tests": [
+      {
+        "input": "mask_sensitive_fields({'user': 'a', 'password': 'p'}, ['password'])",
+        "expected": "{'user': 'a', 'password': '***'}"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "input": "mask_sensitive_fields({'items': [{'Token': 't1', 'id': 1}, {'id': 2, 'meta': {'API_KEY': 'k'}}]}, ['token', 'api_key'], '###')",
+        "expected": "{'items': [{'Token': '###', 'id': 1}, {'id': 2, 'meta': {'API_KEY': '###'}}]}"
+      },
+      {
+        "input": "(lambda d: [mask_sensitive_fields(d, ['token']), d])({'a': {'token': 't'}})",
+        "expected": "[{'a': {'token': '***'}}, {'a': {'token': 't'}}]"
       }
     ]
   }
