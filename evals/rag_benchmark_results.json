@@ -1,96 +1,100 @@
 {
   "timestamp_iso": "2026-10-15T22:00:00Z",
-  "golden_dataset_size": 24,
+  "golden_dataset_size": 36,
   "configurations": [
     {
       "config": "A_Baseline_FixedSize",
-      "recall_at_5": 0.3,
-      "recall_at_20": 0.6,
-      "mrr": 0.2264,
+      "precision_at_5": 0.2571,
+      "recall_at_5": 0.2333,
+      "recall_at_20": 0.4667,
+      "mrr": 0.1776,
       "citation_existence": 0.35,
       "faithfulness": 0.55,
       "abstention_rate": 0.0,
-      "latency_p50_ms": 6.26,
+      "latency_p50_ms": 24.54,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
         "expected_item_ids": [
           "Q_BE_003"
         ],
-        "hit_rank": 13,
+        "hit_rank": 0,
         "top_3_retrieved": [
-          "Q_BE_005",
-          "Q_DA_004",
-          "Q_BE_004"
+          "Q_DA_022",
+          "Q_DA_030",
+          "Q_DA_019"
         ]
       }
     },
     {
       "config": "B_Structured",
-      "recall_at_5": 0.35,
-      "recall_at_20": 0.55,
-      "mrr": 0.2528,
+      "precision_at_5": 0.2182,
+      "recall_at_5": 0.3667,
+      "recall_at_20": 0.5667,
+      "mrr": 0.2624,
       "citation_existence": 0.65,
       "faithfulness": 0.75,
       "abstention_rate": 0.0,
-      "latency_p50_ms": 2.24,
+      "latency_p50_ms": 11.45,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
         "expected_item_ids": [
           "Q_BE_003"
         ],
-        "hit_rank": 13,
+        "hit_rank": 0,
         "top_3_retrieved": [
-          "Q_BE_005",
-          "Q_DA_004",
-          "Q_BE_004"
+          "Q_DA_022",
+          "Q_DA_030",
+          "Q_DA_019"
         ]
       }
     },
     {
       "config": "C_Hybrid_RRF",
-      "recall_at_5": 0.55,
+      "precision_at_5": 0.2308,
+      "recall_at_5": 0.4333,
       "recall_at_20": 0.8,
-      "mrr": 0.3363,
+      "mrr": 0.3631,
       "citation_existence": 0.85,
       "faithfulness": 0.88,
       "abstention_rate": 1.0,
-      "latency_p50_ms": 2.68,
+      "latency_p50_ms": 12.73,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
         "expected_item_ids": [
           "Q_BE_003"
         ],
-        "hit_rank": 4,
+        "hit_rank": 20,
         "top_3_retrieved": [
-          "Q_BE_005",
-          "Q_DA_004",
-          "Q_BH_003"
+          "Q_BE_024",
+          "Q_BE_020",
+          "Q_BH_010"
         ]
       }
     },
     {
       "config": "D_Cascade_Rerank",
-      "recall_at_5": 0.85,
-      "recall_at_20": 0.9,
-      "mrr": 0.8536,
+      "precision_at_5": 0.3048,
+      "recall_at_5": 0.7,
+      "recall_at_20": 0.7667,
+      "mrr": 0.6342,
       "citation_existence": 1.0,
       "faithfulness": 1.0,
       "abstention_rate": 1.0,
-      "latency_p50_ms": 3.94,
+      "latency_p50_ms": 15.02,
       "failure_case": {
         "query_id": "GOLD_11",
         "query": "Nội dung và gợi ý đào sâu của câu hỏi Q_BE_003 là gì?",
         "expected_item_ids": [
           "Q_BE_003"
         ],
-        "hit_rank": 1,
+        "hit_rank": 0,
         "top_3_retrieved": [
-          "Q_BE_003",
-          "Q_BH_006",
-          "Q_BE_007"
+          "Q_BE_024",
+          "Q_BE_020",
+          "Q_DA_014"
         ]
       }
     }

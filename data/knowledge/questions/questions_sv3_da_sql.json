@@ -124,5 +124,485 @@
     ],
     "status": "superseded",
     "version": "v1.0-deprecated"
+  },
+  {
+    "question_id": "Q_DA_007",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 7: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_008",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 8: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_009",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 9: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_010",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 10: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_011",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 11: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_012",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 12: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_013",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 13: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_014",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 14: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_015",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 15: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_016",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 16: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_017",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 17: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_018",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 18: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_019",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 19: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_020",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 20: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_021",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 21: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_022",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 22: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_023",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 23: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_024",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 24: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_025",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 25: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_026",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 26: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_027",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 27: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_028",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 28: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_029",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 29: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_DA_030",
+    "competency": "DA_SQL_ANALYTICS",
+    "role": "data_analyst",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi chuyên sâu SQL số 30: Phân tích và tối ưu hóa truy vấn dữ liệu lớn kết hợp Window Function và CTE.",
+    "follow_up_hints": [
+      "Sử dụng partition by như thế nào để tối ưu bộ nhớ?",
+      "So sánh hiệu năng giữa CTE và Temporary Table."
+    ],
+    "expected_signals": [
+      "Nắm vững cú pháp Window Function",
+      "Hiểu rõ cơ chế thực thi của CTE"
+    ],
+    "status": "active",
+    "version": "v2.0"
   }
 ]

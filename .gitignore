@@ -17,3 +17,12 @@ __pycache__/
 *.sqlite3
 chroma_db/
 logs/
+
+# IDE, Serena & Claude local configs
+.serena/
+.claude/
+.idea/
+.vscode/
+*.log
+.DS_Store
+
