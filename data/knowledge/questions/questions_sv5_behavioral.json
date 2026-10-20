@@ -124,5 +124,485 @@
     ],
     "status": "active",
     "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_007",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 7: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_008",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 8: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_009",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 9: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_010",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 10: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_011",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 11: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_012",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 12: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_013",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 13: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_014",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 14: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_015",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 15: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_016",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 16: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_017",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 17: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_018",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 18: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_019",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 19: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_020",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 20: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_021",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 21: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_022",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 22: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_023",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 23: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_024",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 24: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_025",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 25: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_026",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 26: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_027",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 4,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 27: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_028",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "middle",
+    "type": "behavioral",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 28: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_029",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "junior",
+    "type": "behavioral",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 29: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_BH_030",
+    "competency": "BEHAVIORAL_STAR",
+    "role": "general",
+    "level": "senior",
+    "type": "behavioral",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi hành vi STAR số 30: Kể lại một tình huống thực tế khi bạn đối mặt với áp lực deadline và mâu thuẫn kỹ thuật trong team.",
+    "follow_up_hints": [
+      "Cách bạn giữ bình tĩnh và giao tiếp với các bên liên quan là gì?",
+      "Bài học kinh nghiệm rút ra sau sự việc đó?"
+    ],
+    "expected_signals": [
+      "Thể hiện tinh thần trách nhiệm và chủ động",
+      "Kỹ năng lắng nghe và đàm phán"
+    ],
+    "status": "active",
+    "version": "v2.0"
   }
 ]

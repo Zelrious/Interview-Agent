@@ -65,6 +65,7 @@ def run_single_benchmark(
 
     latencies: list[float] = []
     hits_at_5 = 0
+    precision_at_5_scores: list[float] = []
     hits_at_20 = 0
     reciprocal_ranks: list[float] = []
 
@@ -114,6 +115,8 @@ def run_single_benchmark(
 
             if hit_rank > 0 and hit_rank <= 5:
                 hits_at_5 += 1
+                hits_in_top5 = sum(1 for doc in retrieved_top5 if is_doc_hit(doc, item))
+                precision_at_5_scores.append(hits_in_top5 / len(retrieved_top5) if retrieved_top5 else 0.0)
             if hit_rank > 0 and hit_rank <= 20:
                 hits_at_20 += 1
 
@@ -160,6 +163,7 @@ def run_single_benchmark(
                 citation_rates.append(0.35)
                 faithfulness_scores.append(0.55)
 
+    precision_5 = round(statistics.mean(precision_at_5_scores), 4) if precision_at_5_scores else 0.0
     recall_5 = round(hits_at_5 / total_answerable, 4) if total_answerable else 0.0
     recall_20 = round(hits_at_20 / total_answerable, 4) if total_answerable else 0.0
     mrr = round(statistics.mean(reciprocal_ranks), 4) if reciprocal_ranks else 0.0
@@ -174,6 +178,7 @@ def run_single_benchmark(
 
     return {
         "config": config_name,
+        "precision_at_5": precision_5,
         "recall_at_5": recall_5,
         "recall_at_20": recall_20,
         "mrr": mrr,

@@ -124,5 +124,485 @@
     ],
     "status": "active",
     "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_007",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 7: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_008",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 8: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_009",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 9: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_010",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 10: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_011",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 11: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_012",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 12: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_013",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 13: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_014",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 14: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_015",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 15: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_016",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 16: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_017",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 17: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_018",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 18: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_019",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 19: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_020",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 20: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_021",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 21: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_022",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 22: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_023",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 23: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_024",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 24: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_025",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 25: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_026",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 26: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_027",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 27: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_028",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 2,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 28: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_029",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "junior",
+    "type": "technical",
+    "difficulty": 3,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 29: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
+  },
+  {
+    "question_id": "Q_QA_030",
+    "competency": "QA_TEST_DESIGN",
+    "role": "qa_engineer",
+    "level": "middle",
+    "type": "technical",
+    "difficulty": 1,
+    "language": "vi",
+    "text": "Câu hỏi kiểm thử chất lượng số 30: Thiết kế Test Case toàn diện cho hệ thống thanh toán trực tuyến.",
+    "follow_up_hints": [
+      "Áp dụng phương pháp Boundary Value Analysis (BVA) ra sao?",
+      "Xử lý các kịch bản negative testing thế nào?"
+    ],
+    "expected_signals": [
+      "Xác định rõ phân vùng tương đương và giá trị biên",
+      "Kiểm tra tính an toàn giao dịch"
+    ],
+    "status": "active",
+    "version": "v2.0"
   }
 ]
